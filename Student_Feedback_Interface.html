@@ -160,8 +160,59 @@
             overflow-x: hidden;
             transition: all .5s ease;
         }
-        
 
+        .feedback-form{
+          background: #fff;
+          margin-top: 70px;
+          
+        }
+
+        .feedback-form, .form-control {
+          border-radius:1rem;
+        }
+
+        .feedback-image{
+          text-align: center;
+        }
+
+        .feedback-image img{
+          width: 20%;
+          margin-top: 3%;
+          transform: rotate(0deg);
+          margin-left: 150px;
+        }
+
+        .feedback-form form{
+          padding: 15%;
+        }
+
+        .feedback-form form .row{
+          margin-bottom: -15%;
+        }
+
+        .feedback-form h3{
+          margin-bottom: 0%;
+          margin-top: -16%;
+          text-align: center;
+          color: #0062cc;
+        }
+
+        .feedback-form .btnFeedback{
+          width: 50%;
+          border: none;
+          border-radius: 1rem;
+          padding: 1.5%;
+          background: #dc3545;
+          font-weight: 600;
+          color: white;
+          cursor: pointer;
+        }
+
+        .feedback-form p{
+          margin-top: 10px;
+          margin-bottom: 3px;
+          color: gray;
+        }
     </style>
 </head>
 <body>
@@ -193,6 +244,49 @@
       <li><Bus href="#"><i class="fas fa-qrcode"></i>Bus Interface</a></li>
     </ul>
   </div>
+
+  <div class="container feedback-form">
+    <div class="feedback-image">
+      <img src="Img\Uni10.jpg" alt="">  
+    </div>
+        <form action="#" method="post">
+          <h3>Drop Us A Feedback</h3>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <p>Name</p>
+                <input type="text" class="form-control" placeholder="Name"><br>
+              </div>
+              <div class="form-group">
+                <p>Student ID / Staff ID</p>
+                <input type="text" class="form-control" placeholder="Student ID/Staff ID"><br>
+              </div>
+              <div class="form-group">
+                <p>Location</p>
+                <select name="Location" class="form-select form-select-sm">
+                  <option value="LIBRARY">LIBRARY</option>
+                  <option value="ADMIN">ADMIN</option>
+                  <option value="MURNI">MURNI</option>
+                  <option value="AMANAH">AMANAH</option>
+                  <option value="DSS">DSS</option>
+                  <option value="ILMU">ILMU</option>
+                  <option value="COE">COE</option>
+                </select><br>
+              </div>
+              <p>Description</p>
+              <textarea name="description"  class="form-control" cols="30" rows="10" style="width: 600px; height: 150px; margin-bottom: 8px;" placeholder="Description"></textarea>
+              <input type="submit" class="btnFeedback" value="Send Feedback" style="outline: none;">
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <p>Date</p>
+                <input type="date" name="date" class="form-control">
+              </div>
+          </div>
+        </form>
+  </div>
+  </div>
+  
 
    
 </nav>
