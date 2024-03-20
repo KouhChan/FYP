@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify Bus Information</title>
+</head>
+
+<body>
+    <h1>Modify Bus Information</h1>
+    <form action="modify_bus.php" method="POST">
+        <label for="busID">Bus ID:</label><br>
+        <input type="text" id="busID" name="busID" readonly><br>
+
+        <label for="busPlat">Plat Number:</label><br>
+        <input type="text" id="busPlat" name="busPlat"><br>
+
+        <label for="personIncharge">Person Incharge:</label><br>
+        <input type="text" id="personIncharge" name="personIncharge"><br>
+
+        <label for="dateCreated">Date Created:</label><br>
+        <input type="text" id="dateCreated" name="dateCreated" readonly><br><br>
+
+        <input type="submit" value="Modify">
+    </form>
+</body>
+
+</html>
