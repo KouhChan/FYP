@@ -16,18 +16,18 @@ if ($conn->connect_error) {
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
-    $busID = $_POST["busID"];
-    $busPlat = $_POST["busPlat"];
-    $personIncharge = $_POST["personIncharge"];
+    $ID = $_POST["ID"];
+    $username = $_POST["Username"];
+    $password = $_POST["Password"];
 
     // Prepare and bind SQL statement
-    $stmt = $conn->prepare("UPDATE bus_info SET Plat_No=?, Person_Incharge=? WHERE BUS_ID=?");
-    $stmt->bind_param("ssi", $busPlat, $personIncharge, $busID);
+    $stmt = $conn->prepare("UPDATE credential SET ID=?, username=? WHERE password =?");
+    $stmt->bind_param("iss", $ID, $username, $password);
 
     // Execute statement
     if ($stmt->execute()) {
-        echo "Bus information updated successfully!";
-        header("Location: View_Bus.php");
+        echo "Admin information updated successfully!";
+        header("Location: View_Admin.php");
     } else {
         echo "Error: " . $stmt->error;
     }

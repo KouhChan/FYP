@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/c065e87b98.js" crossorigin="anonymous"></script>
-    <title>View Buses</title>
+    <title>Register Bus Information</title>
     <style>
         * {
             padding: 0;
@@ -275,7 +275,7 @@
             <header>My App</header>
             <ul>
                 <li><a href="#"><i class="fas"></i>Dashboard</a></li>
-                <li><a href="../Admin/List_Admin_Interface.php"><i class="fas"></i>Admin</a></li>
+                <li><a href="List_Admin_Interface.php"><i class="fas"></i>Admin</a></li>
                 <li>
                     <Bus href="#"><i class="fas fa-qrcode"></i>Bus Interface</a>
                 </li>
@@ -283,66 +283,35 @@
         </div>
 
     </nav>
+    <div class="container">
+        <h3>Add Bus Information</h3>
+        <form action="Bus_Register.php" method="POST">
+            <label for="busID">Bus ID:</label><br>
+            <input type="text" class="form-control" placeholder="100" name="busID"><br>
 
-    <div class="container text-center">
-        <section class="table_body">
-            <h3 class="back">View Buses</h3>
-            <table class="table table-primary">
-                <thead>
-                    <tr class="table-info">
-                        <th>Bus ID</th>
-                        <th>Plat Number</th>
-                        <th>Person Incharge</th>
-                        <th>Date Created</th>
-                        <th><a href="addBus.php"><button class="add-button">New</button></a></th>
-                    </tr>
-                </thead>
-        </section>
-        <tbody class="table-light">
-            <?php
-            // Database connection parameters
-            $servername = "localhost";
-            $username = "root"; // Replace with your MySQL username
-            $password = ""; // Replace with your MySQL password
-            $database = "admin"; // Replace with your MySQL database name
+            <label for="busPlat">Plat Number:</label><br>
+            <input type="text" class="form-control" id="busPlat" placeholder="AKJ101" name="busPlat"><br>
 
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $database);
 
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
+            <label for="personIncharge">Person Incharge:</label><br>
+            <input type="text" class="form-control" id="personIncharge" placeholder="Farhan" name="personIncharge"><br>
 
-            // SQL query to fetch all buses
-            $sql = "SELECT Bus_ID, Plat_No, Person_Incharge, Date_Created FROM bus_info";
-            $result = $conn->query($sql);
+            <label for="dateCreated">Date Created:</label><br>
 
-            if ($result->num_rows > 0) {
-                // Output data of each row
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . $row["Bus_ID"] . "</td>";
-                    echo "<td>" . $row["Plat_No"] . "</td>";
-                    echo "<td>" . $row["Person_Incharge"] . "</td>";
-                    echo "<td>" . $row["Date_Created"] . "</td>";
-                    echo "<td style='text-align: center;'><a href='modifyBusPage.php?bus_id=" . $row["Bus_ID"] . "' class='modify-button'>Update</a>
-                
-                    <a href='deleteBus.php?bus_id=" . $row["Bus_ID"] . "' class='remove-button space'>Remove</a>
-                    </td>"; // Modify link as a button
+            <input type="date" class="form-control" id="dateCreated" placeholder="10/10/2012" name=" dateCreated"><br>
 
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='5'>0 results</td></tr>";
-            }
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-success" type="submit">Add</button>
+                <a href="View_Bus.php" class="btn btn-danger">Cancel</a>
+            </div>
+        </form>
 
-            // Close connection
-            $conn->close();
-            ?>
-        </tbody>
-        </table>
+    </div>
     </div>
 </body>
+<script>
+    // Auto-detect current date and set it as the value for the input field
+    document.getElementById("dateCreated").valueAsDate = new Date();
+</script>
 
 </html>

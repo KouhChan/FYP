@@ -162,6 +162,13 @@
       overflow-x: hidden;
       transition: all .5s ease;
     }
+
+    .container {
+      margin-top: 10px;
+      background: white;
+      border-radius: 8px;
+      padding: 25px;
+    }
   </style>
   <script>
     function togglePasswords() {
@@ -208,11 +215,10 @@
         </li>
       </ul>
     </div>
-
   </nav>
 
-  <div class="form-container">
-    <h1>View Users</h1>
+  <div class="container form-container">
+    <h3>View Users</h3>
     <button onclick=" togglePasswords()">Toggle Passwords</button>
     <div class="container text-center">
       <table class="table table-bordered table-primary">

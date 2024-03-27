@@ -1,3 +1,50 @@
+<?php
+// Database connection parameters
+$servername = "localhost";
+$username = "root"; // Replace with your MySQL username
+$password = ""; // Replace with your MySQL password
+$database = "admin"; // Replace with your MySQL database name
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $database);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Check if Bus ID is provided in the query parameter
+if (isset($_GET['ID'])) {
+    // Retrieve Bus ID from the query parameter
+    $ID = $_GET['ID'];
+
+    // SQL query to fetch bus information for the given Bus ID
+    $sql = "SELECT * FROM credential WHERE ID = $ID";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // Fetch bus information
+        $row = $result->fetch_assoc();
+        $username = $row['Username'];
+        $password = $row['Password'];
+    } else {
+        echo "No Admin found with Admin ID: $ID";
+    }
+} else {
+    echo "Admin ID not provided in the query parameter.";
+}
+
+$conn->close();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify Admin Information</title>
+</head>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -275,7 +322,7 @@
             <header>My App</header>
             <ul>
                 <li><a href="#"><i class="fas"></i>Dashboard</a></li>
-                <li><a href="../Admin/List_Admin_Interface.php"><i class="fas"></i>Admin</a></li>
+                <li><a href="List_Admin_Interface.php"><i class="fas"></i>Admin</a></li>
                 <li>
                     <Bus href="#"><i class="fas fa-qrcode"></i>Bus Interface</a>
                 </li>
@@ -283,65 +330,26 @@
         </div>
 
     </nav>
+    <div class="container">
+        <h3>Modify Bus Information</h3>
+        <form action="modifyAdminInfo.php" method="POST">
+            <label for="AdminID">Admin ID:</label><br>
+            <input type="text" class="form-control" value="<?php echo $ID; ?>" name="ID"><br>
 
-    <div class="container text-center">
-        <section class="table_body">
-            <h3 class="back">View Buses</h3>
-            <table class="table table-primary">
-                <thead>
-                    <tr class="table-info">
-                        <th>Bus ID</th>
-                        <th>Plat Number</th>
-                        <th>Person Incharge</th>
-                        <th>Date Created</th>
-                        <th><a href="addBus.php"><button class="add-button">New</button></a></th>
-                    </tr>
-                </thead>
-        </section>
-        <tbody class="table-light">
-            <?php
-            // Database connection parameters
-            $servername = "localhost";
-            $username = "root"; // Replace with your MySQL username
-            $password = ""; // Replace with your MySQL password
-            $database = "admin"; // Replace with your MySQL database name
+            <label for="Username">Username :</label><br>
+            <input type="text" class="form-control" id="Username" value="<?php echo $row['Username']; ?>" name="Username"><br>
 
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $database);
 
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
+            <label for="Password">Password :</label><br>
+            <input type="text" class="form-control" id="Password" value="<?php echo $row['Password']; ?>" name="Password"><br>
 
-            // SQL query to fetch all buses
-            $sql = "SELECT Bus_ID, Plat_No, Person_Incharge, Date_Created FROM bus_info";
-            $result = $conn->query($sql);
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-primary" type="submit">Modify</button>
+                <a href="View_Admin.php" class="btn btn-danger">Cancel</a>
+            </div>
+        </form>
 
-            if ($result->num_rows > 0) {
-                // Output data of each row
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . $row["Bus_ID"] . "</td>";
-                    echo "<td>" . $row["Plat_No"] . "</td>";
-                    echo "<td>" . $row["Person_Incharge"] . "</td>";
-                    echo "<td>" . $row["Date_Created"] . "</td>";
-                    echo "<td style='text-align: center;'><a href='modifyBusPage.php?bus_id=" . $row["Bus_ID"] . "' class='modify-button'>Update</a>
-                
-                    <a href='deleteBus.php?bus_id=" . $row["Bus_ID"] . "' class='remove-button space'>Remove</a>
-                    </td>"; // Modify link as a button
-
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='5'>0 results</td></tr>";
-            }
-
-            // Close connection
-            $conn->close();
-            ?>
-        </tbody>
-        </table>
+    </div>
     </div>
 </body>
 

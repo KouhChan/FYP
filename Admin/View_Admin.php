@@ -286,15 +286,14 @@
 
     <div class="container text-center">
         <section class="table_body">
-            <h3 class="back">View Buses</h3>
+            <h3 class="back">View Admin</h3>
             <table class="table table-primary">
                 <thead>
                     <tr class="table-info">
-                        <th>Bus ID</th>
-                        <th>Plat Number</th>
-                        <th>Person Incharge</th>
-                        <th>Date Created</th>
-                        <th><a href="addBus.php"><button class="add-button">New</button></a></th>
+                        <th>Admin ID</th>
+                        <th>Admin Name</th>
+                        <th>Password</th>
+                        <th><a href="addAdmin.php"><button class="add-button">New</button></a></th>
                     </tr>
                 </thead>
         </section>
@@ -315,20 +314,19 @@
             }
 
             // SQL query to fetch all buses
-            $sql = "SELECT Bus_ID, Plat_No, Person_Incharge, Date_Created FROM bus_info";
+            $sql = "SELECT ID, Username, Password FROM credential";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
                 // Output data of each row
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
-                    echo "<td>" . $row["Bus_ID"] . "</td>";
-                    echo "<td>" . $row["Plat_No"] . "</td>";
-                    echo "<td>" . $row["Person_Incharge"] . "</td>";
-                    echo "<td>" . $row["Date_Created"] . "</td>";
-                    echo "<td style='text-align: center;'><a href='modifyBusPage.php?bus_id=" . $row["Bus_ID"] . "' class='modify-button'>Update</a>
+                    echo "<td>" . $row["ID"] . "</td>";
+                    echo "<td>" . $row["Username"] . "</td>";
+                    echo "<td>" . $row["Password"] . "</td>";
+                    echo "<td style='text-align: center;'><a href='modifyAdminPage.php?ID=" . $row["ID"] . "' class='modify-button'>Update</a>
                 
-                    <a href='deleteBus.php?bus_id=" . $row["Bus_ID"] . "' class='remove-button space'>Remove</a>
+                    <a href='deleteAdmin.php?ID=" . $row["ID"] . "' class='remove-button space'>Remove</a>
                     </td>"; // Modify link as a button
 
                     echo "</tr>";

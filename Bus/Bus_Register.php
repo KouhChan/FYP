@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $busID = $_POST["busID"];
     $busPlat = $_POST["busPlat"];
     $personIncharge = $_POST["personIncharge"];
-    $Date = date('Y-m-d', strtotime($_POST["dateInput"]));
+    $Date = date('Y-m-d', strtotime($_POST["dateCreated"]));
 
     // Prepare SQL statement
     $stmt = $conn->prepare("INSERT INTO bus_info (BUS_ID, Plat_No, Person_Incharge, Date_Created) VALUES (NULL, ?, ?, ?)");
@@ -40,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Execute statement
     if ($stmt->execute()) {
         echo "Registration successful!";
+        header("Location: View_Bus.php");
     } else {
         echo "Error executing statement: " . $stmt->error;
     }
