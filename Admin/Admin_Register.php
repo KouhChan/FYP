@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root"; // Replace with your MySQL username
 $password = ""; // Replace with your MySQL password
-$database = "admin"; // Replace with your MySQL database name
+$database = "unitenadmin"; // Replace with your MySQL database name
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     // Prepare and bind SQL statement
-    $stmt = $conn->prepare("INSERT INTO credential (Username, Password) VALUES (?, ?)");
+    $stmt = $conn->prepare("INSERT INTO admindatabase (Email, Password) VALUES (?, ?)");
     $stmt->bind_param("ss", $email, $hashed_password);
 
     // Execute statement

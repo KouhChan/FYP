@@ -290,8 +290,10 @@
             <table class="table table-primary">
                 <thead>
                     <tr class="table-info">
+                        <th>No.</th>
                         <th>Admin ID</th>
-                        <th>Admin Name</th>
+                        <th>Name</th>
+                        <th>Email</th>
                         <th>Password</th>
                         <th><a href="addAdmin.php"><button class="add-button">New</button></a></th>
                     </tr>
@@ -303,7 +305,7 @@
             $servername = "localhost";
             $username = "root"; // Replace with your MySQL username
             $password = ""; // Replace with your MySQL password
-            $database = "admin"; // Replace with your MySQL database name
+            $database = "unitenadmin"; // Replace with your MySQL database name
 
             // Create connection
             $conn = new mysqli($servername, $username, $password, $database);
@@ -314,7 +316,7 @@
             }
 
             // SQL query to fetch all buses
-            $sql = "SELECT ID, Username, Password FROM credential";
+            $sql = "SELECT ID, Admin_ID, Name, Email, Password FROM admindatabase";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -322,7 +324,9 @@
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>" . $row["ID"] . "</td>";
-                    echo "<td>" . $row["Username"] . "</td>";
+                    echo "<td>" . $row["Admin_ID"] . "</td>";
+                    echo "<td>" . $row["Name"] . "</td>";
+                    echo "<td>" . $row["Email"] . "</td>";
                     echo "<td>" . $row["Password"] . "</td>";
                     echo "<td style='text-align: center;'><a href='modifyAdminPage.php?ID=" . $row["ID"] . "' class='modify-button'>Update</a>
                 

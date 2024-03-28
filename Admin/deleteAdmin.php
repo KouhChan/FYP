@@ -5,7 +5,7 @@ if (isset($_GET['ID']) && !empty($_GET['ID'])) {
     $servername = "localhost";
     $username = "root"; // Replace with your MySQL username
     $password = ""; // Replace with your MySQL password
-    $database = "admin"; // Replace with your MySQL database name
+    $database = "unitenadmin"; // Replace with your MySQL database name
 
     // Create connection
     $conn = new mysqli($servername, $username, $password, $database);
@@ -16,7 +16,7 @@ if (isset($_GET['ID']) && !empty($_GET['ID'])) {
     }
 
     // Prepare and bind the DELETE statement
-    $sql = "DELETE FROM credential WHERE ID = ?";
+    $sql = "DELETE FROM admindatabase WHERE ID = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $ID); // "i" indicates the type of parameter (integer)
 
@@ -36,5 +36,5 @@ if (isset($_GET['ID']) && !empty($_GET['ID'])) {
     $stmt->close();
     $conn->close();
 } else {
-    echo "Invalid bus ID.";
+    echo "Invalid Admin ID.";
 }

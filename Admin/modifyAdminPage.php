@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root"; // Replace with your MySQL username
 $password = ""; // Replace with your MySQL password
-$database = "admin"; // Replace with your MySQL database name
+$database = "unitenadmin"; // Replace with your MySQL database name
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
@@ -19,13 +19,14 @@ if (isset($_GET['ID'])) {
     $ID = $_GET['ID'];
 
     // SQL query to fetch bus information for the given Bus ID
-    $sql = "SELECT * FROM credential WHERE ID = $ID";
+    $sql = "SELECT * FROM admindatabase WHERE ID = $ID";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         // Fetch bus information
         $row = $result->fetch_assoc();
-        $username = $row['Username'];
+        $email = $row["Email"];
+        $name = $row["Name"];
         $password = $row['Password'];
     } else {
         echo "No Admin found with Admin ID: $ID";
@@ -331,20 +332,22 @@ $conn->close();
 
     </nav>
     <div class="container">
-        <h3>Modify Bus Information</h3>
+        <h3>Edit Admin Information</h3>
         <form action="modifyAdminInfo.php" method="POST">
             <label for="AdminID">Admin ID:</label><br>
             <input type="text" class="form-control" value="<?php echo $ID; ?>" name="ID"><br>
 
-            <label for="Username">Username :</label><br>
-            <input type="text" class="form-control" id="Username" value="<?php echo $row['Username']; ?>" name="Username"><br>
+            <label for="Name">Name :</label><br>
+            <input type="text" class="form-control" id="name" value="<?php echo $row['Name']; ?>" name="name"><br>
 
+            <label for="Email">Email :</label><br>
+            <input type="text" class="form-control" id="email" value="<?php echo $row["Email"]; ?>" name="email"><br>
 
             <label for="Password">Password :</label><br>
-            <input type="text" class="form-control" id="Password" value="<?php echo $row['Password']; ?>" name="Password"><br>
+            <input type="text" class="form-control" id="password" value="<?php echo $row['Password']; ?>" name="password"><br>
 
             <div class="d-flex justify-content-between">
-                <button class="btn btn-primary" type="submit">Modify</button>
+                <button class="btn btn-primary" type="submit">Update</button>
                 <a href="View_Admin.php" class="btn btn-danger">Cancel</a>
             </div>
         </form>
