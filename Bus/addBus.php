@@ -250,6 +250,11 @@
             padding: 25px;
         }
     </style>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+
 </head>
 
 <body>
@@ -285,9 +290,9 @@
     </nav>
     <div class="container">
         <h3>Add Bus Information</h3>
-        <form action="Bus_Register.php" method="POST">
+        <form action="Bus_Register.php" method="POST" id="Bus">
             <label for="busID">Bus ID:</label><br>
-            <input type="text" class="form-control" placeholder="100" name="busID"><br>
+            <input type="text" class="form-control" placeholder="100" name="busID" id="BusID"><br>
 
             <label for="busPlat">Plat Number:</label><br>
             <input type="text" class="form-control" id="busPlat" placeholder="AKJ101" name="busPlat"><br>
@@ -296,8 +301,7 @@
             <label for="personIncharge">Person Incharge:</label><br>
             <input type="text" class="form-control" id="personIncharge" placeholder="Farhan" name="personIncharge"><br>
 
-            <label for="dateCreated">Date Created:</label><br>
-
+            <label for="dateCreated" id>Date Created:</label><br>
             <input type="date" class="form-control" id="dateCreated" placeholder="10/10/2012" name=" dateCreated"><br>
 
             <div class="d-flex justify-content-between">
@@ -313,5 +317,9 @@
     // Auto-detect current date and set it as the value for the input field
     document.getElementById("dateCreated").valueAsDate = new Date();
 </script>
+<script script src="../JS/mail.js"></script>
+
+
+
 
 </html>
