@@ -157,7 +157,7 @@
     }
 
     body {
-      background: url('Admin/Img/Admin_Login_Background.png') no-repeat;
+      background: url('../Admin/Img/Admin_Login_Background.png') no-repeat;
       background-size: cover;
       height: 100vh;
       background-position: center;
@@ -242,10 +242,15 @@
     <div class="sidebar">
       <header>My App</header>
       <ul>
-        <li><a href="#"><i class="fas"></i>Dashboard</a></li>
-        <li><a href="#"><i class="fas"></i>Admin</a></li>
+        <li><a href="Student_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
+        <li><a href="#">
+            <i class="fas"></i>Notification</a></li>
         <li>
-          <Bus href="#"><i class="fas fa-qrcode"></i>Bus Interface</a>
+          <a href="#">
+            <i class="fas"></i>Routes</a>
+        </li>
+        <li>
+          <a href="Student_Feedback.php"><i class="fas"></i>Report</a>
         </li>
       </ul>
     </div>
@@ -258,7 +263,7 @@
     </div>
     <div class="container feedback-form">
       <div class="feedback-image">
-        <img src="Admin/Img/Uni10.jpg" alt="">
+        <img src="../Admin/Img/Uni10.jpg" alt="">
       </div>
       <form action="#" method="POST" id="report">
         <div class="row">
@@ -300,7 +305,7 @@
       </form>
     </div>
     </div>
-    <script script src="JS/Report.js"></script>
+    <script script src="../JS/Report.js"></script>
 
   </nav>
 </body>

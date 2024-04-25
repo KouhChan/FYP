@@ -274,11 +274,15 @@
         <div class="sidebar">
             <header>My App</header>
             <ul>
-                <li><a href="#"><i class="fas"></i>Dashboard</a></li>
-                <li><a href="../Admin/List_Admin_Interface.php"><i class="fas"></i>Admin</a></li>
+                <li><a href="../Admin/Admin_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
+                <li><a href="../Bus/View_Bus.php">
+                        <i class="fas"></i>Bus</a></li>
                 <li>
-                    <Bus href="#"><i class="fas fa-qrcode"></i>Bus Interface</a>
+                    <a href="../Admin/List_Admin_Interface.php">
+                        <i class="fas"></i>User</a>
                 </li>
+                <li>
+                    <a href="../Admin/Admin_Feedback.php"><i class="fas"></i>Report</a>
             </ul>
         </div>
 

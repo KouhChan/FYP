@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($pass, $hashed_password)) {
 
             // Redirect to the desired page
-            header("Location: Admin_Dashboard.html");
+            header("Location: Admin_Dashboard.php");
             // exit();
         } else {
             echo "Invalid email or password!";

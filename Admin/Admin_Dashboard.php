@@ -4,11 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/c065e87b98.js" crossorigin="anonymous"></script>
   <title>Admin Page</title>
   <style>
@@ -193,10 +190,15 @@
     <div class="sidebar">
       <header>My App</header>
       <ul>
-        <li><a href="#"><i class="fas"></i>Dashboard</a></li>
-        <li><a href="List_Admin_Interface.php"><i class="fas"></i>Admin</a></li>
+        <li><a href="Admin_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
+        <li><a href="../Bus/View_Bus.php">
+            <i class="fas"></i>Bus</a></li>
         <li>
-          <a href="../Bus/View_Bus.php"><i class="fas"></i>Bus</a>
+          <a href="List_Admin_Interface.php">
+            <i class="fas"></i>User</a>
+        </li>
+        <li>
+          <a href="Student_Feedback.php"><i class="fas"></i>Report</a>
         </li>
       </ul>
     </div>

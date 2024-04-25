@@ -18,7 +18,7 @@
 
         body {
             font-family: Montserrat, sans-serif;
-            background: url('Admin/Img/Admin_Login_Background.png') no-repeat;
+            background: url('Img/Admin_Login_Background.png') no-repeat;
             background-size: cover;
             height: 100vh;
             overflow-x: hidden;
@@ -186,7 +186,7 @@
     <div class="main--content">
         <div class="container feedback-form">
             <div class="feedback-image">
-                <img src="Admin/Img/Uni10.jpg" alt="">
+                <img src="Img/Uni10.jpg" alt="">
             </div>
             <div class="container mt-3">
                 <table class="table table-dark">

@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/c065e87b98.js" crossorigin="anonymous"></script>
-    <title>Register Bus Information</title>
+    <title>Admin Page</title>
     <style>
         * {
             padding: 0;
@@ -162,104 +162,14 @@
             overflow-x: hidden;
             transition: all .5s ease;
         }
-
-
-        td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        tr:first-child th:first-child {
-            border-top-left-radius: 10px;
-        }
-
-        tr:first-child th:last-child {
-            border-top-right-radius: 10px;
-        }
-
-        tr:last-child th:first-child {
-            border-top-left-radius: 10px;
-        }
-
-        tr:last-child th:last-child {
-            border-top-right-radius: 10px;
-        }
-
-        .modify-button {
-            display: inline-block;
-            background-color: #007bff;
-            color: white;
-            padding: 8px 12px;
-            text-align: center;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-
-        .modify-button:hover {
-            background-color: #0056b3;
-        }
-
-        .remove-button {
-            display: inline-block;
-            background-color: #BC544B;
-            color: white;
-            padding: 8px 12px;
-            text-align: center;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-            justify-content: center;
-        }
-
-        .remove-button:hover {
-            background-color: red;
-        }
-
-        .add-button {
-            display: inline-block;
-            background-color: green;
-            color: white;
-            padding: 1px 20px;
-            text-align: center;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-
-        .back {
-            padding: 9px;
-            text-align: center;
-        }
-
-        .container {
-            margin-top: 10px;
-            background: white;
-            border-radius: 8px;
-            padding: 25px;
-        }
     </style>
-
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-
-
 </head>
 
 <body>
+
     <nav>
         <div class="nav-new">
+
             <ul>
                 <li><a href="#" class="active" style="text-decoration: none;">STUDENT HUB</a></li>
                 <li><a href="#" class="active" style="text-decoration: none;">BRIGHTEN</a></li>
@@ -267,59 +177,34 @@
             </ul>
         </div>
 
+
         <input type="checkbox" id="check">
         <label for="check">
             <i class="fas fa-bars" id="btn"></i>
             <i class="fas fa-times" id="cancel"></i>
         </label>
 
-        <h2 class="tepi"><a href="../Admin/Admin_Dashboard.php" style="color: white;text-decoration: none;">UNITENShuttleTrack</a>
+        <h2 class="tepi"><a href="Admin_Dashboard.html" style="color: white;text-decoration: none;">UNITENShuttleTrack</a>
         </h2>
 
         <div class="sidebar">
             <header>My App</header>
             <ul>
-                <li><a href="../Admin/Admin_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
-                <li><a href="../Bus/View_Bus.php">
-                        <i class="fas"></i>Bus</a></li>
+                <li><a href="Student_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
+                <li><a href="#">
+                        <i class="fas"></i>Notification</a></li>
                 <li>
-                    <a href="../Admin/List_Admin_Interface.php">
-                        <i class="fas"></i>User</a>
+                    <a href="#">
+                        <i class="fas"></i>Routes</a>
                 </li>
                 <li>
-                    <a href="../Admin/Admin_Feedback.php"><i class="fas"></i>Report</a>
+                    <a href="Student_Feedback.php"><i class="fas"></i>Report</a>
+                </li>
             </ul>
         </div>
+
+
     </nav>
-    <div class="container">
-        <h3>Add Bus Information</h3>
-        <form action="Bus_Register.php" method="POST" id="Bus">
-            <label for="busID">Bus ID:</label><br>
-            <input type="text" class="form-control" placeholder="100" name="busID" id="BusID"><br>
-
-            <label for="busPlat">Plat Number:</label><br>
-            <input type="text" class="form-control" id="busPlat" placeholder="AKJ101" name="busPlat"><br>
-
-
-            <label for="personIncharge">Person Incharge:</label><br>
-            <input type="text" class="form-control" id="personIncharge" placeholder="Farhan" name="personIncharge"><br>
-
-            <label for="dateCreated" id>Date Created:</label><br>
-            <input type="date" class="form-control" id="dateCreated" placeholder="10/10/2012" name=" dateCreated"><br>
-
-            <div class="d-flex justify-content-between">
-                <button class="btn btn-success" type="submit">Add</button>
-                <a href="View_Bus.php" class="btn btn-danger">Cancel</a>
-            </div>
-        </form>
-
-    </div>
-    </div>
 </body>
-<script>
-    // Auto-detect current date and set it as the value for the input field
-    document.getElementById("dateCreated").valueAsDate = new Date();
-</script>
-<script script src="../JS/mail.js"></script>
 
 </html>
