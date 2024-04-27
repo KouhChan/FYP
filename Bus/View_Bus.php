@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/c065e87b98.js" crossorigin="anonymous"></script>
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <title>View Buses</title>
     <style>
         * {
@@ -27,7 +29,6 @@
             width: 100%;
         }
 
-
         nav ul {
             float: right;
             margin-right: 20px;
@@ -46,8 +47,6 @@
             border-radius: 3px;
             text-transform: uppercase;
         }
-
-
 
         a.active,
         a:hover {
@@ -86,7 +85,6 @@
             border-top: 1px solid rgba(255, 255, 255, .1);
             transition: .4s;
         }
-
 
         .sidebar ul a i {
             margin-right: 16px;
@@ -149,7 +147,6 @@
 
         }
 
-
         #check:checked~.tepi {
             left: 160px;
         }
@@ -162,7 +159,6 @@
             overflow-x: hidden;
             transition: all .5s ease;
         }
-
 
         td {
             border: 1px solid black;
@@ -285,7 +281,6 @@
                     <a href="../Admin/Admin_Feedback.php"><i class="fas"></i>Report</a>
             </ul>
         </div>
-
     </nav>
 
     <div class="container text-center">
@@ -302,51 +297,16 @@
                     </tr>
                 </thead>
         </section>
-        <tbody class="table-light">
-            <?php
-            // Database connection parameters
-            $servername = "localhost";
-            $username = "root"; // Replace with your MySQL username
-            $password = ""; // Replace with your MySQL password
-            $database = "admin"; // Replace with your MySQL database name
-
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $database);
-
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-
-            // SQL query to fetch all buses
-            $sql = "SELECT Bus_ID, Plat_No, Person_Incharge, Date_Created FROM bus_info";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-                // Output data of each row
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . $row["Bus_ID"] . "</td>";
-                    echo "<td>" . $row["Plat_No"] . "</td>";
-                    echo "<td>" . $row["Person_Incharge"] . "</td>";
-                    echo "<td>" . $row["Date_Created"] . "</td>";
-                    echo "<td style='text-align: center;'><a href='modifyBusPage.php?bus_id=" . $row["Bus_ID"] . "' class='modify-button'>Update</a>
-                
-                    <a href='deleteBus.php?bus_id=" . $row["Bus_ID"] . "' class='remove-button space'>Remove</a>
-                    </td>"; // Modify link as a button
-
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='5'>0 results</td></tr>";
-            }
-
-            // Close connection
-            $conn->close();
-            ?>
+        <tbody class="table-light" id="busTableBody">
+            <!-- Data will be dynamically populated here -->
         </tbody>
         </table>
     </div>
+
+
+    <script src="../JS/view&delBus.js"></script>
+    <script src="../JS/deleteBus.js"></script>
+
 </body>
 
 </html>
