@@ -9,7 +9,7 @@
     <!-- Add Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-    <title>View Buses</title>
+    <title>View Report</title>
     <style>
         * {
             padding: 0;
@@ -186,9 +186,9 @@
             border-top-right-radius: 10px;
         }
 
-        .modify-button {
+        .view-button {
             display: inline-block;
-            background-color: #007bff;
+            background-color: green;
             color: white;
             padding: 8px 12px;
             text-align: center;
@@ -199,7 +199,7 @@
             transition: background-color 0.3s;
         }
 
-        .modify-button:hover {
+        .view-button:hover {
             background-color: #0056b3;
         }
 
@@ -278,22 +278,23 @@
                         <i class="fas"></i>User</a>
                 </li>
                 <li>
-                    <a href="../Admin/AdminReport.php"><i class="fas"></i>Report</a>
+                    <a href="../Admin/Admin_Feedback.php"><i class="fas"></i>Report</a>
             </ul>
         </div>
     </nav>
 
     <div class="container text-center">
         <section class="table_body">
-            <h3 class="back">Buses</h3>
+            <h3 class="back">Report</h3>
             <table class="table table-primary">
                 <thead>
                     <tr class="table-info">
-                        <th>Bus ID</th>
-                        <th>Plat Number</th>
-                        <th>Person Incharge</th>
-                        <th>Date Created</th>
-                        <th><a href="addBus.php"><button class="add-button">New</button></a></th>
+                        <th>ID</th>
+                        <th>Nama</th>
+                        <th>Date</th>
+                        <th>Location</th>
+                        <th>Report</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
         </section>
@@ -304,7 +305,7 @@
     </div>
 
 
-    <script src="../JS/view&delBus.js"></script>
+    <script src="../JS/view&delReport.js"></script>
     <script src="../JS/deleteBus.js"></script>
 
 </body>

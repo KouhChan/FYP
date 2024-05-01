@@ -294,7 +294,7 @@
 
     </nav>
     <div class="container">
-        <h3>Modify Bus Information</h3>
+        <h3>Update Bus Information</h3>
         <form id="modifyBus" action="modifyBusInfo.php" method="POST">
             <label for="busID">Bus ID:</label><br>
             <input type="text" class="form-control" id="BusID"><br>

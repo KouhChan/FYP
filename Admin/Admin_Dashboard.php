@@ -198,7 +198,7 @@
             <i class="fas"></i>User</a>
         </li>
         <li>
-          <a href="Student_Feedback.php"><i class="fas"></i>Report</a>
+          <a href="AdminReport.php"><i class="fas"></i>Report</a>
         </li>
       </ul>
     </div>
