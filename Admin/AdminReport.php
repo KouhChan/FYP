@@ -264,7 +264,7 @@
             <i class="fas fa-times" id="cancel"></i>
         </label>
 
-        <h2 class="tepi"><a href="Admin_Dashboard.html" style="color: white;text-decoration: none;">UNITENShuttleTrack</a>
+        <h2 class="tepi"><a href="Admin_Dashboard.php" style="color: white;text-decoration: none;">UNITENShuttleTrack</a>
         </h2>
 
         <div class="sidebar">
