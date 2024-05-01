@@ -200,7 +200,7 @@
         }
 
         .view-button:hover {
-            background-color: #0056b3;
+            background-color: #32612D;
         }
 
         .remove-button {
