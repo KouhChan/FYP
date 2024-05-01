@@ -1,4 +1,5 @@
-// Initialize Firebase
+
+// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyAg8iVwGi-X6dJCe15dvavK0ndAoVPutsA",
     authDomain: "university-bus-system.firebaseapp.com",
@@ -8,33 +9,40 @@ const firebaseConfig = {
     messagingSenderId: "446380655695",
     appId: "1:446380655695:web:ee019fad4684435252163a"
 };
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
 // Reference to database
 var contactFormDB = firebase.database().ref("Bus");
 
 // Get form from HTML
-document.getElementById("Bus").addEventListener("submit", submitForm);
-
-function submitForm(e) {
+document.getElementById("Bus").addEventListener("submit", function (e) {
     e.preventDefault();
 
-    var BusID = "B001"; // Initial Bus ID
-    var PlatNo = getElementVal('busPlat');
-    var PersonIncharge = getElementVal('personIncharge');
-    var Date = getElementVal('dateCreated');
+    // Display a confirmation dialog with options to Add or Cancel
+    var confirmed = window.confirm("Do you want to add this bus?");
+    if (confirmed) {
+        // If user confirms, proceed with form submission
+        var BusID = "B001"; // Initial Bus ID
+        var PlatNo = getElementVal('busPlat');
+        var PersonIncharge = getElementVal('personIncharge');
+        var Date = getElementVal('dateCreated');
 
-    // Check if the initial Bus ID is already registered
-    contactFormDB.child(BusID).once('value', function (snapshot) {
-        if (snapshot.exists()) {
-            // If Bus ID already exists, find the next available ID
-            getNextAvailableID();
-        } else {
-            // If Bus ID is not registered, save the message with the initial ID
-            saveMessage(BusID, PersonIncharge, Date, PlatNo);
-        }
-    });
-};
+        // Check if the initial Bus ID is already registered
+        contactFormDB.child(BusID).once('value', function (snapshot) {
+            if (snapshot.exists()) {
+                // If Bus ID already exists, find the next available ID
+                getNextAvailableID();
+            } else {
+                // If Bus ID is not registered, save the message with the initial ID
+                saveMessage(BusID, PersonIncharge, Date, PlatNo);
+            }
+        });
+    } else {
+        // If user cancels, show a message or perform any other desired action
+        alert("Bus addition cancelled.");
+    }
+});
 
 // Function to get the next available ID
 function getNextAvailableID() {
@@ -62,7 +70,8 @@ function getNextAvailableID() {
     });
 }
 
-const saveMessage = (BusID, PersonIncharge, Date, PlatNo) => {
+// Function to save the bus details to the database
+function saveMessage(BusID, PersonIncharge, Date, PlatNo) {
     var newBus = contactFormDB.child(BusID);
 
     newBus.set({
@@ -83,8 +92,9 @@ const saveMessage = (BusID, PersonIncharge, Date, PlatNo) => {
             // Show error notification
             alert("Error registering bus. Please try again.");
         });
-};
+}
 
-const getElementVal = (id) => {
+// Function to get the value of an HTML element by ID
+function getElementVal(id) {
     return document.getElementById(id).value;
-};
+}
