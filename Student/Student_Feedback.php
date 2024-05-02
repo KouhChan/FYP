@@ -236,7 +236,7 @@
       <i class="fas fa-times" id="cancel"></i>
     </label>
 
-    <h2 class="tepi"><a href="Admin_Dashboard.html" style="color: white; text-decoration: none;">UNITENShuttleTrack</a>
+    <h2 class="tepi"><a href="Student_Dashboard.php" style="color: white; text-decoration: none;">UNITENShuttleTrack</a>
     </h2>
 
     <div class="sidebar">
@@ -297,7 +297,7 @@
               <input type="date" name="date" class="form-control" id="Date">
             </div>
           </div>
-          <button type="submit" class="btn btn-success">Send Feedback</button>
+          <button onclick="window.location.href='Student_Dashboard.php';" type="submit" class="btn btn-success">Send Feedback</button>
           <script>
             // Auto-detect current date and set it as the value for the input field
             document.getElementById("Date").valueAsDate = new Date();
