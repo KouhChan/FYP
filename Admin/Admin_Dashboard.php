@@ -7,7 +7,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/c065e87b98.js" crossorigin="anonymous"></script>
-  <title>Admin Page</title>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <title>Admin Dashboard</title>
   <style>
     * {
       padding: 0;
@@ -49,9 +51,12 @@
 
 
 
-    a.active,
+    a.active {
+      background: rgb(1, 116, 136);
+    }
+
     a:hover {
-      background: #1b9bff;
+      background: rgb(1, 130, 140);
       transition: .5s;
     }
 
@@ -154,6 +159,49 @@
       left: 160px;
     }
 
+    .map-container {
+      position: fixed;
+      top: 20%;
+      margin-left: 60%;
+      width: calc(100% - 250px);
+      height: calc(100% - 80px);
+      padding: 20px;
+    }
+
+    .map {
+      width: 100%;
+      height: 100%;
+    }
+
+    .back {
+      padding: 9px;
+      text-align: center;
+      background: rgb(1, 116, 136);
+      border-radius: 3px;
+      color: white;
+    }
+
+    .container {
+      position: fixed;
+      width: 40%;
+      margin-top: 19%;
+      margin-left: 18%;
+      background: white;
+      border-radius: 8px;
+      padding: 25px;
+    }
+
+    .img {
+      position: absolute;
+      margin-top: 5%;
+      margin-left: 140%;
+    }
+
+    .link {
+      margin-left: 80%;
+    }
+
+
     body {
       background: url('Img/Admin_Login_Background.png') no-repeat;
       background-size: cover;
@@ -168,7 +216,7 @@
 <body>
 
   <nav>
-    <div class="nav-new">
+    <div>
 
       <ul>
         <li><a href="#" class="active" style="text-decoration: none;">STUDENT HUB</a></li>
@@ -188,7 +236,7 @@
     </h2>
 
     <div class="sidebar">
-      <header>My App</header>
+      <header>Admin Dashboard</header>
       <ul>
         <li><a href="Admin_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
         <li><a href="../Bus/View_Bus.php">
@@ -201,10 +249,47 @@
           <a href="AdminReport.php"><i class="fas"></i>Report</a>
         </li>
       </ul>
+
+      <div>
+        <img src="Img/Time Schedule.png" width="430" alt="" class="img">
+      </div>
+
+      <div class="container text-center">
+        <section class="table_body">
+          <h3 class="back">Student Feedback</h3>
+          <table class="table table-primary">
+            <thead>
+              <tr class="table-info">
+                <th>ID</th>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+        </section>
+        <tbody class="table-light" id="busTableBody">
+          <!-- Data will be dynamically populated here -->
+        </tbody>
+        </table>
+        <a href="AdminReport.php" class="link">More>></a>
+      </div>
+
+
     </div>
 
 
+
+
+
+    <div class="map-container">
+      <p class="map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.4321220928705!2d101.72812857567598!3d2.9774954541823804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cdcbd32f300b1d%3A0xfd29fd7e373dab16!2sUniversiti%20Tenaga%20Nasional%20(UNITEN)!5e0!3m2!1sen!2smy!4v1715782800838!5m2!1sen!2smy" width="700" height="650" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></p>
+    </div>
+
+
+
   </nav>
+
+  <script src="../JS/viewReportDashboard.js"></script>
 </body>
 
 </html>

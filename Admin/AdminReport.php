@@ -268,7 +268,7 @@
         </h2>
 
         <div class="sidebar">
-            <header>My App</header>
+            <header>Report</header>
             <ul>
                 <li><a href="../Admin/Admin_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
                 <li><a href="../Bus/View_Bus.php">

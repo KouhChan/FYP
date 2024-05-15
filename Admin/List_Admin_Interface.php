@@ -206,7 +206,7 @@
     </h2>
 
     <div class="sidebar">
-      <header>My App</header>
+      <header>Users</header>
       <ul>
         <li><a href="Admin_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
         <li><a href="../Bus/View_Bus.php">

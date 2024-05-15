@@ -9,7 +9,7 @@
   <script src="https://kit.fontawesome.com/c065e87b98.js" crossorigin="anonymous"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-  <title>Admin Page</title>
+  <title>Report</title>
   <style>
     * {
       padding: 0;
@@ -59,6 +59,7 @@
 
     .sidebar {
       position: fixed;
+      bottom: 0%;
       left: -250px;
       width: 250px;
       height: 100%;
@@ -130,8 +131,7 @@
       color: white;
       font-size: 25px;
       left: 0px;
-      line-height: 40px;
-      padding: 0px 100px;
+      padding: 25px 100px;
       font-weight: bold;
       transition: all .5s ease;
     }
@@ -147,6 +147,7 @@
     }
 
     #check:checked~label #cancel {
+      top: 15px;
       left: 195px;
 
     }
@@ -202,7 +203,7 @@
 
     .main--content {
       position: relative;
-      margin-top: 50px;
+      margin-top: -30px;
       width: 100%;
       padding: 1rem;
       left: 850px;
@@ -210,6 +211,10 @@
 
     .background--content {
       background-color: #499af1;
+    }
+
+    .sidetepi {
+      padding: 50px;
     }
   </style>
 
@@ -221,7 +226,8 @@
 
   <nav>
     <div class="nav-new">
-
+      <h2 class="tepi"><a href="Student_Dashboard.php" style="color: white; text-decoration: none;;">UNITENShuttleTrack</a>
+      </h2>
       <ul>
         <li><a href="#" class="active" style="text-decoration: none;">STUDENT HUB</a></li>
         <li><a href="#" class="active" style="text-decoration: none;">BRIGHTEN</a></li>
@@ -231,16 +237,15 @@
 
 
     <input type="checkbox" id="check">
-    <label for="check">
+    <label for="check" class="sidetepi">
       <i class="fas fa-bars" id="btn"></i>
-      <i class="fas fa-times" id="cancel"></i>
+      <i class="fas fa-bars" id="cancel"></i>
     </label>
 
-    <h2 class="tepi"><a href="Student_Dashboard.php" style="color: white; text-decoration: none;">UNITENShuttleTrack</a>
-    </h2>
+
 
     <div class="sidebar">
-      <header>My App</header>
+      <header>Report</header>
       <ul>
         <li><a href="Student_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
         <li><a href="#">
