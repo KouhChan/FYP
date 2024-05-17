@@ -64,7 +64,5 @@ function deleteReport(ID) {
         console.log("Deletion cancelled.");
     }
 }
-
-
 // Call the function to fetch and populate bus data
 fetchReportData();
