@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root"; // Replace with your MySQL username
 $password = ""; // Replace with your MySQL password
-$database = "admin"; // Replace with your MySQL database name
+$database = "unitenadmin"; // Replace with your MySQL database name
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
@@ -17,19 +17,29 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
     $ID = $_POST["ID"];
-    $username = $_POST["Username"];
-    $password = $_POST["Password"];
+    $adminID = $_POST["Admin_ID"];
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    // Hash the password before storing it
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     // Prepare and bind SQL statement
-    $stmt = $conn->prepare("UPDATE credential SET ID=?, username=? WHERE password =?");
-    $stmt->bind_param("iss", $ID, $username, $password);
+    $stmt = $conn->prepare("UPDATE admindatabase SET Admin_ID=?, Name=?, Email=?, Password=? WHERE ID=?");
+    if ($stmt === false) {
+        die("Prepare failed: " . htmlspecialchars($conn->error));
+    }
+
+    $stmt->bind_param("ssssi", $adminID, $name, $email, $hashed_password, $ID);
 
     // Execute statement
     if ($stmt->execute()) {
         echo "Admin information updated successfully!";
-        header("Location: View_Admin.php");
+        header("Location: viewAdmin.php");
+        exit(); // Ensure the script stops executing after redirection
     } else {
-        echo "Error: " . $stmt->error;
+        echo "Error: " . htmlspecialchars($stmt->error);
     }
 
     // Close statement and connection

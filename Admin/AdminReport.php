@@ -1,3 +1,6 @@
+<?php
+include 'auth.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -143,7 +146,8 @@
         }
 
         #check:checked~label #cancel {
-            left: 195px;
+            left: 210px;
+            margin-top: 15px;
 
         }
 
@@ -245,6 +249,30 @@
             border-radius: 8px;
             padding: 25px;
         }
+
+        .logout {
+            margin-top: 300%;
+            margin-left: 0%;
+            /* Push the button to the bottom */
+        }
+
+        .logout a {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            line-height: 65px;
+            font-size: 25px;
+            color: white;
+            padding-left: 70px;
+            box-sizing: border-box;
+            border-top: 1px solid rgba(255, 255, 255, .1);
+            transition: .4s;
+        }
+
+        .logout a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transition: .5s;
+        }
     </style>
 </head>
 
@@ -270,16 +298,20 @@
         <div class="sidebar">
             <header>Report</header>
             <ul>
-                <li><a href="../Admin/Admin_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
+                <li><a href="Admin_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
                 <li><a href="../Bus/View_Bus.php">
                         <i class="fas"></i>Bus</a></li>
                 <li>
-                    <a href="../Admin/List_Admin_Interface.php">
+                    <a href="viewAdmin.php">
                         <i class="fas"></i>User</a>
                 </li>
                 <li>
-                    <a href="../Admin/AdminReport.php"><i class="fas"></i>Report</a>
+                    <a href="AdminReport.php"><i class="fas"></i>Report</a>
+                </li>
             </ul>
+            <div class="logout">
+                <a href="../Admin/logout.php"><i class="fas"></i>LOGOUT</a>
+            </div>
         </div>
     </nav>
 

@@ -1,4 +1,8 @@
 <?php
+include 'auth.php';
+?>
+
+<?php
 // Database connection parameters
 $servername = "localhost";
 $username = "root"; // Replace with your MySQL username
@@ -193,7 +197,8 @@ $conn->close();
         }
 
         #check:checked~label #cancel {
-            left: 195px;
+            left: 210px;
+            margin-top: 15px;
 
         }
 
@@ -297,6 +302,30 @@ $conn->close();
             border-radius: 8px;
             padding: 25px;
         }
+
+        .logout {
+            margin-top: 300%;
+            margin-left: 0%;
+            /* Push the button to the bottom */
+        }
+
+        .logout a {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            line-height: 65px;
+            font-size: 25px;
+            color: white;
+            padding-left: 70px;
+            box-sizing: border-box;
+            border-top: 1px solid rgba(255, 255, 255, .1);
+            transition: .4s;
+        }
+
+        .logout a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transition: .5s;
+        }
     </style>
 </head>
 
@@ -316,26 +345,36 @@ $conn->close();
             <i class="fas fa-times" id="cancel"></i>
         </label>
 
-        <h2 class="tepi"><a href="Admin_Dashboard.html" style="color: white;text-decoration: none;">UNITENShuttleTrack</a>
+        <h2 class="tepi"><a href="Admin_Dashboard.php" style="color: white;text-decoration: none;">UNITENShuttleTrack</a>
         </h2>
 
         <div class="sidebar">
-            <header>My App</header>
+            <header>Modify Admin</header>
             <ul>
-                <li><a href="#"><i class="fas"></i>Dashboard</a></li>
-                <li><a href="List_Admin_Interface.php"><i class="fas"></i>Admin</a></li>
+                <li><a href="Admin_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
+                <li><a href="../Bus/View_Bus.php">
+                        <i class="fas"></i>Bus</a></li>
                 <li>
-                    <Bus href="#"><i class="fas fa-qrcode"></i>Bus Interface</a>
+                    <a href="viewAdmin.php">
+                        <i class="fas"></i>User</a>
+                </li>
+                <li>
+                    <a href="AdminReport.php"><i class="fas"></i>Report</a>
                 </li>
             </ul>
+            <div class="logout">
+                <a href="../Admin/logout.php"><i class="fas"></i>LOGOUT</a>
+            </div>
         </div>
 
     </nav>
     <div class="container">
         <h3>Edit Admin Information</h3>
         <form action="modifyAdminInfo.php" method="POST">
-            <label for="AdminID">Admin ID:</label><br>
-            <input type="text" class="form-control" value="<?php echo $ID; ?>" name="ID"><br>
+
+            <label for="ID">Admin ID:</label><br>
+            <input type="text" class="form-control" value="<?php echo $row['Admin_ID']; ?>" name="Admin_ID" id="Admin_ID" readonly><br>
+
 
             <label for="Name">Name :</label><br>
             <input type="text" class="form-control" id="name" value="<?php echo $row['Name']; ?>" name="name"><br>
@@ -348,7 +387,7 @@ $conn->close();
 
             <div class="d-flex justify-content-between">
                 <button class="btn btn-primary" type="submit">Update</button>
-                <a href="View_Admin.php" class="btn btn-danger">Cancel</a>
+                <a href="viewAdmin.php" class="btn btn-danger">Cancel</a>
             </div>
         </form>
 

@@ -1,3 +1,7 @@
+<?php
+include 'auth.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -145,7 +149,8 @@
         }
 
         #check:checked~label #cancel {
-            left: 195px;
+            left: 210px;
+            margin-top: 15px;
 
         }
 
@@ -249,7 +254,33 @@
             border-radius: 8px;
             padding: 25px;
         }
+
+        .logout {
+            margin-top: 300%;
+            margin-left: 0%;
+            /* Push the button to the bottom */
+        }
+
+        .logout a {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            line-height: 65px;
+            font-size: 25px;
+            color: white;
+            padding-left: 70px;
+            box-sizing: border-box;
+            border-top: 1px solid rgba(255, 255, 255, .1);
+            transition: .4s;
+        }
+
+        .logout a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transition: .5s;
+        }
     </style>
+
+
 </head>
 
 <body>
@@ -272,14 +303,22 @@
         </h2>
 
         <div class="sidebar">
-            <header>My App</header>
+            <header>Admin</header>
             <ul>
-                <li><a href="#"><i class="fas"></i>Dashboard</a></li>
-                <li><a href="../Admin/List_Admin_Interface.php"><i class="fas"></i>Admin</a></li>
+                <li><a href="Admin_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
+                <li><a href="../Bus/View_Bus.php">
+                        <i class="fas"></i>Bus</a></li>
                 <li>
-                    <Bus href="#"><i class="fas fa-qrcode"></i>Bus Interface</a>
+                    <a href="viewAdmin.php">
+                        <i class="fas"></i>User</a>
+                </li>
+                <li>
+                    <a href="AdminReport.php"><i class="fas"></i>Report</a>
                 </li>
             </ul>
+            <div class="logout">
+                <a href="../Admin/logout.php"><i class="fas"></i>LOGOUT</a>
+            </div>
         </div>
 
     </nav>
@@ -330,7 +369,7 @@
                     echo "<td>" . $row["Password"] . "</td>";
                     echo "<td style='text-align: center;'><a href='modifyAdminPage.php?ID=" . $row["ID"] . "' class='modify-button'>Update</a>
                 
-                    <a href='deleteAdmin.php?ID=" . $row["ID"] . "' class='remove-button space'>Remove</a>
+                    <a href='deleteAdminSQL.php?ID={$row['ID']}' onclick='return confirmDelete();' class='remove-button space'>Remove</a>
                     </td>"; // Modify link as a button
 
                     echo "</tr>";
@@ -345,6 +384,11 @@
         </tbody>
         </table>
     </div>
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this admin information?");
+        }
+    </script>
 </body>
 
 </html>

@@ -27,7 +27,7 @@ if (isset($_GET['ID']) && !empty($_GET['ID'])) {
     // Check if deletion was successful
     if ($stmt->affected_rows > 0) {
         echo "Admin information deleted successfully.";
-        header("Location: View_Admin.php");
+        header("Location: viewAdmin.php");
     } else {
         echo "Error deleting Admin information.";
     }

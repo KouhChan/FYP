@@ -1,3 +1,7 @@
+<?php
+include 'auth.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -151,8 +155,8 @@
     }
 
     #check:checked~label #cancel {
-      left: 195px;
-
+      left: 210px;
+      margin-top: 15px;
     }
 
 
@@ -243,7 +247,7 @@
         <li><a href="../Bus/View_Bus.php">
             <i class="fas"></i>Bus</a></li>
         <li>
-          <a href="List_Admin_Interface.php">
+          <a href="viewAdmin.php">
             <i class="fas"></i>User</a>
         </li>
         <li>
