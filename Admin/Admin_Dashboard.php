@@ -13,6 +13,7 @@ include 'auth.php';
   <script src="https://kit.fontawesome.com/c065e87b98.js" crossorigin="anonymous"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <link rel="stylesheet" href="../CSS/mediaFile.css">
 
   <title>Admin Dashboard</title>
   <style>

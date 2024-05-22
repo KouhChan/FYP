@@ -1,0 +1,220 @@
+@media (max-width: 375px) {
+    * {
+        padding: 0;
+        margin: 0;
+        text-decoration: none;
+        list-style: none;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: montserrat;
+        overflow-y: auto;
+        background: url('../Admin/Img/Admin_Login_Background.png') no-repeat center fixed;
+        background-size: cover;
+        height: 100%;
+        min-height: 100vh;
+        background-position: center;
+        overflow-x: hidden;
+        transition: all .5s ease;
+    }
+
+    nav {
+        background: rgb(1, 116, 136);
+        height: 80px;
+        width: 100%;
+    }
+
+
+    nav ul {
+        float: right;
+        margin-right: 20px;
+    }
+
+    nav ul li {
+        display: inline-block;
+        line-height: 80px;
+        margin: 0 5px;
+    }
+
+    nav ul li a {
+        color: white;
+        font-size: 10px;
+        top: 10px;
+        padding: 4px 4px;
+        border-radius: 3px;
+        text-transform: uppercase;
+    }
+
+
+
+    a.active {
+        background: rgb(1, 116, 136);
+    }
+
+    a:hover {
+        background: rgb(1, 130, 140);
+        transition: .5s;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -250px;
+        width: 250px;
+        height: 100%;
+        background-color: #042331;
+        transition: all .5s ease;
+    }
+
+    .sidebar header {
+        font-size: 22px;
+        color: white;
+        text-align: center;
+        line-height: 70px;
+        background: #063146;
+        user-select: none;
+    }
+
+    .sidebar ul a {
+        display: block;
+        height: 100%;
+        width: 100%;
+        line-height: 65px;
+        font-size: 20px;
+        color: white;
+        padding-left: 20px;
+        box-sizing: border-box;
+        border-bottom: 1px solid black;
+        border-top: 1px solid rgba(255, 255, 255, .1);
+        transition: .4s;
+    }
+
+
+    .sidebar ul a i {
+        margin-right: 16px;
+    }
+
+    #check {
+        display: flex;
+    }
+
+    label #btn,
+    label #cancel {
+        position: absolute;
+        cursor: pointer;
+        background-color: #042331;
+        border-radius: 5px;
+    }
+
+    label #btn {
+        left: 20px;
+        top: 31px;
+        font-size: 10px;
+        color: white;
+        padding: 10px 12px;
+        transition: all .5s;
+    }
+
+    label #cancel {
+        z-index: 1111;
+        left: -195px;
+        top: 25px;
+        font-size: 10px;
+        color: #0a5275;
+        padding: 4px 9px;
+        transition: all .5s ease;
+    }
+
+    .tepi {
+        position: fixed;
+        color: white;
+        font-size: 15px;
+        left: -40px;
+        line-height: 40px;
+        padding: 0px 100px;
+        font-weight: bold;
+        transition: all .5s ease;
+    }
+
+    #check:checked~.sidebar {
+        left: 0px;
+    }
+
+    #check:checked~label #btn {
+        left: 250px;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    #check:checked~label #cancel {
+        left: 210px;
+        margin-top: 15px;
+    }
+
+
+    #check:checked~.tepi {
+        left: 160px;
+    }
+
+    .map-container {
+        position: absolute;
+        top: 55%;
+        margin-left: auto;
+        width: calc(250% - 250px);
+        height: calc(50% - 80px);
+        padding: 20px;
+    }
+
+    .map {
+        width: 50%;
+        height: 100%;
+    }
+
+    .back {
+        padding: 9px;
+        text-align: center;
+        background: rgb(1, 116, 136);
+        border-radius: 3px;
+        color: white;
+    }
+
+    .container {
+        position: fixed;
+        width: 40%;
+        margin-top: 80%;
+        margin-left: 33%;
+        background: white;
+        border-radius: 8px;
+        padding: 25px;
+    }
+
+    .img {
+        position: absolute;
+        width: 140%;
+        margin-top: auto;
+        margin-left: 105%;
+    }
+
+    .link {
+        margin-left: 80%;
+    }
+}
+
+
+/* sml */
+@media (max-width: 640px) {}
+
+
+/* md */
+@media (max-width: 768px) {}
+
+
+/* lg */
+@media (max-width: 1024px) {}
+
+/* xl */
+@media (max-width: 1280px) {}
+
+
+/* 2xl */
+@media (max-width: 1536px) {}
