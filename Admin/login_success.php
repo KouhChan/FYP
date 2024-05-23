@@ -1,7 +1,6 @@
 <?php
-session_start();
+session_start(); // Start the session at the beginning
 
-// Your login validation code here
 // Database connection parameters
 $servername = "localhost";
 $username = "root"; // Replace with your MySQL username
@@ -15,6 +14,8 @@ $conn = new mysqli($servername, $username, $password, $database);
 if ($conn->connect_error) {
     die("Connection failed: " . htmlspecialchars($conn->connect_error));
 }
+
+$error_message = "";
 
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -43,20 +44,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: Admin_Dashboard.php");
             exit();
         } else {
-            echo "Invalid email or password!";
+            $error_message = "Invalid email or password!";
+            echo "<script>alert('$error_message'); window.location.href = 'AdminLogin.php';</script>";
+            exit();
         }
     } else {
-        echo "Invalid email or password!";
+        $error_message = "Invalid email or password!";
+        echo "<script>alert('$error_message'); window.location.href = 'AdminLogin.php';</script>";
+        exit();
     }
 
     // Close statement and connection
     $stmt->close();
     $conn->close();
 }
-
-// If login is successful, set session variables
-$_SESSION['email'] = $email;
-
-// Redirect to the desired page
-header("Location: Admin_Dashboard.php");
-exit();

@@ -28,7 +28,7 @@
             overflow-x: hidden;
             transition: all .5s ease;
             position: relative;
-            /* Ensure that the pseudo-element is positioned relative to the body */
+
         }
 
         body::before {
@@ -41,11 +41,8 @@
             background: url('../Admin/Img/Admin_Login_Background.png') no-repeat center center;
             background-size: cover;
             opacity: 0.5;
-            /* Set the opacity of the background image */
             z-index: -1;
-            /* Ensure the pseudo-element is behind the content */
         }
-
 
         nav {
             background: rgb(1, 116, 136);
@@ -174,30 +171,73 @@
             left: 160px;
         }
 
-        .content {
-            margin-left: 270px;
-            padding: 20px;
+        .container {
+            margin-top: 0;
+            margin-left: 0;
+            display: inline-flex;
+            background: antiquewhite;
+            width: 100vw;
+            height: 100vh;
         }
 
-        .map-container {
-            position: fixed;
-            top: 80px;
-            margin-left: 50%;
-            width: calc(100% - 250px);
-            height: calc(100% - 80px);
-            padding: 20px;
+        .notificationContainer {
+            background-color: white;
+            width: 100%;
+            margin: 2rem;
+            padding: 1rem 1rem;
+            border-radius: 1rem;
         }
 
-        .map {
-            width: 50%;
-            height: 100%;
+        .notificationHeader {
+            display: flex;
+            align-items: center;
         }
 
-        .img {
-            position: fixed;
-            margin-top: 1%;
-            margin-left: 15%;
-            transition: all .5s ease;
+        #num-of-notif {
+            background-color: blue;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            width: 30px;
+            height: 30px;
+            border-radius: 0.3rem;
+            margin-left: 10px;
+        }
+
+        #mark-as-read {
+            color: gray;
+            cursor: pointer;
+            transition: 0.6s ease;
+        }
+
+        #mark-as-read:hover {
+            color: black;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .notificationCard {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-radius: 1rem;
+        }
+
+        .notificationCard .description {
+            margin-left: 10px;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+        }
+
+        .unread {
+            background-color: pink;
         }
     </style>
 </head>
@@ -223,104 +263,62 @@
         <h2 class="tepi"><a href="Student_Dashboard.php" style="color: white;text-decoration: none;">UNITENShuttleTrack</a></h2>
 
         <div class="sidebar">
-            <header>Student Dashboard</header>
+            <header> Notification</header>
             <ul>
                 <li><a href="Student_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
                 <li><a href="studentNotification.php"><i class="fas"></i>Notification</a></li>
                 <li><a href="studentRoutes.php"><i class="fas"></i>Routes</a></li>
                 <li><a href="Student_Feedback.php"><i class="fas"></i>Report</a></li>
             </ul>
-
-            <div>
-                <img src="../Admin/Img/Time Schedule.png" width="600" alt="" class="img">
-            </div>
         </div>
     </nav>
+    <div class="container">
+        <div class="notificationContainer">
 
+            <div class="notificationHeader">
+                <h1> Notification</h1>
+                <span id="num-of-notif"></span>
+            </div>
 
-    <div class="map-container">
-        <div class="map" id="map"></div>
+            <main>
+                <div class="notificationCard unread">
+                    <img src="" alt="">
+                    <div class="description">
+                        <p>Hello Guys its me alip</p>
+                        <p id="notif-time">1m ago</p>
+                    </div>
+                </div>
+
+                <div class="notificationCard unread">
+                    <img src="" alt="">
+                    <div class="description">
+                        <p>Hello Guys its me alip</p>
+                        <p id="notif-time">1m ago</p>
+                    </div>
+                </div>
+
+                <div class="notificationCard unread">
+                    <img src="" alt="">
+                    <div class="description">
+                        <p>Hello Guys its me alip</p>
+                        <p id="notif-time">1m ago</p>
+                    </div>
+                </div>
+
+                <div class="notificationCard unread">
+                    <img src="" alt="">
+                    <div class="description">
+                        <p>Hello Guys its me alip</p>
+                        <p id="notif-time">1m ago</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+
     </div>
 
-    <script>
-        var map;
-        var mark;
-        var lineCoords = [];
-
-        window.lat = 2.97690;
-        window.lng = 101.72812857567598;
-
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: {
-                    lat: lat,
-                    lng: lng
-                },
-                zoom: 18
-            });
-
-            var busIcon = {
-                url: 'https://cdn-icons-png.flaticon.com/512/5030/5030991.png',
-                scaledSize: new google.maps.Size(50, 50),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(25, 25)
-            };
-
-            mark = new google.maps.Marker({
-                position: {
-                    lat: lat,
-                    lng: lng
-                },
-                map: map,
-                title: 'UNITEN',
-                icon: busIcon
-            });
-        }
-
-        const firebaseConfig = {
-            aapiKey: "AIzaSyAg8iVwGi-X6dJCe15dvavK0ndAoVPutsA",
-            authDomain: "university-bus-system.firebaseapp.com",
-            databaseURL: "https://university-bus-system-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "university-bus-system",
-            storageBucket: "university-bus-system.appspot.com",
-            messagingSenderId: "446380655695",
-            appId: "1:446380655695:web:ee019fad4684435252163a"
-        }
-
-        firebase.initializeApp(firebaseConfig);
-
-        var ref = firebase.database().ref('gps');
-
-        ref.on("value", function(snapshot) {
-            var gps = snapshot.val();
-            console.log(gps.latitude);
-            console.log(gps.longitude);
-
-            if (map && mark) {
-                map.setCenter({
-                    lat: gps.latitude,
-                    lng: gps.longitude
-                });
-
-                mark.setPosition({
-                    lat: gps.latitude,
-                    lng: gps.longitude
-                });
 
 
-                lineCoords.push(new google.maps.LatLng(gps.latitude, gps.longitude));
-
-                var lineCoordinatesPath = new google.maps.Polyline({
-                    path: lineCoords,
-                    geodesic: true,
-                    strokeColor: '#2E10FF'
-                });
-
-                lineCoordinatesPath.setMap(map);
-            }
-        });
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm_aJ9lxcthdOugBg_c8q-P-vvT12ULMA&callback=initMap"></script>
 </body>
 
 </html>

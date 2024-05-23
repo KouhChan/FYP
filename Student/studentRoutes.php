@@ -23,13 +23,29 @@
 
         body {
             font-family: montserrat;
-            background: url('../Admin/Img/Admin_Login_Background.png') no-repeat;
-            background-size: cover;
+            background-color: transparent;
             height: 100vh;
-            background-position: center;
             overflow-x: hidden;
             transition: all .5s ease;
+            position: relative;
+            /* Ensure that the pseudo-element is positioned relative to the body */
         }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('../Admin/Img/Admin_Login_Background.png') no-repeat center center;
+            background-size: cover;
+            opacity: 0.5;
+            /* Set the opacity of the background image */
+            z-index: -1;
+            /* Ensure the pseudo-element is behind the content */
+        }
+
 
         nav {
             background: rgb(1, 116, 136);
@@ -165,7 +181,7 @@
 
         .map-container {
             position: fixed;
-            top: 80px;
+            top: 200px;
             margin-left: 50%;
             width: calc(100% - 250px);
             height: calc(100% - 80px);
@@ -174,14 +190,65 @@
 
         .map {
             width: 50%;
-            height: 100%;
+            height: 80%;
         }
 
         .img {
             position: fixed;
-            margin-top: 1%;
+            margin-top: 10%;
             margin-left: 15%;
             transition: all .5s ease;
+        }
+
+
+
+        .background .container {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .container .steps {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .steps .circle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            font-weight: 500;
+            height: 90px;
+            width: 90px;
+            background: white;
+            border-radius: 50%;
+            border: 4px solid #e0e0e0;
+        }
+
+        .steps .progress {
+            position: absolute;
+            height: 4px;
+            width: 100%;
+            background: #e0e0e0;
+            z-index: -1;
+        }
+
+        .progress .indicator {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background: #4070f4;
+        }
+
+        .progress .indicator2 {
+            position: absolute;
+            bottom: 10px;
+            height: 100%;
+            width: 100%;
+            background: red;
         }
     </style>
 </head>
@@ -210,7 +277,7 @@
             <header>Student Dashboard</header>
             <ul>
                 <li><a href="Student_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
-                <li><a href="#"><i class="fas"></i>Notification</a></li>
+                <li><a href="studentNotification.php"><i class="fas"></i>Notification</a></li>
                 <li><a href="#"><i class="fas"></i>Routes</a></li>
                 <li><a href="Student_Feedback.php"><i class="fas"></i>Report</a></li>
             </ul>
@@ -220,6 +287,24 @@
             </div>
         </div>
     </nav>
+    <div class="background">
+        <div class="container">
+            <div class="steps">
+                <span class="circle">LIBRARY</span>
+                <span class="circle">ADMIN</span>
+                <span class="circle">MURNI</span>
+                <span class="circle">AMANAH</span>
+                <span class="circle">DSS</span>
+                <span class="circle">ILMU</span>
+                <span class="circle">COE</span>
+                <div class="progress">
+                    <span class="indicator">
+                    </span>
+                    <span class="indicator2"></span>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <div class="map-container">

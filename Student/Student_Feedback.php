@@ -19,13 +19,9 @@
       box-sizing: border-box;
     }
 
-    body {
-      font-family: montserrat;
-    }
-
     nav {
       background: rgb(1, 116, 136);
-      height: 80px;
+      height: 70px;
       width: 100%;
     }
 
@@ -158,12 +154,26 @@
     }
 
     body {
-      background: url('../Admin/Img/Admin_Login_Background.png') no-repeat;
-      background-size: cover;
+      font-family: montserrat;
+      background-color: transparent;
       height: 100vh;
-      background-position: center;
       overflow-x: hidden;
       transition: all .5s ease;
+      position: relative;
+
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('../Admin/Img/Admin_Login_Background.png') no-repeat center center;
+      background-size: cover;
+      opacity: 0.5;
+      z-index: -1;
     }
 
     .feedback-form {
@@ -203,7 +213,7 @@
 
     .main--content {
       position: relative;
-      margin-top: -30px;
+      margin-top: -32px;
       width: 100%;
       padding: 1rem;
       left: 850px;
@@ -215,6 +225,22 @@
 
     .sidetepi {
       padding: 50px;
+    }
+
+    .background--main {
+      margin-top: -1.8%;
+      background: antiquewhite;
+      width: 100vw;
+      height: 92vh;
+    }
+
+    .background-content {
+      left: 25%;
+      position: fixed;
+      width: 50%;
+      margin: 2rem;
+      padding: 1rem 1rem;
+      border-radius: 1rem;
     }
   </style>
 
@@ -248,10 +274,10 @@
       <header>Report</header>
       <ul>
         <li><a href="Student_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
-        <li><a href="#">
+        <li><a href="studentNotification.php">
             <i class="fas"></i>Notification</a></li>
         <li>
-          <a href="#">
+          <a href="studentRoutes.php">
             <i class="fas"></i>Routes</a>
         </li>
         <li>
@@ -259,55 +285,54 @@
         </li>
       </ul>
     </div>
-    <div class="background--content">
-      <div class="main--content">
-        <h3>Drop Us A Feedback</h3>
-      </div>
-    </div>
-    <div class="background--main"></div>
-    </div>
-    <div class="container feedback-form">
-      <div class="feedback-image">
-        <img src="../Admin/Img/Uni10.jpg" alt="">
-      </div>
-      <form action="#" method="POST" id="report">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <p>Name</p>
-              <input type="text" class="form-control" placeholder="Name" id="name"><br>
-            </div>
-            <div class="form-group">
-              <p>Student ID / Staff ID</p>
-              <input type="text" class="form-control" placeholder="Student ID/Staff ID" id="SId"><br>
-            </div>
-            <div class="form-group">
-              <p>Location</p>
-              <select name="Location" class="form-select form-select-sm" id="location">
-                <option value="LIBRARY">LIBRARY</option>
-                <option value="ADMIN">ADMIN</option>
-                <option value="MURNI">MURNI</option>
-                <option value="AMANAH">AMANAH</option>
-                <option value="DSS">DSS</option>
-                <option value="ILMU">ILMU</option>
-                <option value="COE">COE</option>
-              </select><br>
-            </div>
-            <p>Description</p>
-            <textarea name="description" class="form-control" cols="30" rows="10" style="width: 600px; height: 150px; margin-bottom: 8px;" placeholder="Description" id="desc"></textarea>
+
+    <div class="background--main">
+      <div class="background-content">
+        <div class="container feedback-form">
+          <h1>Feedback Form</h1>
+          <div class="feedback-image">
+            <img src="../Admin/Img/Uni10.jpg" alt="">
           </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <p>Date</p>
-              <input type="date" name="date" class="form-control" id="Date">
-            </div>
-          </div>
-          <button onclick="window.location.href='Student_Dashboard.php';" type="submit" class="btn btn-success">Send Feedback</button>
-          <script>
-            // Auto-detect current date and set it as the value for the input field
-            document.getElementById("Date").valueAsDate = new Date();
-          </script>
-      </form>
+          <form action="#" method="POST" id="report">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <p>Name</p>
+                  <input type="text" class="form-control" placeholder="Name" id="name"><br>
+                </div>
+                <div class="form-group">
+                  <p>Student ID / Staff ID</p>
+                  <input type="text" class="form-control" placeholder="Student ID/Staff ID" id="SId"><br>
+                </div>
+                <div class="form-group">
+                  <p>Location</p>
+                  <select name="Location" class="form-select form-select-sm" id="location">
+                    <option value="LIBRARY">LIBRARY</option>
+                    <option value="ADMIN">ADMIN</option>
+                    <option value="MURNI">MURNI</option>
+                    <option value="AMANAH">AMANAH</option>
+                    <option value="DSS">DSS</option>
+                    <option value="ILMU">ILMU</option>
+                    <option value="COE">COE</option>
+                  </select><br>
+                </div>
+                <p>Description</p>
+                <textarea name="description" class="form-control" cols="30" rows="10" style="width: 600px; height: 150px; margin-bottom: 8px;" placeholder="Description" id="desc"></textarea>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <p>Date</p>
+                  <input type="date" name="date" class="form-control" id="Date">
+                </div>
+              </div>
+              <button onclick="window.location.href='Student_Dashboard.php';" type="submit" class="btn btn-success">Send Feedback</button>
+              <script>
+                // Auto-detect current date and set it as the value for the input field
+                document.getElementById("Date").valueAsDate = new Date();
+              </script>
+          </form>
+        </div>
+      </div>
     </div>
     </div>
     <script script src="../JS/Report.js"></script>
