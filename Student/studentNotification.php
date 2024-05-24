@@ -10,6 +10,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
     <title>Student Dashboard</title>
     <style>
@@ -24,20 +25,18 @@
         body {
             font-family: montserrat;
             background-color: transparent;
-            height: 100vh;
-            overflow-x: hidden;
-            transition: all .5s ease;
-            position: relative;
 
+            position: relative;
         }
 
         body::before {
             content: "";
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            min-height: 100%;
+            height: auto;
             background: url('../Admin/Img/Admin_Login_Background.png') no-repeat center center;
             background-size: cover;
             opacity: 0.5;
@@ -143,7 +142,7 @@
         }
 
         .tepi {
-            position: fixed;
+            position: static;
             color: white;
             font-size: 25px;
             left: 0px;
@@ -177,10 +176,16 @@
             display: inline-flex;
             background: antiquewhite;
             width: 100vw;
-            height: 100vh;
+            height: auto;
+            overflow: hidden;
+            box-sizing: border-box;
+
         }
 
         .notificationContainer {
+            display: flex;
+            align-items: stretch;
+            flex-direction: column;
             background-color: white;
             width: 100%;
             margin: 2rem;
@@ -206,15 +211,6 @@
             margin-left: 10px;
         }
 
-        #mark-as-read {
-            color: gray;
-            cursor: pointer;
-            transition: 0.6s ease;
-        }
-
-        #mark-as-read:hover {
-            color: black;
-        }
 
         main {
             display: flex;
@@ -227,6 +223,9 @@
             align-items: center;
             padding: 1rem;
             border-radius: 1rem;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            margin-bottom: 1rem;
         }
 
         .notificationCard .description {
@@ -239,11 +238,14 @@
         .unread {
             background-color: pink;
         }
+
+        .lebar {
+            width: max-content;
+        }
     </style>
 </head>
 
 <body>
-
     <nav>
         <div class="nav-new">
             <ul>
@@ -259,7 +261,6 @@
             <i class="fas fa-times" id="cancel"></i>
         </label>
 
-
         <h2 class="tepi"><a href="Student_Dashboard.php" style="color: white;text-decoration: none;">UNITENShuttleTrack</a></h2>
 
         <div class="sidebar">
@@ -272,53 +273,83 @@
             </ul>
         </div>
     </nav>
-    <div class="container">
-        <div class="notificationContainer">
-
-            <div class="notificationHeader">
-                <h1> Notification</h1>
-                <span id="num-of-notif"></span>
+    <div class="lebar">
+        <div class="container">
+            <div class="notificationContainer">
+                <div class="notificationHeader">
+                    <h1> Notification</h1>
+                    <span id="num-of-notif"></span>
+                </div>
+                <main id="notifications"></main>
             </div>
-
-            <main>
-                <div class="notificationCard unread">
-                    <img src="" alt="">
-                    <div class="description">
-                        <p>Hello Guys its me alip</p>
-                        <p id="notif-time">1m ago</p>
-                    </div>
-                </div>
-
-                <div class="notificationCard unread">
-                    <img src="" alt="">
-                    <div class="description">
-                        <p>Hello Guys its me alip</p>
-                        <p id="notif-time">1m ago</p>
-                    </div>
-                </div>
-
-                <div class="notificationCard unread">
-                    <img src="" alt="">
-                    <div class="description">
-                        <p>Hello Guys its me alip</p>
-                        <p id="notif-time">1m ago</p>
-                    </div>
-                </div>
-
-                <div class="notificationCard unread">
-                    <img src="" alt="">
-                    <div class="description">
-                        <p>Hello Guys its me alip</p>
-                        <p id="notif-time">1m ago</p>
-                    </div>
-                </div>
-            </main>
         </div>
-
     </div>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAg8iVwGi-X6dJCe15dvavK0ndAoVPutsA",
+            authDomain: "university-bus-system.firebaseapp.com",
+            databaseURL: "https://university-bus-system-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "university-bus-system",
+            storageBucket: "university-bus-system.appspot.com",
+            messagingSenderId: "446380655695",
+            appId: "1:446380655695:web:ee019fad4684435252163a"
+        };
 
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
 
+        // Reference to the Firebase Database
+        var database = firebase.database();
 
+        // Function to fetch and display notifications
+        function fetchNotifications() {
+            database.ref('Notification').on('value', function(snapshot) {
+                var notifications = snapshot.val();
+                var notificationsContainer = document.getElementById('notifications');
+                notificationsContainer.innerHTML = ''; // Clear the container
+
+                for (var key in notifications) {
+                    if (notifications.hasOwnProperty(key)) {
+                        var notification = notifications[key];
+                        var user = notification.User;
+                        var description = notification.Description;
+                        var createdTime = moment(notification.Time).fromNow(); // Calculate time ago
+                        //var time = new Date(notification.timestamp).toLocaleString(); // Assuming you have a timestamp
+
+                        var notificationCard = document.createElement('div');
+                        notificationCard.className = 'notificationCard unread';
+
+                        var descriptionDiv = document.createElement('div');
+                        descriptionDiv.className = 'description';
+
+                        var userP = document.createElement('p');
+                        userP.textContent = user;
+
+                        var descriptionP = document.createElement('p');
+                        descriptionP.textContent = description;
+
+                        var timeP = document.createElement('p');
+                        timeP.textContent = createdTime; // Display time ago
+
+                        descriptionDiv.appendChild(userP);
+                        descriptionDiv.appendChild(descriptionP);
+                        descriptionDiv.appendChild(timeP);
+
+                        notificationCard.appendChild(descriptionDiv);
+                        notificationsContainer.appendChild(notificationCard);
+
+                        void notificationCard.offsetWidth;
+                        notificationCard.style.opacity = '1';
+                    }
+
+                }
+            });
+        }
+
+        // Fetch notifications on page load
+        window.onload = fetchNotifications;
+    </script>
 </body>
 
 </html>

@@ -1,7 +1,12 @@
 <?php
 include 'auth.php';
-?>
 
+//set the user to email that is logged in
+$user_email = $_SESSION['email'];
+//take only before @email.com
+$email_parts = explode('@', $user_email);
+$user_name = $email_parts[0];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +16,8 @@ include 'auth.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/c065e87b98.js" crossorigin="anonymous"></script>
-    <title>View Buses</title>
+
+    <title>Register Bus Information</title>
     <style>
         * {
             padding: 0;
@@ -149,8 +155,7 @@ include 'auth.php';
         }
 
         #check:checked~label #cancel {
-            left: 210px;
-            margin-top: 15px;
+            left: 195px;
 
         }
 
@@ -280,6 +285,9 @@ include 'auth.php';
         }
     </style>
 
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
 
 </head>
 
@@ -299,17 +307,17 @@ include 'auth.php';
             <i class="fas fa-times" id="cancel"></i>
         </label>
 
-        <h2 class="tepi"><a href="Admin_Dashboard.php" style="color: white;text-decoration: none;">UNITENShuttleTrack</a>
+        <h2 class="tepi"><a href="../Admin/Admin_Dashboard.php" style="color: white;text-decoration: none;">UNITENShuttleTrack</a>
         </h2>
 
         <div class="sidebar">
-            <header>Admin</header>
+            <header>Notification</header>
             <ul>
-                <li><a href="Admin_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
+                <li><a href="../Admin/Admin_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
                 <li><a href="../Bus/View_Bus.php">
                         <i class="fas"></i>Bus</a></li>
                 <li>
-                    <a href="viewAdmin.php">
+                    <a href="../Admin/List_Admin_Interface.php">
                         <i class="fas"></i>User</a>
                 </li>
                 <li>
@@ -317,82 +325,50 @@ include 'auth.php';
                         <i class="fas"></i>Notification</a>
                 </li>
                 <li>
-                    <a href="AdminReport.php"><i class="fas"></i>Report</a>
-                </li>
+                    <a href="../Admin/Admin_Feedback.php"><i class="fas"></i>Report</a>
             </ul>
+
             <div class="logout">
                 <a href="../Admin/logout.php"><i class="fas"></i>LOGOUT</a>
             </div>
         </div>
-
     </nav>
+    <div class="container">
+        <h3>Add Notification</h3>
+        <form action="" method="POST" id="Notification">
+            <label for="NotificationID">Notification ID:</label><br>
+            <input type="text" class="form-control" placeholder="100" name="NotificationID" id="NotificationID"><br>
 
-    <div class="container text-center">
-        <section class="table_body">
-            <h3 class="back">View Admin</h3>
-            <table class="table table-primary">
-                <thead>
-                    <tr class="table-info">
-                        <th>No.</th>
-                        <th>Admin ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Password</th>
-                        <th><a href="addAdmin.php"><button class="add-button">New</button></a></th>
-                    </tr>
-                </thead>
-        </section>
-        <tbody class="table-light">
-            <?php
-            // Database connection parameters
-            $servername = "localhost";
-            $username = "root"; // Replace with your MySQL username
-            $password = ""; // Replace with your MySQL password
-            $database = "unitenadmin"; // Replace with your MySQL database name
+            <label for="description">Description</label><br>
+            <input type="text" class="form-control" id="description" placeholder="description" name="description"><br>
 
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $database);
 
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
+            <label for="admin">User:</label><br>
+            <input type="text" class="form-control" id="admin" placeholder="Farhan" name="admin" value="<?php echo htmlspecialchars($user_name); ?>"><br>
 
-            // SQL query to fetch all buses
-            $sql = "SELECT ID, Admin_ID, Name, Email, Password FROM admindatabase";
-            $result = $conn->query($sql);
+            <label for="time">Time Created:</label><br>
+            <input type="text" class="form-control" id="time" name="time" readonly><br>
 
-            if ($result->num_rows > 0) {
-                // Output data of each row
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . $row["ID"] . "</td>";
-                    echo "<td>" . $row["Admin_ID"] . "</td>";
-                    echo "<td>" . $row["Name"] . "</td>";
-                    echo "<td>" . $row["Email"] . "</td>";
-                    echo "<td>" . $row["Password"] . "</td>";
-                    echo "<td style='text-align: center;'><a href='modifyAdminPage.php?ID=" . $row["ID"] . "' class='modify-button'>Update</a>
-                
-                    <a href='deleteAdminSQL.php?ID={$row['ID']}' onclick='return confirmDelete();' class='remove-button space'>Remove</a>
-                    </td>"; // Modify link as a button
 
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='5'>0 results</td></tr>";
-            }
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-success" type="submit">Add</button>
+                <a href="View_Bus.php" class="btn btn-danger">Cancel</a>
+            </div>
+        </form>
 
-            // Close connection
-            $conn->close();
-            ?>
-        </tbody>
-        </table>
+        <script>
+            var currentTime = new Date();
+            var formattedTime = currentTime.toLocaleString(); // Example format: "5/26/2024, 10:30:15 AM"
+            document.getElementById('time').value = formattedTime;
+        </script>
+
     </div>
-    <script>
-        function confirmDelete() {
-            return confirm("Are you sure you want to delete this admin information?");
-        }
-    </script>
+    </div>
 </body>
+<script>
+
+</script>
+<script script src="../JS/addNotification.js"></script>
+<script script src="../JS/NotificationID.js"></script>
 
 </html>

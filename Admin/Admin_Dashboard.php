@@ -175,6 +175,7 @@ include 'auth.php';
     }
 
     .map {
+      position: stat;
       width: 50%;
       height: 100%;
     }
@@ -188,19 +189,19 @@ include 'auth.php';
     }
 
     .container {
-      position: fixed;
+      position: static;
       width: 40%;
-      margin-top: 19%;
-      margin-left: 18%;
+      margin-top: 2%;
+      margin-left: 3%;
       background: white;
       border-radius: 8px;
       padding: 25px;
     }
 
     .img {
-      position: absolute;
+      position: static;
       margin-top: 5%;
-      margin-left: 140%;
+      margin-left: 10%;
     }
 
     .link {
@@ -215,6 +216,30 @@ include 'auth.php';
       background-position: center;
       overflow-x: hidden;
       transition: all .5s ease;
+    }
+
+    .logout {
+      margin-top: 300%;
+      margin-left: 0%;
+      /* Push the button to the bottom */
+    }
+
+    .logout a {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      line-height: 65px;
+      font-size: 25px;
+      color: white;
+      padding-left: 70px;
+      box-sizing: border-box;
+      border-top: 1px solid rgba(255, 255, 255, .1);
+      transition: .4s;
+    }
+
+    .logout a:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transition: .5s;
     }
   </style>
 </head>
@@ -252,34 +277,44 @@ include 'auth.php';
             <i class="fas"></i>User</a>
         </li>
         <li>
+          <a href="AdminNotification.php">
+            <i class="fas"></i>Notification</a>
+        </li>
+        <li>
           <a href="AdminReport.php"><i class="fas"></i>Report</a>
         </li>
       </ul>
-
-      <div>
-        <img src="Img/Time Schedule.png" width="430" alt="" class="img">
+      <div class="logout">
+        <a href="../Admin/logout.php"><i class="fas"></i>LOGOUT</a>
       </div>
 
-      <div class="container text-center">
-        <section class="table_body">
-          <h3 class="back">Student Feedback</h3>
-          <table class="table table-primary">
-            <thead>
-              <tr class="table-info">
-                <th>ID</th>
-                <th>Date</th>
-                <th>Location</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-        </section>
-        <tbody class="table-light" id="busTableBody">
-          <!-- Data will be dynamically populated here -->
-        </tbody>
-        </table>
-        <a href="AdminReport.php" class="link">More>></a>
-      </div>
+
     </div>
+
+    <div>
+      <img src="Img/Time Schedule.png" width="430" alt="" class="img">
+    </div>
+
+    <div class="container text-center">
+      <section class="table_body">
+        <h3 class="back">Student Feedback</h3>
+        <table class="table table-primary">
+          <thead>
+            <tr class="table-info">
+              <th>ID</th>
+              <th>Date</th>
+              <th>Location</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+      </section>
+      <tbody class="table-light" id="busTableBody">
+        <!-- Data will be dynamically populated here -->
+      </tbody>
+      </table>
+      <a href="AdminReport.php" class="link">More>></a>
+    </div>
+
 
     <div class="map-container">
       <div class="map" id="map"></div>
@@ -362,6 +397,41 @@ include 'auth.php';
 
           lineCoordinatesPath.setMap(map);
         }
+
+        // Reference to your Firebase Realtime Database
+        const database = firebase.database();
+
+        // Reference to the 'Bus' node in database
+        const reportRef = database.ref('Report');
+
+        // Function to fetch bus data from Firebase and populate the table
+        function fetchReportData() {
+          reportRef.limitToLast(5).on('value', function(snapshot) {
+
+            //refresh the table
+            document.getElementById('busTableBody').innerHTML = '';
+
+            snapshot.forEach(function(childSnapshot) {
+              const childData = childSnapshot.val();
+              const Date = childData.Date;
+              const ID = childData.ID;
+              const Location = childData.Location;
+              const Nama = childData.nama;
+              const Report = childData.Report;
+
+              // Append fetched data to the table
+              const tableRow = `<tr>
+                                <td>${ID}</td>
+                                <td>${Date}</td>
+                                <td>${Location}</td>
+                                <td>${Report}</td>
+                            </tr>`;
+              document.getElementById('busTableBody').innerHTML += tableRow;
+            });
+          });
+        }
+        // Call the function to fetch and populate bus data
+        fetchReportData();
       });
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm_aJ9lxcthdOugBg_c8q-P-vvT12ULMA&callback=initMap"></script>

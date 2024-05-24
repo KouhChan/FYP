@@ -306,6 +306,10 @@ include 'auth.php';
                         <i class="fas"></i>User</a>
                 </li>
                 <li>
+                    <a href="AdminNotification.php">
+                        <i class="fas"></i>Notification</a>
+                </li>
+                <li>
                     <a href="AdminReport.php"><i class="fas"></i>Report</a>
                 </li>
             </ul>
