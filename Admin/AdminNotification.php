@@ -17,7 +17,7 @@ $user_name = $email_parts[0];
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/c065e87b98.js" crossorigin="anonymous"></script>
 
-    <title>Register Bus Information</title>
+    <title>Notification Information</title>
     <style>
         * {
             padding: 0;
@@ -325,7 +325,7 @@ $user_name = $email_parts[0];
                         <i class="fas"></i>Notification</a>
                 </li>
                 <li>
-                    <a href="../Admin/Admin_Feedback.php"><i class="fas"></i>Report</a>
+                    <a href="../Admin/AdminReport.php"><i class="fas"></i>Report</a>
             </ul>
 
             <div class="logout">
