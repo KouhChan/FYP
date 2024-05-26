@@ -135,7 +135,7 @@ include 'auth.php';
     }
 
     .tepi {
-      position: fixed;
+      position: static;
       color: white;
       font-size: 25px;
       left: 0px;
@@ -147,17 +147,6 @@ include 'auth.php';
 
     #check:checked~.sidebar {
       left: 0px;
-    }
-
-    #check:checked~label #btn {
-      left: 250px;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    #check:checked~label #cancel {
-      left: 210px;
-      margin-top: 15px;
     }
 
 
@@ -219,7 +208,7 @@ include 'auth.php';
     }
 
     .logout {
-      margin-top: 300%;
+      margin-top: 325%;
       margin-left: 0%;
       /* Push the button to the bottom */
     }
@@ -260,7 +249,7 @@ include 'auth.php';
     <input type="checkbox" id="check">
     <label for="check">
       <i class="fas fa-bars" id="btn"></i>
-      <i class="fas fa-times" id="cancel"></i>
+      <i class="fas fa-bars" id="cancel"></i>
     </label>
 
     <h2 class="tepi"><a href="Admin_Dashboard.php" style="color: white;text-decoration: none;">UNITENShuttleTrack</a>

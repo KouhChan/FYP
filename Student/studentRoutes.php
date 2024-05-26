@@ -74,7 +74,7 @@
 
         a.active,
         a:hover {
-            background: #1b9bff;
+
             transition: .5s;
         }
 
@@ -146,7 +146,7 @@
         }
 
         .tepi {
-            position: fixed;
+            position: static;
             color: white;
             font-size: 25px;
             left: 0px;
@@ -156,19 +156,11 @@
             transition: all .5s ease;
         }
 
+
         #check:checked~.sidebar {
             left: 0px;
         }
 
-        #check:checked~label #btn {
-            left: 250px;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        #check:checked~label #cancel {
-            left: 195px;
-        }
 
         #check:checked~.tepi {
             left: 160px;
@@ -194,9 +186,9 @@
         }
 
         .img {
-            position: fixed;
+            position: static;
             margin-top: 10%;
-            margin-left: 15%;
+            margin-left: 5%;
             transition: all .5s ease;
         }
 
@@ -278,15 +270,16 @@
             <ul>
                 <li><a href="Student_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
                 <li><a href="studentNotification.php"><i class="fas"></i>Notification</a></li>
-                <li><a href="#"><i class="fas"></i>Routes</a></li>
+                <li><a href="studentRoutes.php"><i class="fas"></i>Routes</a></li>
                 <li><a href="Student_Feedback.php"><i class="fas"></i>Report</a></li>
             </ul>
 
-            <div>
-                <img src="../Admin/Img/Time Schedule.png" width="600" alt="" class="img">
-            </div>
+
         </div>
     </nav>
+    <div>
+        <img src="../Admin/Img/Time Schedule.png" width="600" alt="" class="img">
+    </div>
     <div class="background">
         <div class="container">
             <div class="steps">

@@ -28,7 +28,6 @@
             overflow-x: hidden;
             transition: all .5s ease;
             position: relative;
-            /* Ensure that the pseudo-element is positioned relative to the body */
         }
 
         body::before {
@@ -74,7 +73,6 @@
 
         a.active,
         a:hover {
-            background: #1b9bff;
             transition: .5s;
         }
 
@@ -138,15 +136,15 @@
         label #cancel {
             z-index: 1111;
             left: -195px;
-            top: 25px;
-            font-size: 30px;
-            color: #0a5275;
-            padding: 4px 9px;
+            top: 15px;
+            font-size: 35px;
+            color: white;
+            padding: 6px 12px;
             transition: all .5s ease;
         }
 
         .tepi {
-            position: fixed;
+            position: static;
             color: white;
             font-size: 25px;
             left: 0px;
@@ -160,15 +158,6 @@
             left: 0px;
         }
 
-        #check:checked~label #btn {
-            left: 250px;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        #check:checked~label #cancel {
-            left: 195px;
-        }
 
         #check:checked~.tepi {
             left: 160px;
@@ -194,9 +183,9 @@
         }
 
         .img {
-            position: fixed;
+            position: static;
             margin-top: 1%;
-            margin-left: 15%;
+            margin-left: 5%;
             transition: all .5s ease;
         }
     </style>
@@ -216,7 +205,7 @@
         <input type="checkbox" id="check">
         <label for="check">
             <i class="fas fa-bars" id="btn"></i>
-            <i class="fas fa-times" id="cancel"></i>
+            <i class="fas fa-bars" id="cancel"></i>
         </label>
 
 
@@ -231,12 +220,12 @@
                 <li><a href="Student_Feedback.php"><i class="fas"></i>Report</a></li>
             </ul>
 
-            <div>
-                <img src="../Admin/Img/Time Schedule.png" width="600" alt="" class="img">
-            </div>
+
         </div>
     </nav>
-
+    <div>
+        <img src="../Admin/Img/Time Schedule.png" width="600" alt="" class="img">
+    </div>
 
     <div class="map-container">
         <div class="map" id="map"></div>

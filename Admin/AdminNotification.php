@@ -61,7 +61,6 @@ $user_name = $email_parts[0];
 
         a.active,
         a:hover {
-            background: #1b9bff;
             transition: .5s;
         }
 
@@ -134,7 +133,7 @@ $user_name = $email_parts[0];
         }
 
         .tepi {
-            position: fixed;
+            position: static;
             color: white;
             font-size: 25px;
             left: 0px;
@@ -146,17 +145,6 @@ $user_name = $email_parts[0];
 
         #check:checked~.sidebar {
             left: 0px;
-        }
-
-        #check:checked~label #btn {
-            left: 250px;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        #check:checked~label #cancel {
-            left: 195px;
-
         }
 
 
@@ -261,7 +249,7 @@ $user_name = $email_parts[0];
         }
 
         .logout {
-            margin-top: 300%;
+            margin-top: 325%;
             margin-left: 0%;
             /* Push the button to the bottom */
         }
@@ -317,7 +305,7 @@ $user_name = $email_parts[0];
                 <li><a href="../Bus/View_Bus.php">
                         <i class="fas"></i>Bus</a></li>
                 <li>
-                    <a href="../Admin/List_Admin_Interface.php">
+                    <a href="../Admin/viewAdmin.php">
                         <i class="fas"></i>User</a>
                 </li>
                 <li>
@@ -352,7 +340,7 @@ $user_name = $email_parts[0];
 
             <div class="d-flex justify-content-between">
                 <button class="btn btn-success" type="submit">Add</button>
-                <a href="View_Bus.php" class="btn btn-danger">Cancel</a>
+                <a href="Admin_Dashboard.php" class="btn btn-danger">Cancel</a>
             </div>
         </form>
 

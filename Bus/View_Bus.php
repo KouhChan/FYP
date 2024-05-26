@@ -53,7 +53,6 @@ include 'auth.php';
 
         a.active,
         a:hover {
-            background: #1b9bff;
             transition: .5s;
         }
 
@@ -125,7 +124,7 @@ include 'auth.php';
         }
 
         .tepi {
-            position: fixed;
+            position: static;
             color: white;
             font-size: 25px;
             left: 0px;
@@ -139,16 +138,6 @@ include 'auth.php';
             left: 0px;
         }
 
-        #check:checked~label #btn {
-            left: 250px;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        #check:checked~label #cancel {
-            left: 195px;
-
-        }
 
         #check:checked~.tepi {
             left: 160px;
@@ -251,7 +240,7 @@ include 'auth.php';
 
 
         .logout {
-            margin-top: 300%;
+            margin-top: 325%;
             margin-left: 0%;
             /* Push the button to the bottom */
         }

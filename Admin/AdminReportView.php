@@ -129,7 +129,7 @@ include 'auth.php';
         }
 
         .tepi {
-            position: fixed;
+            position: static;
             color: white;
             font-size: 25px;
             left: 0px;
@@ -143,16 +143,7 @@ include 'auth.php';
             left: 0px;
         }
 
-        #check:checked~label #btn {
-            left: 250px;
-            opacity: 0;
-            pointer-events: none;
-        }
 
-        #check:checked~label #cancel {
-            left: 195px;
-
-        }
 
 
         #check:checked~.tepi {
@@ -213,6 +204,30 @@ include 'auth.php';
         .background--content {
             background-color: #499af1;
         }
+
+        .logout {
+            margin-top: 325%;
+            margin-left: 0%;
+            /* Push the button to the bottom */
+        }
+
+        .logout a {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            line-height: 65px;
+            font-size: 25px;
+            color: white;
+            padding-left: 70px;
+            box-sizing: border-box;
+            border-top: 1px solid rgba(255, 255, 255, .1);
+            transition: .4s;
+        }
+
+        .logout a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transition: .5s;
+        }
     </style>
 
 
@@ -242,19 +257,26 @@ include 'auth.php';
         </h2>
 
         <div class="sidebar">
-            <header>My App</header>
+            <header>View Report</header>
             <ul>
-                <li><a href="Student_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
-                <li><a href="#">
-                        <i class="fas"></i>Notification</a></li>
+                <li><a href="Admin_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
+                <li><a href="../Bus/View_Bus.php">
+                        <i class="fas"></i>Bus</a></li>
                 <li>
-                    <a href="#">
-                        <i class="fas"></i>Routes</a>
+                    <a href="viewAdmin.php">
+                        <i class="fas"></i>User</a>
                 </li>
                 <li>
-                    <a href="Student_Feedback.php"><i class="fas"></i>Report</a>
+                    <a href="AdminNotification.php">
+                        <i class="fas"></i>Notification</a>
+                </li>
+                <li>
+                    <a href="AdminReport.php"><i class="fas"></i>Report</a>
                 </li>
             </ul>
+            <div class="logout">
+                <a href="../Admin/logout.php"><i class="fas"></i>LOGOUT</a>
+            </div>
         </div>
         <div class="background--content">
         </div>

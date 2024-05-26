@@ -55,7 +55,7 @@
 
     .sidebar {
       position: fixed;
-      bottom: 0%;
+      bottom: -6.5%;
       left: -250px;
       width: 250px;
       height: 100%;
@@ -136,17 +136,7 @@
       left: 0px;
     }
 
-    #check:checked~label #btn {
-      left: 250px;
-      opacity: 0;
-      pointer-events: none;
-    }
 
-    #check:checked~label #cancel {
-      top: 15px;
-      left: 195px;
-
-    }
 
 
     #check:checked~.tepi {

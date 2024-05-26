@@ -25,7 +25,6 @@
         body {
             font-family: montserrat;
             background-color: transparent;
-
             position: relative;
         }
 
@@ -70,7 +69,6 @@
 
         a.active,
         a:hover {
-            background: #1b9bff;
             transition: .5s;
         }
 
@@ -134,10 +132,10 @@
         label #cancel {
             z-index: 1111;
             left: -195px;
-            top: 25px;
-            font-size: 30px;
-            color: #0a5275;
-            padding: 4px 9px;
+            top: 15px;
+            font-size: 35px;
+            color: white;
+            padding: 6px 12px;
             transition: all .5s ease;
         }
 
@@ -156,29 +154,18 @@
             left: 0px;
         }
 
-        #check:checked~label #btn {
-            left: 250px;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        #check:checked~label #cancel {
-            left: 195px;
-        }
 
         #check:checked~.tepi {
             left: 160px;
         }
 
         .container {
-            margin-top: 0;
-            margin-left: 0;
+            margin-top: 0%;
+            margin-left: 0%;
             display: inline-flex;
             background: antiquewhite;
             width: 100vw;
             height: auto;
-            overflow: hidden;
-            box-sizing: border-box;
 
         }
 
@@ -193,10 +180,7 @@
             border-radius: 1rem;
         }
 
-        .notificationHeader {
-            display: flex;
-            align-items: center;
-        }
+
 
         #num-of-notif {
             background-color: blue;
@@ -213,7 +197,7 @@
 
 
         main {
-            display: flex;
+            display: contents;
             flex-direction: column;
             gap: 1rem;
         }
@@ -238,10 +222,6 @@
         .unread {
             background-color: pink;
         }
-
-        .lebar {
-            width: max-content;
-        }
     </style>
 </head>
 
@@ -258,7 +238,7 @@
         <input type="checkbox" id="check">
         <label for="check">
             <i class="fas fa-bars" id="btn"></i>
-            <i class="fas fa-times" id="cancel"></i>
+            <i class="fas fa-bars" id="cancel"></i>
         </label>
 
         <h2 class="tepi"><a href="Student_Dashboard.php" style="color: white;text-decoration: none;">UNITENShuttleTrack</a></h2>
@@ -272,84 +252,82 @@
                 <li><a href="Student_Feedback.php"><i class="fas"></i>Report</a></li>
             </ul>
         </div>
-    </nav>
-    <div class="lebar">
+
         <div class="container">
             <div class="notificationContainer">
-                <div class="notificationHeader">
-                    <h1> Notification</h1>
-                    <span id="num-of-notif"></span>
-                </div>
+                <h1> Notification</h1>
                 <main id="notifications"></main>
             </div>
+
         </div>
-    </div>
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyAg8iVwGi-X6dJCe15dvavK0ndAoVPutsA",
-            authDomain: "university-bus-system.firebaseapp.com",
-            databaseURL: "https://university-bus-system-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "university-bus-system",
-            storageBucket: "university-bus-system.appspot.com",
-            messagingSenderId: "446380655695",
-            appId: "1:446380655695:web:ee019fad4684435252163a"
-        };
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+        <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyAg8iVwGi-X6dJCe15dvavK0ndAoVPutsA",
+                authDomain: "university-bus-system.firebaseapp.com",
+                databaseURL: "https://university-bus-system-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "university-bus-system",
+                storageBucket: "university-bus-system.appspot.com",
+                messagingSenderId: "446380655695",
+                appId: "1:446380655695:web:ee019fad4684435252163a"
+            };
 
-        // Reference to the Firebase Database
-        var database = firebase.database();
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
 
-        // Function to fetch and display notifications
-        function fetchNotifications() {
-            database.ref('Notification').on('value', function(snapshot) {
-                var notifications = snapshot.val();
-                var notificationsContainer = document.getElementById('notifications');
-                notificationsContainer.innerHTML = ''; // Clear the container
+            // Reference to the Firebase Database
+            var database = firebase.database();
 
-                for (var key in notifications) {
-                    if (notifications.hasOwnProperty(key)) {
-                        var notification = notifications[key];
-                        var user = notification.User;
-                        var description = notification.Description;
-                        var createdTime = moment(notification.Time).fromNow(); // Calculate time ago
-                        //var time = new Date(notification.timestamp).toLocaleString(); // Assuming you have a timestamp
+            // Function to fetch and display notifications
+            function fetchNotifications() {
+                database.ref('Notification').on('value', function(snapshot) {
+                    var notifications = snapshot.val();
+                    var notificationsContainer = document.getElementById('notifications');
+                    notificationsContainer.innerHTML = ''; // Clear the container
 
-                        var notificationCard = document.createElement('div');
-                        notificationCard.className = 'notificationCard unread';
+                    for (var key in notifications) {
+                        if (notifications.hasOwnProperty(key)) {
+                            var notification = notifications[key];
+                            var user = notification.User;
+                            var description = notification.Description;
+                            var createdTime = moment(notification.Time).fromNow(); // Calculate time ago
+                            //var time = new Date(notification.timestamp).toLocaleString(); // Assuming you have a timestamp
 
-                        var descriptionDiv = document.createElement('div');
-                        descriptionDiv.className = 'description';
+                            var notificationCard = document.createElement('div');
+                            notificationCard.className = 'notificationCard unread';
 
-                        var userP = document.createElement('p');
-                        userP.textContent = user;
+                            var descriptionDiv = document.createElement('div');
+                            descriptionDiv.className = 'description';
 
-                        var descriptionP = document.createElement('p');
-                        descriptionP.textContent = description;
+                            var userP = document.createElement('p');
+                            userP.textContent = user;
 
-                        var timeP = document.createElement('p');
-                        timeP.textContent = createdTime; // Display time ago
+                            var descriptionP = document.createElement('p');
+                            descriptionP.textContent = description;
 
-                        descriptionDiv.appendChild(userP);
-                        descriptionDiv.appendChild(descriptionP);
-                        descriptionDiv.appendChild(timeP);
+                            var timeP = document.createElement('p');
+                            timeP.textContent = createdTime; // Display time ago
 
-                        notificationCard.appendChild(descriptionDiv);
-                        notificationsContainer.appendChild(notificationCard);
+                            descriptionDiv.appendChild(userP);
+                            descriptionDiv.appendChild(descriptionP);
+                            descriptionDiv.appendChild(timeP);
 
-                        void notificationCard.offsetWidth;
-                        notificationCard.style.opacity = '1';
+                            notificationCard.appendChild(descriptionDiv);
+                            notificationsContainer.appendChild(notificationCard);
+
+                            void notificationCard.offsetWidth;
+                            notificationCard.style.opacity = '1';
+                        }
+
                     }
+                });
+            }
 
-                }
-            });
-        }
-
-        // Fetch notifications on page load
-        window.onload = fetchNotifications;
-    </script>
+            // Fetch notifications on page load
+            window.onload = fetchNotifications;
+        </script>
+    </nav>
 </body>
 
 </html>

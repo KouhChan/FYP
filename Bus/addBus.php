@@ -55,7 +55,6 @@ include 'auth.php';
 
         a.active,
         a:hover {
-            background: #1b9bff;
             transition: .5s;
         }
 
@@ -128,7 +127,7 @@ include 'auth.php';
         }
 
         .tepi {
-            position: fixed;
+            position: static;
             color: white;
             font-size: 25px;
             left: 0px;
@@ -142,16 +141,6 @@ include 'auth.php';
             left: 0px;
         }
 
-        #check:checked~label #btn {
-            left: 250px;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        #check:checked~label #cancel {
-            left: 195px;
-
-        }
 
 
         #check:checked~.tepi {
@@ -253,6 +242,30 @@ include 'auth.php';
             border-radius: 8px;
             padding: 25px;
         }
+
+        .logout {
+            margin-top: 325%;
+            margin-left: 0%;
+            /* Push the button to the bottom */
+        }
+
+        .logout a {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            line-height: 65px;
+            font-size: 25px;
+            color: white;
+            padding-left: 70px;
+            box-sizing: border-box;
+            border-top: 1px solid rgba(255, 255, 255, .1);
+            transition: .4s;
+        }
+
+        .logout a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transition: .5s;
+        }
     </style>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
@@ -287,12 +300,15 @@ include 'auth.php';
                 <li><a href="../Bus/View_Bus.php">
                         <i class="fas"></i>Bus</a></li>
                 <li>
-                    <a href="../Admin/List_Admin_Interface.php">
+                    <a href="../Admin/viewAdmin.php">
                         <i class="fas"></i>User</a>
                 </li>
                 <li>
                     <a href="../Admin/Admin_Feedback.php"><i class="fas"></i>Report</a>
             </ul>
+            <div class="logout">
+                <a href="../Admin/logout.php"><i class="fas"></i>LOGOUT</a>
+            </div>
         </div>
     </nav>
     <div class="container">
