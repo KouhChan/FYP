@@ -412,6 +412,7 @@
             flex-direction: column;
             background-color: rgba(254, 248, 224, 0.9);
             border-radius: 10px;
+            overflow-y: auto;
         }
     </style>
 </head>

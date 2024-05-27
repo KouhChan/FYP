@@ -198,6 +198,7 @@
       margin-top: 10px;
       margin-bottom: 20px;
       color: gray;
+      overflow-y: auto;
     }
 
     .main--content {
