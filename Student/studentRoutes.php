@@ -398,21 +398,20 @@
 
         .background {
             background-color: #FEF8E0;
-            margin-top: 30.5%;
+            margin-top: 29.5%;
             padding-bottom: 2.4%;
             padding-top: 2%;
         }
 
         .transparent {
             position: fixed;
-            top: 11%;
+            top: 8%;
             width: 80%;
             left: 12%;
             padding-bottom: 3%;
             flex-direction: column;
             background-color: rgba(254, 248, 224, 0.9);
             border-radius: 10px;
-            overflow-y: auto;
         }
     </style>
 </head>
