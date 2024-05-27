@@ -37,7 +37,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('../Admin/Img/Admin_Login_Background.png') no-repeat center center;
+            background: url('../Admin/Img/bus.jpg') no-repeat center center;
             background-size: cover;
             opacity: 0.5;
             /* Set the opacity of the background image */
@@ -170,7 +170,7 @@
 
         .map-container {
             position: fixed;
-            top: 80px;
+            top: 90px;
             margin-left: 50%;
             width: calc(100% - 250px);
             height: calc(100% - 80px);
@@ -178,8 +178,8 @@
         }
 
         .map {
-            width: 50%;
-            height: 100%;
+            width: 40%;
+            height: 65%;
         }
 
         .img {
@@ -187,6 +187,31 @@
             margin-top: 1%;
             margin-left: 5%;
             transition: all .5s ease;
+        }
+
+        .bus-schedule {
+            font-family: Arial, sans-serif;
+            padding-left: 10%;
+            margin-top: 0.5%;
+            text-decoration: underline;
+        }
+
+        .map-title {
+            font-family: Arial, sans-serif;
+            padding-left: 0%;
+            margin-top: 0%;
+            text-decoration: underline;
+        }
+
+        .transparent {
+            position: fixed;
+            top: 11%;
+            width: 80%;
+            left: 12%;
+            padding-bottom: 5%;
+            flex-direction: column;
+            background-color: rgba(254, 248, 224, 0.9);
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -224,92 +249,101 @@
         </div>
     </nav>
     <div>
-        <img src="../Admin/Img/Time Schedule.png" width="600" alt="" class="img">
+        <div class="transparent">
+            <div class="bus-schedule">
+                <h2>Bus Schedule</h2>
+            </div>
+            <img src="../Admin/Img/Time Schedule.png" width="600" alt="" class="img">
+        </div>
+
+        <div class="map-container">
+            <div class="map-title">
+                <h2>Real-Time Location</h2>
+            </div>
+            <div class="map" id="map"></div>
+
+
+            <script>
+                var map;
+                var mark;
+                var lineCoords = [];
+
+                window.lat = 2.97690;
+                window.lng = 101.72812857567598;
+
+                function initMap() {
+                    map = new google.maps.Map(document.getElementById('map'), {
+                        center: {
+                            lat: lat,
+                            lng: lng
+                        },
+                        zoom: 18
+                    });
+
+                    var busIcon = {
+                        url: 'https://cdn-icons-png.flaticon.com/512/5030/5030991.png',
+                        scaledSize: new google.maps.Size(50, 50),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(25, 25)
+                    };
+
+                    mark = new google.maps.Marker({
+                        position: {
+                            lat: lat,
+                            lng: lng
+                        },
+                        map: map,
+                        title: 'UNITEN',
+                        icon: busIcon
+                    });
+                }
+
+                const firebaseConfig = {
+                    aapiKey: "AIzaSyAg8iVwGi-X6dJCe15dvavK0ndAoVPutsA",
+                    authDomain: "university-bus-system.firebaseapp.com",
+                    databaseURL: "https://university-bus-system-default-rtdb.asia-southeast1.firebasedatabase.app",
+                    projectId: "university-bus-system",
+                    storageBucket: "university-bus-system.appspot.com",
+                    messagingSenderId: "446380655695",
+                    appId: "1:446380655695:web:ee019fad4684435252163a"
+                }
+
+                firebase.initializeApp(firebaseConfig);
+
+                var ref = firebase.database().ref('gps');
+
+                ref.on("value", function(snapshot) {
+                    var gps = snapshot.val();
+                    console.log(gps.latitude);
+                    console.log(gps.longitude);
+
+                    if (map && mark) {
+                        map.setCenter({
+                            lat: gps.latitude,
+                            lng: gps.longitude
+                        });
+
+                        mark.setPosition({
+                            lat: gps.latitude,
+                            lng: gps.longitude
+                        });
+
+
+                        lineCoords.push(new google.maps.LatLng(gps.latitude, gps.longitude));
+
+                        var lineCoordinatesPath = new google.maps.Polyline({
+                            path: lineCoords,
+                            geodesic: true,
+                            strokeColor: '#2E10FF'
+                        });
+
+                        lineCoordinatesPath.setMap(map);
+                    }
+                });
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm_aJ9lxcthdOugBg_c8q-P-vvT12ULMA&callback=initMap"></script>
+        </div>
     </div>
-
-    <div class="map-container">
-        <div class="map" id="map"></div>
-    </div>
-
-    <script>
-        var map;
-        var mark;
-        var lineCoords = [];
-
-        window.lat = 2.97690;
-        window.lng = 101.72812857567598;
-
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: {
-                    lat: lat,
-                    lng: lng
-                },
-                zoom: 18
-            });
-
-            var busIcon = {
-                url: 'https://cdn-icons-png.flaticon.com/512/5030/5030991.png',
-                scaledSize: new google.maps.Size(50, 50),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(25, 25)
-            };
-
-            mark = new google.maps.Marker({
-                position: {
-                    lat: lat,
-                    lng: lng
-                },
-                map: map,
-                title: 'UNITEN',
-                icon: busIcon
-            });
-        }
-
-        const firebaseConfig = {
-            aapiKey: "AIzaSyAg8iVwGi-X6dJCe15dvavK0ndAoVPutsA",
-            authDomain: "university-bus-system.firebaseapp.com",
-            databaseURL: "https://university-bus-system-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "university-bus-system",
-            storageBucket: "university-bus-system.appspot.com",
-            messagingSenderId: "446380655695",
-            appId: "1:446380655695:web:ee019fad4684435252163a"
-        }
-
-        firebase.initializeApp(firebaseConfig);
-
-        var ref = firebase.database().ref('gps');
-
-        ref.on("value", function(snapshot) {
-            var gps = snapshot.val();
-            console.log(gps.latitude);
-            console.log(gps.longitude);
-
-            if (map && mark) {
-                map.setCenter({
-                    lat: gps.latitude,
-                    lng: gps.longitude
-                });
-
-                mark.setPosition({
-                    lat: gps.latitude,
-                    lng: gps.longitude
-                });
-
-
-                lineCoords.push(new google.maps.LatLng(gps.latitude, gps.longitude));
-
-                var lineCoordinatesPath = new google.maps.Polyline({
-                    path: lineCoords,
-                    geodesic: true,
-                    strokeColor: '#2E10FF'
-                });
-
-                lineCoordinatesPath.setMap(map);
-            }
-        });
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm_aJ9lxcthdOugBg_c8q-P-vvT12ULMA&callback=initMap"></script>
 </body>
 
 </html>

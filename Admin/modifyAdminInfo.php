@@ -1,9 +1,9 @@
 <?php
 // Database connection parameters
 $servername = "localhost";
-$username = "root"; // Replace with your MySQL username
-$password = ""; // Replace with your MySQL password
-$database = "unitenadmin"; // Replace with your MySQL database name
+$username = "root";
+$password = "";
+$database = "unitenadmin";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    // Hash the password before storing it
+    // Hash the password
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     // Prepare and bind SQL statement
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->execute()) {
         echo "Admin information updated successfully!";
         header("Location: viewAdmin.php");
-        exit(); // Ensure the script stops executing after redirection
+        exit();
     } else {
         echo "Error: " . htmlspecialchars($stmt->error);
     }

@@ -1,11 +1,10 @@
 <?php
-session_start(); // Start the session at the beginning
+session_start();
 
-// Database connection parameters
 $servername = "localhost";
-$username = "root"; // Replace with your MySQL username
-$password = ""; // Replace with your MySQL password
-$database = "unitenadmin"; // Replace with your MySQL database name
+$username = "root";
+$password = "";
+$database = "unitenadmin";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
@@ -19,42 +18,42 @@ $error_message = "";
 
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
+    // Received a POST request
     $email = $_POST["email"];
     $pass = $_POST["pass"];
 
-    // Prepare and bind SQL statement
-    $stmt = $conn->prepare("SELECT Password FROM admindatabase WHERE Email = ?");
+
+    $stmt = $conn->prepare("SELECT Email, Password FROM admindatabase WHERE BINARY Email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        // Username exists, fetch the hashed password
-        $stmt->bind_result($hashed_password);
+
+        $stmt->bind_result($db_email, $hashed_password);
         $stmt->fetch();
 
-        // Verify password
-        if (password_verify($pass, $hashed_password)) {
+        // Verify  email same with database
+        if ($email === $db_email && password_verify($pass, $hashed_password)) {
             // Start secure session
-            session_regenerate_id(); // Regenerate session ID for security
+            session_regenerate_id(true); // Regenerate session ID for security
             $_SESSION['email'] = $email;
 
-            // Redirect to the desired page
+
             header("Location: Admin_Dashboard.php");
             exit();
         } else {
             $error_message = "Invalid email or password!";
-            echo "<script>alert('$error_message'); window.location.href = 'AdminLogin.php';</script>";
-            exit();
         }
     } else {
         $error_message = "Invalid email or password!";
-        echo "<script>alert('$error_message'); window.location.href = 'AdminLogin.php';</script>";
-        exit();
     }
 
-    // Close statement and connection
+
     $stmt->close();
     $conn->close();
+
+
+    echo "<script>alert('$error_message'); window.location.href = 'AdminLogin.php';</script>";
+    exit();
 }

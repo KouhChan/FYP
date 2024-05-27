@@ -13,10 +13,10 @@ firebase.initializeApp(firebaseConfig);
 // Reference to your Firebase Realtime Database
 const database = firebase.database();
 
-// Reference to the 'Bus' node in database
+// Reference to the  node in database
 const reportRef = database.ref('Report');
 
-// Function to fetch bus data from Firebase and populate the table
+// Function to fetch data from Firebase 
 function fetchReportData() {
     reportRef.limitToLast(5).on('value', function (snapshot) {
 

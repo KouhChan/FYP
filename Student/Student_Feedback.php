@@ -137,8 +137,6 @@
     }
 
 
-
-
     #check:checked~.tepi {
       left: 160px;
     }
@@ -150,7 +148,6 @@
       overflow-x: hidden;
       transition: all .5s ease;
       position: relative;
-
     }
 
     body::before {
@@ -160,10 +157,12 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('../Admin/Img/Admin_Login_Background.png') no-repeat center center;
+      background: url('../Admin/Img/bus.jpg') no-repeat center center;
       background-size: cover;
       opacity: 0.5;
+      /* Set the opacity of the background image */
       z-index: -1;
+      /* Ensure the pseudo-element is behind the content */
     }
 
     .feedback-form {
@@ -197,7 +196,7 @@
 
     .feedback-form p {
       margin-top: 10px;
-      margin-bottom: 3px;
+      margin-bottom: 30px;
       color: gray;
     }
 
@@ -220,12 +219,15 @@
     .background--main {
       margin-top: -1.8%;
       background: antiquewhite;
-      width: 100vw;
-      height: 92vh;
+      margin-left: 24%;
+      width: 51.1vw;
+      height: 93vh;
+      border-radius: 10px;
+      padding-bottom: auto;
     }
 
     .background-content {
-      left: 25%;
+      left: 23%;
       position: fixed;
       width: 50%;
       margin: 2rem;

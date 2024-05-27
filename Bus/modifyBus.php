@@ -158,12 +158,29 @@ include 'auth.php';
         }
 
         body {
-            background: url('../Admin/Img/Admin_Login_Background.png') no-repeat;
-            background-size: cover;
+            font-family: montserrat;
+            background-color: transparent;
             height: 100vh;
-            background-position: center;
             overflow-x: hidden;
             transition: all .5s ease;
+            position: relative;
+
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            background: url('../Admin/Img/bus.jpg')center no-repeat;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: lightgrey;
+            background-size: cover;
+            opacity: 0.5;
+
+            z-index: -1;
+
         }
 
 
@@ -256,7 +273,7 @@ include 'auth.php';
         .logout {
             margin-top: 325%;
             margin-left: 0%;
-            /* Push the button to the bottom */
+
         }
 
         .logout a {
@@ -361,24 +378,24 @@ include 'auth.php';
         };
         firebase.initializeApp(firebaseConfig);
 
-        // Reference to your Firebase Realtime Database
+
         const database = firebase.database();
 
-        // Function to fetch bus data from Firebase and populate the form fields
+
         function fetchBusData() {
-            // Retrieve Bus ID from the URL parameter
+
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             const busID = urlParams.get('bus_id');
 
-            // Reference to the 'Bus' node in database
+
             const busRef = database.ref('Bus/' + busID);
 
-            // Fetch bus information
+
             busRef.once('value', function(snapshot) {
                 const busData = snapshot.val();
                 if (busData) {
-                    // Populate the form fields with bus information
+
                     document.getElementById('BusID').value = busID;
                     document.getElementById('busPlat').value = busData.PlatNo || '';
                     document.getElementById('personIncharge').value = busData.PersonIncharge || '';
@@ -389,12 +406,12 @@ include 'auth.php';
             });
         }
 
-        // Call the function to fetch and populate bus data
+
         fetchBusData();
 
-        // Function to handle form submission
+
         document.getElementById('modifyBus').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
+            event.preventDefault();
 
             // Retrieve form data
             const busID = document.getElementById('BusID').value;
@@ -402,17 +419,16 @@ include 'auth.php';
             const personIncharge = document.getElementById('personIncharge').value;
             const dateCreated = document.getElementById('dateCreated').value;
 
-            // Reference to the bus node in the database
+
             const busRef = database.ref('Bus/' + busID);
 
-            // Update bus information in the database
+
             busRef.update({
                 PlatNo: busPlat,
                 PersonIncharge: personIncharge,
                 Date: dateCreated
             }).then(function() {
                 console.log("Bus information updated successfully.");
-                // Redirect to View_Bus.php or any other page
                 window.location.href = "View_Bus.php";
             }).catch(function(error) {
                 console.error("Error updating bus information:", error);

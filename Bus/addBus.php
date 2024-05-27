@@ -148,12 +148,28 @@ include 'auth.php';
         }
 
         body {
-            background: url('../Admin/Img/Admin_Login_Background.png') no-repeat;
-            background-size: cover;
+            font-family: montserrat;
+            background-color: transparent;
             height: 100vh;
-            background-position: center;
             overflow-x: hidden;
             transition: all .5s ease;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            background: url('../Admin/Img/bus.jpg')center no-repeat;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: lightgrey;
+            background-size: cover;
+            opacity: 0.5;
+
+            z-index: -1;
+
         }
 
 
@@ -246,7 +262,7 @@ include 'auth.php';
         .logout {
             margin-top: 325%;
             margin-left: 0%;
-            /* Push the button to the bottom */
+
         }
 
         .logout a {
@@ -340,7 +356,7 @@ include 'auth.php';
 
 </script>
 <script>
-    // Auto-detect current date and set it as the value for the input field
+    // Auto-detect current date 
     document.getElementById("dateCreated").valueAsDate = new Date();
 </script>
 <script script src="../JS/addbus.js"></script>

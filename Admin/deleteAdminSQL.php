@@ -3,9 +3,9 @@
 if (isset($_GET['ID']) && !empty($_GET['ID'])) {
     // Database connection parameters
     $servername = "localhost";
-    $username = "root"; // Replace with your MySQL username
-    $password = ""; // Replace with your MySQL password
-    $database = "unitenadmin"; // Replace with your MySQL database name
+    $username = "root";
+    $password = "";
+    $database = "unitenadmin";
 
     // Create connection
     $conn = new mysqli($servername, $username, $password, $database);
@@ -15,12 +15,12 @@ if (isset($_GET['ID']) && !empty($_GET['ID'])) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Prepare and bind the DELETE statement
+    //the DELETE statement
     $sql = "DELETE FROM admindatabase WHERE ID = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $ID); // "i" indicates the type of parameter (integer)
+    $stmt->bind_param("i", $ID);
 
-    // Set parameters and execute the statement
+
     $ID = $_GET['ID'];
     $stmt->execute();
 
@@ -32,7 +32,7 @@ if (isset($_GET['ID']) && !empty($_GET['ID'])) {
         echo "Error deleting Admin information.";
     }
 
-    // Close statement and database connection
+
     $stmt->close();
     $conn->close();
 } else {

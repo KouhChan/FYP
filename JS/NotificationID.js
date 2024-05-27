@@ -21,5 +21,5 @@ notificationRef.once('value', function (snapshot) {
     const NotificationIdInput = document.getElementById("NotificationID");
     NotificationIdInput.value = nextId;
     NotificationIdInput.readOnly = true; // Make the input field readonly
-    NotificationIdInput.style.pointerEvents = "none"; // Disable pointer events
+    NotificationIdInput.style.pointerEvents = "none";
 });

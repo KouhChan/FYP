@@ -16,7 +16,7 @@ const database = firebase.database();
 // Reference to the 'Bus' node in database
 const busRef = database.ref('Bus');
 
-// Function to fetch bus data from Firebase and populate the table
+// Function to fetch bus data from Firebase
 function fetchBusData() {
     busRef.on('value', function (snapshot) {
 
@@ -30,7 +30,7 @@ function fetchBusData() {
             const personIncharge = childData.PersonIncharge;
             const dateCreated = childData.Date;
 
-            // Append fetched data to the table
+
             const tableRow = `<tr>
                                 <td>${busID}</td>
                                 <td>${platNo}</td>

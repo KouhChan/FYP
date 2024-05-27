@@ -147,12 +147,28 @@ include 'auth.php';
         }
 
         body {
-            background: url('../Admin/Img/Admin_Login_Background.png') no-repeat;
-            background-size: cover;
+            font-family: montserrat;
+            background-color: transparent;
             height: 100vh;
-            background-position: center;
             overflow-x: hidden;
             transition: all .5s ease;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            background: url('../Admin/Img/bus.jpg')center no-repeat;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: lightgrey;
+            background-size: cover;
+            opacity: 0.5;
+
+            z-index: -1;
+
         }
 
 
@@ -245,7 +261,7 @@ include 'auth.php';
         .logout {
             margin-top: 325%;
             margin-left: 0%;
-            /* Push the button to the bottom */
+
         }
 
         .logout a {
@@ -333,9 +349,9 @@ include 'auth.php';
             <?php
             // Database connection parameters
             $servername = "localhost";
-            $username = "root"; // Replace with your MySQL username
-            $password = ""; // Replace with your MySQL password
-            $database = "unitenadmin"; // Replace with your MySQL database name
+            $username = "root";
+            $password = "";
+            $database = "unitenadmin";
 
             // Create connection
             $conn = new mysqli($servername, $username, $password, $database);
@@ -345,12 +361,12 @@ include 'auth.php';
                 die("Connection failed: " . $conn->connect_error);
             }
 
-            // SQL query to fetch all buses
+
             $sql = "SELECT ID, Admin_ID, Name, Email, Password FROM admindatabase";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-                // Output data of each row
+
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>" . $row["ID"] . "</td>";
@@ -361,7 +377,7 @@ include 'auth.php';
                     echo "<td style='text-align: center;'><a href='modifyAdminPage.php?ID=" . $row["ID"] . "' class='modify-button'>Update</a>
                 
                     <a href='deleteAdminSQL.php?ID={$row['ID']}' onclick='return confirmDelete();' class='remove-button space'>Remove</a>
-                    </td>"; // Modify link as a button
+                    </td>";
 
                     echo "</tr>";
                 }
@@ -369,7 +385,7 @@ include 'auth.php';
                 echo "<tr><td colspan='5'>0 results</td></tr>";
             }
 
-            // Close connection
+
             $conn->close();
             ?>
         </tbody>

@@ -22,5 +22,5 @@ busRef.once('value', function (snapshot) {
     const busIdInput = document.getElementById("BusID");
     busIdInput.value = nextId;
     busIdInput.readOnly = true; // Make the input field readonly
-    busIdInput.style.pointerEvents = "none"; // Disable pointer events
+    busIdInput.style.pointerEvents = "none";
 });

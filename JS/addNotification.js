@@ -72,7 +72,7 @@ function getNextAvailableID() {
 function saveMessage(NotificationID, Description, admin) {
     // Get the current time
     var currentTime = new Date();
-    var formattedTime = currentTime.toLocaleString(); // Example format: "5/26/2024, 10:30:15 AM"
+    var formattedTime = currentTime.toLocaleString();
 
 
     var newNotification = contactFormDB.child(NotificationID);

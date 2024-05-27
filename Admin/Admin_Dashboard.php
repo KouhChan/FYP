@@ -156,17 +156,17 @@ include 'auth.php';
 
     .map-container {
       position: fixed;
-      top: 80px;
-      margin-left: 50%;
+      top: 100px;
+      margin-left: 40%;
       width: calc(100% - 250px);
       height: calc(100% - 80px);
       padding: 20px;
     }
 
     .map {
-      position: stat;
-      width: 50%;
-      height: 100%;
+      position: static;
+      width: 40%;
+      height: 70%;
     }
 
     .back {
@@ -189,8 +189,8 @@ include 'auth.php';
 
     .img {
       position: static;
-      margin-top: 5%;
-      margin-left: 10%;
+      margin-top: 1%;
+      margin-left: 3%;
     }
 
     .link {
@@ -199,18 +199,35 @@ include 'auth.php';
 
 
     body {
-      background: url('Img/Admin_Login_Background.png') no-repeat;
-      background-size: cover;
+      font-family: montserrat;
+      background-color: transparent;
       height: 100vh;
-      background-position: center;
       overflow-x: hidden;
       transition: all .5s ease;
+      position: relative;
+
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      background: url('../Admin/Img/bus.jpg')center no-repeat;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: lightgrey;
+      background-size: cover;
+      opacity: 0.5;
+
+      z-index: -1;
+
     }
 
     .logout {
       margin-top: 325%;
       margin-left: 0%;
-      /* Push the button to the bottom */
+
     }
 
     .logout a {
@@ -229,6 +246,31 @@ include 'auth.php';
     .logout a:hover {
       background: rgba(255, 255, 255, 0.1);
       transition: .5s;
+    }
+
+    .transparent {
+      position: fixed;
+      top: 11%;
+      width: 80%;
+      left: 12%;
+      padding-bottom: 3%;
+      flex-direction: column;
+      background-color: rgba(254, 248, 224, 0.9);
+      border-radius: 10px;
+    }
+
+    .bus-schedule {
+      font-family: Arial, sans-serif;
+      padding-left: 3%;
+      margin-top: 0.5%;
+      text-decoration: underline;
+    }
+
+    .map-title {
+      font-family: Arial, sans-serif;
+      padding-left: 0%;
+      margin-bottom: 1.5%;
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -280,152 +322,156 @@ include 'auth.php';
 
     </div>
 
-    <div>
-      <img src="Img/Time Schedule.png" width="430" alt="" class="img">
-    </div>
-
-    <div class="container text-center">
-      <section class="table_body">
-        <h3 class="back">Student Feedback</h3>
-        <table class="table table-primary">
-          <thead>
-            <tr class="table-info">
-              <th>ID</th>
-              <th>Date</th>
-              <th>Location</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-      </section>
-      <tbody class="table-light" id="busTableBody">
-        <!-- Data will be dynamically populated here -->
-      </tbody>
-      </table>
-      <a href="AdminReport.php" class="link">More>></a>
-    </div>
-
-
-    <div class="map-container">
-      <div class="map" id="map"></div>
-    </div>
-
-    <script>
-      var map;
-      var mark;
-      var lineCoords = [];
-
-      window.lat = 2.97690;
-      window.lng = 101.72812857567598;
+    <div class="transparent">
+      <div>
+        <div class="bus-schedule">
+          <h2>Bus Schedule</h2>
+        </div>
+        <img src="Img/Time Schedule.png" width="430" alt="" class="img">
+      </div>
+      <div class="container text-center">
+        <section class="table_body">
+          <h3 class="back">Student Feedback</h3>
+          <table class="table table-primary">
+            <thead>
+              <tr class="table-info">
+                <th>ID</th>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+        </section>
+        <tbody class="table-light" id="busTableBody">
+        </tbody>
+        </table>
+        <a href="AdminReport.php" class="link">More>></a>
+      </div>
 
 
-      const firebaseConfig = {
-        apiKey: "AIzaSyAg8iVwGi-X6dJCe15dvavK0ndAoVPutsA",
-        authDomain: "university-bus-system.firebaseapp.com",
-        databaseURL: "https://university-bus-system-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "university-bus-system",
-        storageBucket: "university-bus-system.appspot.com",
-        messagingSenderId: "446380655695",
-        appId: "1:446380655695:web:ee019fad4684435252163a"
-      }
+      <div class="map-container">
+        <div class="map-title">
+          <h2>Real-Time Location</h2>
+        </div>
+        <div class="map" id="map"></div>
+      </div>
 
-      firebase.initializeApp(firebaseConfig);
+      <script>
+        var map;
+        var mark;
+        var lineCoords = [];
 
-      var ref = firebase.database().ref('gps');
-
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {
-            lat: lat,
-            lng: lng
-          },
-          zoom: 18
-        });
-
-        var busIcon = {
-          url: 'https://cdn-icons-png.flaticon.com/512/5030/5030991.png',
-          scaledSize: new google.maps.Size(50, 50),
-          origin: new google.maps.Point(0, 0),
-          anchor: new google.maps.Point(25, 25)
-        };
-
-        mark = new google.maps.Marker({
-          position: {
-            lat: lat,
-            lng: lng
-          },
-          map: map,
-          title: 'UNITEN',
-          icon: busIcon
-        });
-      }
-
-      ref.on("value", function(snapshot) {
-        var gps = snapshot.val();
-        console.log(gps.latitude);
-        console.log(gps.longitude);
-
-        if (map && mark) {
-          map.setCenter({
-            lat: gps.latitude,
-            lng: gps.longitude
-          });
-
-          mark.setPosition({
-            lat: gps.latitude,
-            lng: gps.longitude
-          });
+        window.lat = 2.97690;
+        window.lng = 101.72812857567598;
 
 
-          lineCoords.push(new google.maps.LatLng(gps.latitude, gps.longitude));
-
-          var lineCoordinatesPath = new google.maps.Polyline({
-            path: lineCoords,
-            geodesic: true,
-            strokeColor: '#2E10FF'
-          });
-
-          lineCoordinatesPath.setMap(map);
+        const firebaseConfig = {
+          apiKey: "AIzaSyAg8iVwGi-X6dJCe15dvavK0ndAoVPutsA",
+          authDomain: "university-bus-system.firebaseapp.com",
+          databaseURL: "https://university-bus-system-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "university-bus-system",
+          storageBucket: "university-bus-system.appspot.com",
+          messagingSenderId: "446380655695",
+          appId: "1:446380655695:web:ee019fad4684435252163a"
         }
 
-        // Reference to your Firebase Realtime Database
-        const database = firebase.database();
+        firebase.initializeApp(firebaseConfig);
 
-        // Reference to the 'Bus' node in database
-        const reportRef = database.ref('Report');
+        var ref = firebase.database().ref('gps');
 
-        // Function to fetch bus data from Firebase and populate the table
-        function fetchReportData() {
-          reportRef.limitToLast(5).on('value', function(snapshot) {
+        function initMap() {
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: {
+              lat: lat,
+              lng: lng
+            },
+            zoom: 18
+          });
 
-            //refresh the table
-            document.getElementById('busTableBody').innerHTML = '';
+          var busIcon = {
+            url: 'https://cdn-icons-png.flaticon.com/512/5030/5030991.png',
+            scaledSize: new google.maps.Size(50, 50),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(25, 25)
+          };
 
-            snapshot.forEach(function(childSnapshot) {
-              const childData = childSnapshot.val();
-              const Date = childData.Date;
-              const ID = childData.ID;
-              const Location = childData.Location;
-              const Nama = childData.nama;
-              const Report = childData.Report;
+          mark = new google.maps.Marker({
+            position: {
+              lat: lat,
+              lng: lng
+            },
+            map: map,
+            title: 'UNITEN',
+            icon: busIcon
+          });
+        }
 
-              // Append fetched data to the table
-              const tableRow = `<tr>
+        ref.on("value", function(snapshot) {
+          var gps = snapshot.val();
+          console.log(gps.latitude);
+          console.log(gps.longitude);
+
+          if (map && mark) {
+            map.setCenter({
+              lat: gps.latitude,
+              lng: gps.longitude
+            });
+
+            mark.setPosition({
+              lat: gps.latitude,
+              lng: gps.longitude
+            });
+
+
+            lineCoords.push(new google.maps.LatLng(gps.latitude, gps.longitude));
+
+            var lineCoordinatesPath = new google.maps.Polyline({
+              path: lineCoords,
+              geodesic: true,
+              strokeColor: '#2E10FF'
+            });
+
+            lineCoordinatesPath.setMap(map);
+          }
+
+          // Reference to your Firebase Realtime Database
+          const database = firebase.database();
+
+          // Reference to the 'Bus' node in database
+          const reportRef = database.ref('Report');
+
+          // Function to fetch bus data from Firebase and populate the table
+          function fetchReportData() {
+            reportRef.limitToLast(5).on('value', function(snapshot) {
+
+              //refresh the table
+              document.getElementById('busTableBody').innerHTML = '';
+
+              snapshot.forEach(function(childSnapshot) {
+                const childData = childSnapshot.val();
+                const Date = childData.Date;
+                const ID = childData.ID;
+                const Location = childData.Location;
+                const Nama = childData.nama;
+                const Report = childData.Report;
+
+                // Append fetched data to the table
+                const tableRow = `<tr>
                                 <td>${ID}</td>
                                 <td>${Date}</td>
                                 <td>${Location}</td>
                                 <td>${Report}</td>
                             </tr>`;
-              document.getElementById('busTableBody').innerHTML += tableRow;
+                document.getElementById('busTableBody').innerHTML += tableRow;
+              });
             });
-          });
-        }
-        // Call the function to fetch and populate bus data
-        fetchReportData();
-      });
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm_aJ9lxcthdOugBg_c8q-P-vvT12ULMA&callback=initMap"></script>
-    <script src="../JS/viewReportDashboard.js"></script>
-
+          }
+          fetchReportData();
+        });
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm_aJ9lxcthdOugBg_c8q-P-vvT12ULMA&callback=initMap"></script>
+      <script src="../JS/viewReportDashboard.js"></script>
+    </div>
   </nav>
 
 </body>

@@ -28,22 +28,23 @@
             overflow-x: hidden;
             transition: all .5s ease;
             position: relative;
-            /* Ensure that the pseudo-element is positioned relative to the body */
+
         }
 
         body::before {
             content: "";
             position: absolute;
+            background: url('../Admin/Img/bus.jpg')center no-repeat;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('../Admin/Img/Admin_Login_Background.png') no-repeat center center;
+            background-color: lightgrey;
             background-size: cover;
             opacity: 0.5;
-            /* Set the opacity of the background image */
+
             z-index: -1;
-            /* Ensure the pseudo-element is behind the content */
+
         }
 
 
@@ -167,41 +168,37 @@
         }
 
         .content {
-            margin-left: 270px;
+            margin-left: 180px;
             padding: 20px;
         }
 
         .map-container {
             position: fixed;
-            top: 200px;
-            margin-left: 50%;
+            top: 100px;
+            margin-left: 48%;
             width: calc(100% - 250px);
             height: calc(100% - 80px);
             padding: 20px;
         }
 
         .map {
-            width: 50%;
-            height: 80%;
+            width: 30%;
+            height: 55%;
         }
 
         .img {
             position: static;
-            margin-top: 10%;
-            margin-left: 5%;
+            margin-top: 0%;
+            margin-left: 10%;
             transition: all .5s ease;
         }
 
 
 
-        .background .container {
-            max-width: 1000px;
-            width: 100%;
-        }
-
         .container .steps {
             display: flex;
-            width: 100%;
+            top: 30%;
+            width: 110%;
             align-items: center;
             justify-content: space-between;
             position: relative;
@@ -211,13 +208,103 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 19px;
-            font-weight: 500;
-            height: 90px;
-            width: 90px;
-            background: white;
+            height: 150px;
+            width: 150px;
+            background: url('../Admin/Img/library.jpg') center no-repeat;
+            background-size: cover;
             border-radius: 50%;
             border: 4px solid #e0e0e0;
+            z-index: 1;
+        }
+
+        .steps .circle2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            font-weight: 500;
+            height: 150px;
+            width: 150px;
+            background: url('../Admin/Img/admin.jpg') center no-repeat;
+            background-size: cover;
+            border-radius: 50%;
+            border: 4px solid #e0e0e0;
+            z-index: 1;
+        }
+
+        .steps .circle3 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            font-weight: 500;
+            height: 150px;
+            width: 150px;
+            background: url('../Admin/Img/murni.jpg') center no-repeat;
+            background-size: cover;
+            border-radius: 50%;
+            border: 4px solid #e0e0e0;
+            z-index: 1;
+        }
+
+        .steps .circle4 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            font-weight: 500;
+            height: 150px;
+            width: 150px;
+            background: url('../Admin/Img/amanah.jpg') center no-repeat;
+            background-size: cover;
+            border-radius: 50%;
+            border: 4px solid #e0e0e0;
+            z-index: 1;
+        }
+
+        .steps .circle5 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            font-weight: 500;
+            height: 150px;
+            width: 150px;
+            background: url('../Admin/Img/DSS.png') center no-repeat;
+            background-size: cover;
+            border-radius: 50%;
+            border: 4px solid #e0e0e0;
+            z-index: 1;
+        }
+
+        .steps .circle6 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            font-weight: 500;
+            height: 150px;
+            width: 150px;
+            background: url('../Admin/Img/ilmu.jpg') center no-repeat;
+            background-size: cover;
+            border-radius: 50%;
+            border: 4px solid #e0e0e0;
+            z-index: 1;
+        }
+
+        .steps .circle7 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            font-weight: 500;
+            height: 150px;
+            width: 150px;
+            background: url('../Admin/Img/Coe.jpg') center no-repeat;
+            background-size: cover;
+            border-radius: 50%;
+            border: 4px solid #e0e0e0;
+            z-index: 1;
         }
 
         .steps .progress {
@@ -225,7 +312,7 @@
             height: 4px;
             width: 100%;
             background: #e0e0e0;
-            z-index: -1;
+            z-index: 1;
         }
 
         .progress .indicator {
@@ -235,12 +322,96 @@
             background: #4070f4;
         }
 
-        .progress .indicator2 {
-            position: absolute;
-            bottom: 10px;
-            height: 100%;
-            width: 100%;
-            background: red;
+        .bus-schedule {
+            font-family: Arial, sans-serif;
+            padding-left: 10%;
+            margin-top: 0.5%;
+            text-decoration: underline;
+        }
+
+        .map-title {
+            font-family: Arial, sans-serif;
+            padding-left: 0%;
+            margin-top: 0%;
+            text-decoration: underline;
+        }
+
+        .progress-title {
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .title-background {
+            display: inline-block;
+            border-radius: 5px;
+            position: relative;
+            left: 19.4%;
+            bottom: 15px;
+        }
+
+        .title-background2 {
+            display: inline-block;
+            border-radius: 5px;
+            position: relative;
+            left: 25.2%;
+            top: 200px;
+        }
+
+        .title-background3 {
+            display: inline-block;
+            border-radius: 5px;
+            position: relative;
+            left: 31.4%;
+            bottom: 15px;
+        }
+
+        .title-background4 {
+            display: inline-block;
+            border-radius: 5px;
+            position: relative;
+            left: 36.7%;
+            top: 200px;
+        }
+
+        .title-background5 {
+            display: inline-block;
+            border-radius: 5px;
+            position: relative;
+            left: 43.3%;
+            bottom: 15px;
+        }
+
+        .title-background6 {
+            display: inline-block;
+            border-radius: 5px;
+            position: relative;
+            left: 51%;
+            top: 200px;
+        }
+
+        .title-background7 {
+            display: inline-block;
+            border-radius: 5px;
+            position: relative;
+            left: 58.7%;
+            bottom: 15px;
+        }
+
+        .background {
+            background-color: #FEF8E0;
+            margin-top: 30.5%;
+            padding-bottom: 2.4%;
+            padding-top: 2%;
+        }
+
+        .transparent {
+            position: fixed;
+            top: 11%;
+            width: 80%;
+            left: 12%;
+            padding-bottom: 3%;
+            flex-direction: column;
+            background-color: rgba(254, 248, 224, 0.9);
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -277,112 +448,147 @@
 
         </div>
     </nav>
-    <div>
-        <img src="../Admin/Img/Time Schedule.png" width="600" alt="" class="img">
+
+    <div class="transparent">
+
+        <div>
+            <div class="bus-schedule">
+                <h2>Bus Schedule</h2>
+            </div>
+            <img src="../Admin/Img/Time Schedule.png" width="600" alt="" class="img">
+        </div>
+
+
+        <div class="map-container">
+            <div class="map-title">
+                <h2>Real-Time Location</h2>
+            </div>
+            <div class="map" id="map"></div>
+        </div>
+
+        <script>
+            var map;
+            var mark;
+            var lineCoords = [];
+
+            window.lat = 2.97690;
+            window.lng = 101.72812857567598;
+
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: {
+                        lat: lat,
+                        lng: lng
+                    },
+                    zoom: 18
+                });
+
+                var busIcon = {
+                    url: 'https://cdn-icons-png.flaticon.com/512/5030/5030991.png',
+                    scaledSize: new google.maps.Size(50, 50),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(25, 25)
+                };
+
+                mark = new google.maps.Marker({
+                    position: {
+                        lat: lat,
+                        lng: lng
+                    },
+                    map: map,
+                    title: 'UNITEN',
+                    icon: busIcon
+                });
+            }
+
+            const firebaseConfig = {
+                aapiKey: "AIzaSyAg8iVwGi-X6dJCe15dvavK0ndAoVPutsA",
+                authDomain: "university-bus-system.firebaseapp.com",
+                databaseURL: "https://university-bus-system-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "university-bus-system",
+                storageBucket: "university-bus-system.appspot.com",
+                messagingSenderId: "446380655695",
+                appId: "1:446380655695:web:ee019fad4684435252163a"
+            }
+
+            firebase.initializeApp(firebaseConfig);
+
+            var ref = firebase.database().ref('gps');
+
+            ref.on("value", function(snapshot) {
+                var gps = snapshot.val();
+                console.log(gps.latitude);
+                console.log(gps.longitude);
+
+                if (map && mark) {
+                    map.setCenter({
+                        lat: gps.latitude,
+                        lng: gps.longitude
+                    });
+
+                    mark.setPosition({
+                        lat: gps.latitude,
+                        lng: gps.longitude
+                    });
+
+
+                    lineCoords.push(new google.maps.LatLng(gps.latitude, gps.longitude));
+
+                    var lineCoordinatesPath = new google.maps.Polyline({
+                        path: lineCoords,
+                        geodesic: true,
+                        strokeColor: '#2E10FF'
+                    });
+
+                    lineCoordinatesPath.setMap(map);
+                }
+            });
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm_aJ9lxcthdOugBg_c8q-P-vvT12ULMA&callback=initMap"></script>
     </div>
+
+
     <div class="background">
+        <div class="title-background">
+            <div class="progress-title">
+                <h4>LIBRARY</h4>
+            </div>
+        </div>
+        <div class="title-background2">
+            <h4>ADMIN</h4>
+        </div>
+        <div class="title-background3">
+            <h4>MURNI</h4>
+        </div>
+        <div class="title-background4">
+            <h4>AMANAH</h4>
+        </div>
+        <div class="title-background5">
+            <h4>DSS</h4>
+        </div>
+        <div class="title-background6">
+            <h4>ILMU</h4>
+        </div>
+        <div class="title-background7">
+            <h4>COE</h4>
+        </div>
         <div class="container">
             <div class="steps">
-                <span class="circle">LIBRARY</span>
-                <span class="circle">ADMIN</span>
-                <span class="circle">MURNI</span>
-                <span class="circle">AMANAH</span>
-                <span class="circle">DSS</span>
-                <span class="circle">ILMU</span>
-                <span class="circle">COE</span>
                 <div class="progress">
                     <span class="indicator">
                     </span>
-                    <span class="indicator2"></span>
                 </div>
+                <span class="circle"></span>
+                <span class="circle2"></span>
+                <span class="circle3"></span>
+                <span class="circle4"></span>
+                <span class="circle5"></span>
+                <span class="circle6"></span>
+                <span class="circle7"></span>
             </div>
         </div>
     </div>
-
-
-    <div class="map-container">
-        <div class="map" id="map"></div>
     </div>
-
-    <script>
-        var map;
-        var mark;
-        var lineCoords = [];
-
-        window.lat = 2.97690;
-        window.lng = 101.72812857567598;
-
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: {
-                    lat: lat,
-                    lng: lng
-                },
-                zoom: 18
-            });
-
-            var busIcon = {
-                url: 'https://cdn-icons-png.flaticon.com/512/5030/5030991.png',
-                scaledSize: new google.maps.Size(50, 50),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(25, 25)
-            };
-
-            mark = new google.maps.Marker({
-                position: {
-                    lat: lat,
-                    lng: lng
-                },
-                map: map,
-                title: 'UNITEN',
-                icon: busIcon
-            });
-        }
-
-        const firebaseConfig = {
-            aapiKey: "AIzaSyAg8iVwGi-X6dJCe15dvavK0ndAoVPutsA",
-            authDomain: "university-bus-system.firebaseapp.com",
-            databaseURL: "https://university-bus-system-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "university-bus-system",
-            storageBucket: "university-bus-system.appspot.com",
-            messagingSenderId: "446380655695",
-            appId: "1:446380655695:web:ee019fad4684435252163a"
-        }
-
-        firebase.initializeApp(firebaseConfig);
-
-        var ref = firebase.database().ref('gps');
-
-        ref.on("value", function(snapshot) {
-            var gps = snapshot.val();
-            console.log(gps.latitude);
-            console.log(gps.longitude);
-
-            if (map && mark) {
-                map.setCenter({
-                    lat: gps.latitude,
-                    lng: gps.longitude
-                });
-
-                mark.setPosition({
-                    lat: gps.latitude,
-                    lng: gps.longitude
-                });
-
-
-                lineCoords.push(new google.maps.LatLng(gps.latitude, gps.longitude));
-
-                var lineCoordinatesPath = new google.maps.Polyline({
-                    path: lineCoords,
-                    geodesic: true,
-                    strokeColor: '#2E10FF'
-                });
-
-                lineCoordinatesPath.setMap(map);
-            }
-        });
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm_aJ9lxcthdOugBg_c8q-P-vvT12ULMA&callback=initMap"></script>
 </body>
 
 </html>

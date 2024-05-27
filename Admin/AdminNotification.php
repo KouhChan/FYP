@@ -153,12 +153,27 @@ $user_name = $email_parts[0];
         }
 
         body {
-            background: url('../Admin/Img/Admin_Login_Background.png') no-repeat;
-            background-size: cover;
+            font-family: montserrat;
+            background-color: transparent;
             height: 100vh;
-            background-position: center;
             overflow-x: hidden;
             transition: all .5s ease;
+            position: relative;
+
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            background: url('../Admin/Img/bus.jpg')center no-repeat;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: lightgrey;
+            background-size: cover;
+            opacity: 0.5;
+            z-index: -1;
         }
 
 
@@ -251,7 +266,6 @@ $user_name = $email_parts[0];
         .logout {
             margin-top: 325%;
             margin-left: 0%;
-            /* Push the button to the bottom */
         }
 
         .logout a {
@@ -346,7 +360,7 @@ $user_name = $email_parts[0];
 
         <script>
             var currentTime = new Date();
-            var formattedTime = currentTime.toLocaleString(); // Example format: "5/26/2024, 10:30:15 AM"
+            var formattedTime = currentTime.toLocaleString();
             document.getElementById('time').value = formattedTime;
         </script>
 

@@ -36,7 +36,7 @@
             width: 100%;
             min-height: 100%;
             height: auto;
-            background: url('../Admin/Img/Admin_Login_Background.png') no-repeat center center;
+            background: url('../Admin/Img/bus.jpg') no-repeat center center;
             background-size: cover;
             opacity: 0.5;
             z-index: -1;
@@ -160,7 +160,7 @@
         }
 
         .container {
-            margin-top: 0%;
+            margin-top: 0.4%;
             margin-left: 0%;
             display: inline-flex;
             background: antiquewhite;

@@ -12,14 +12,14 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-// Reference to database
+
 var contactFormDB = firebase.database().ref("Bus");
 
 // Get form from HTML
 document.getElementById("Bus").addEventListener("submit", function (e) {
     e.preventDefault();
 
-    // Display a confirmation dialog with options to Add or Cancel
+    // Display a confirmation to Add or Cancel
     var confirmed = window.confirm("Do you want to add this bus?");
     if (confirmed) {
         // If user confirms, proceed with form submission
@@ -28,18 +28,18 @@ document.getElementById("Bus").addEventListener("submit", function (e) {
         var PersonIncharge = getElementVal('personIncharge');
         var Date = getElementVal('dateCreated');
 
-        // Check if the initial Bus ID is already registered
+        // Check if Bus ID is already registered
         contactFormDB.child(BusID).once('value', function (snapshot) {
             if (snapshot.exists()) {
-                // If Bus ID already exists, find the next available ID
+                // If Bus ID already exists, 
                 getNextAvailableID();
             } else {
-                // If Bus ID is not registered, save the message with the initial ID
+
                 saveMessage(BusID, PersonIncharge, Date, PlatNo);
             }
         });
     } else {
-        // If user cancels, show a message or perform any other desired action
+
         alert("Bus addition cancelled.");
     }
 });
@@ -50,19 +50,19 @@ function getNextAvailableID() {
         // Initialize the next ID as B001
         var nextID = "B001";
 
-        // Loop through each child node in the database
+
         snapshot.forEach(function (childSnapshot) {
             var key = childSnapshot.key;
-            // Extract the numeric part of the Bus ID and convert it to a number
+
             var numericID = parseInt(key.substring(1));
 
-            // If the numeric part of the ID is greater than or equal to the current next ID, increment it
+
             if (numericID >= parseInt(nextID.substring(1))) {
-                nextID = "B" + ("000" + (numericID + 1)).slice(-3); // Format the ID as BXXX
+                nextID = "B" + ("000" + (numericID + 1)).slice(-3);
             }
         });
 
-        // After finding the next available ID, save the message with that ID
+
         var PlatNo = getElementVal('busPlat');
         var PersonIncharge = getElementVal('personIncharge');
         var Date = getElementVal('dateCreated');

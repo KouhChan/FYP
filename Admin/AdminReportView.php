@@ -151,12 +151,29 @@ include 'auth.php';
         }
 
         body {
-            background: url('../Admin/Img/Admin_Login_Background.png') no-repeat;
-            background-size: cover;
+            font-family: montserrat;
+            background-color: transparent;
             height: 100vh;
-            background-position: center;
             overflow-x: hidden;
             transition: all .5s ease;
+            position: relative;
+
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            background: url('../Admin/Img/bus.jpg')center no-repeat;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: lightgrey;
+            background-size: cover;
+            opacity: 0.5;
+            /* Set the opacity of the background image */
+            z-index: -1;
+            /* Ensure the pseudo-element is behind the content */
         }
 
         .feedback-form {
@@ -344,12 +361,12 @@ include 'auth.php';
             };
             firebase.initializeApp(firebaseConfig);
 
-            // Reference to your Firebase Realtime Database
+
             const database = firebase.database();
 
-            // Function to fetch bus data from Firebase and populate the form fields
+            // Function to get bus data from Firebase 
             function fetchBusData() {
-                // Retrieve Bus ID from the URL parameter
+                // Retrieve Bus ID from the URL 
                 const queryString = window.location.search;
                 const urlParams = new URLSearchParams(queryString);
                 const ReportID = urlParams.get('report_id');
@@ -361,7 +378,7 @@ include 'auth.php';
                 reportRef.once('value', function(snapshot) {
                     const reportData = snapshot.val();
                     if (reportData) {
-                        // Populate the form fields with bus information
+
                         document.getElementById('SId').value = ReportID;
                         document.getElementById('name').value = reportData.nama || '';
                         document.getElementById('location').value = reportData.Location || '';
@@ -373,7 +390,7 @@ include 'auth.php';
                 });
             }
 
-            // Call the function to fetch and populate bus data
+
             fetchBusData();
         </script>
 

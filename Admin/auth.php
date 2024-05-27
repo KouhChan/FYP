@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['email'])) {
-    // User is not logged in, redirect to login page
+    // redirect to login page
     header("Location: AdminLogin.php");
     exit();
 }
