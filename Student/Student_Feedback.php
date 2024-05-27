@@ -191,14 +191,13 @@
     }
 
     .feedback-form form .row {
-      margin-bottom: -18%;
+      margin-bottom: -20%;
     }
 
     .feedback-form p {
       margin-top: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       color: gray;
-      overflow-y: auto;
     }
 
     .main--content {

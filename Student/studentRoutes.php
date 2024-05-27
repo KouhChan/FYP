@@ -398,14 +398,14 @@
 
         .background {
             background-color: #FEF8E0;
-            margin-top: 29.5%;
+            margin-top: 30.5%;
             padding-bottom: 2.4%;
             padding-top: 2%;
         }
 
         .transparent {
             position: fixed;
-            top: 8%;
+            top: 11%;
             width: 80%;
             left: 12%;
             padding-bottom: 3%;
