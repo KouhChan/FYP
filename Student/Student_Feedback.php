@@ -191,12 +191,12 @@
     }
 
     .feedback-form form .row {
-      margin-bottom: -20%;
+      margin-bottom: -18%;
     }
 
     .feedback-form p {
       margin-top: 10px;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       color: gray;
     }
 
