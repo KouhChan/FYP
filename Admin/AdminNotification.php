@@ -346,7 +346,7 @@ $user_name = $email_parts[0];
 
 
             <label for="admin">User:</label><br>
-            <input type="text" class="form-control" id="admin" placeholder="Farhan" name="admin" value="<?php echo htmlspecialchars($user_name); ?>"><br>
+            <input type="text" class="form-control" id="admin" placeholder="Farhan" name="admin" value="<?php echo htmlspecialchars($user_name); ?>" readonly><br>
 
             <label for="time">Time Created:</label><br>
             <input type="text" class="form-control" id="time" name="time" readonly><br>

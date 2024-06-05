@@ -85,13 +85,13 @@ function saveMessage(NotificationID, Description, admin) {
     })
         .then(() => {
             // Redirect to view_bus.php
-            window.location.href = "../Bus/View_Bus.php";
+            window.location.href = "../Admin/AdminNotification.php";
 
             // Show success notification
-            alert("Notification successfully registered!");
+            alert("Notification successfully Added!");
         })
         .catch(error => {
-            console.error("Error registering bus:", error);
+            console.error("Error registering Notification:", error);
             // Show error notification
             alert("Error submit Notification. Please try again.");
         });

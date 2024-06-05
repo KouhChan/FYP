@@ -308,15 +308,15 @@ include 'auth.php';
                     <div class="col-md-6">
                         <div class="form-group">
                             <p>Name</p>
-                            <input type="text" class="form-control" placeholder="Name" id="name"><br>
+                            <input type="text" class="form-control" placeholder="Name" id="name" readonly><br>
                         </div>
                         <div class="form-group">
                             <p>Student ID / Staff ID</p>
-                            <input type="text" class="form-control" placeholder="Student ID/Staff ID" id="SId"><br>
+                            <input type="text" class="form-control" placeholder="Student ID/Staff ID" id="SId" readonly><br>
                         </div>
                         <div class="form-group">
                             <p>Location</p>
-                            <select name="Location" class="form-select form-select-sm" id="location">
+                            <select name="Location" class="form-select form-select-sm" id="location" disabled>
                                 <option value="LIBRARY">LIBRARY</option>
                                 <option value="ADMIN">ADMIN</option>
                                 <option value="MURNI">MURNI</option>
@@ -327,12 +327,12 @@ include 'auth.php';
                             </select><br>
                         </div>
                         <p>Description</p>
-                        <textarea name="description" class="form-control" cols="30" rows="10" style="width: 600px; height: 150px; margin-bottom: 8px;" placeholder="Description" id="desc"></textarea>
+                        <textarea name="description" class="form-control" cols="30" rows="10" style="width: 600px; height: 150px; margin-bottom: 8px;" placeholder="Description" id="desc" readonly></textarea>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <p>Date</p>
-                            <input type="date" name="date" class="form-control" id="Date">
+                            <input type="date" name="date" class="form-control" id="Date" readonly>
                         </div>
                     </div>
                     <div style="margin-left: 1000px;">

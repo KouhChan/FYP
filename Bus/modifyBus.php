@@ -64,7 +64,6 @@ include 'auth.php';
 
         a.active,
         a:hover {
-            background: #1b9bff;
             transition: .5s;
         }
 
@@ -344,20 +343,20 @@ include 'auth.php';
         <h3>Update Bus Information</h3>
         <form id="modifyBus" action="modifyBusInfo.php" method="POST">
             <label for="busID">Bus ID:</label><br>
-            <input type="text" class="form-control" id="BusID"><br>
+            <input type="text" class="form-control" id="BusID" readonly><br>
             <label for="busPlat">Plat Number:</label><br>
-            <input type="text" class="form-control" id="busPlat" value="<?php echo $row['Plat_No']; ?>" name="busPlat"><br>
+            <input type="text" class="form-control" id="busPlat" value="<?php echo $row['Plat_No']; ?>" name="busPlat" required><br>
 
 
             <label for="personIncharge">Person Incharge:</label><br>
-            <input type="text" class="form-control" id="personIncharge" value="<?php echo $row['Person_Incharge']; ?>" name="personIncharge"><br>
+            <input type="text" class="form-control" id="personIncharge" value="<?php echo $row['Person_Incharge']; ?>" name="personIncharge" required><br>
 
             <label for="dateCreated">Date Created:</label><br>
 
-            <input type="date" class="form-control" id="dateCreated" value="<?php echo $row['Date_Created']; ?> " name=" dateCreated"><br>
+            <input type="date" class="form-control" id="dateCreated" value="<?php echo $row['Date_Created']; ?> " name=" dateCreated" required><br>
 
             <div class="d-flex justify-content-between">
-                <button class="btn btn-primary" type="submit">Modify</button>
+                <button class="btn btn-primary" type="submit">Update</button>
                 <a href="View_Bus.php" class="btn btn-danger">Cancel</a>
             </div>
         </form>
@@ -413,26 +412,25 @@ include 'auth.php';
         document.getElementById('modifyBus').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            // Retrieve form data
-            const busID = document.getElementById('BusID').value;
-            const busPlat = document.getElementById('busPlat').value;
-            const personIncharge = document.getElementById('personIncharge').value;
-            const dateCreated = document.getElementById('dateCreated').value;
+            if (confirm("Are you sure you want to update the bus information?")) {
+                // Retrieve form data
+                const busID = document.getElementById('BusID').value;
+                const busPlat = document.getElementById('busPlat').value;
+                const personIncharge = document.getElementById('personIncharge').value;
+                const dateCreated = document.getElementById('dateCreated').value;
+                const busRef = database.ref('Bus/' + busID);
 
-
-            const busRef = database.ref('Bus/' + busID);
-
-
-            busRef.update({
-                PlatNo: busPlat,
-                PersonIncharge: personIncharge,
-                Date: dateCreated
-            }).then(function() {
-                console.log("Bus information updated successfully.");
-                window.location.href = "View_Bus.php";
-            }).catch(function(error) {
-                console.error("Error updating bus information:", error);
-            });
+                busRef.update({
+                    PlatNo: busPlat,
+                    PersonIncharge: personIncharge,
+                    Date: dateCreated
+                }).then(function() {
+                    console.log("Bus information updated successfully.");
+                    window.location.href = "View_Bus.php";
+                }).catch(function(error) {
+                    console.error("Error updating bus information:", error);
+                });
+            }
         });
     </script>
 </body>

@@ -334,14 +334,14 @@ include 'auth.php';
             <input type="text" class="form-control" placeholder="100" name="busID" id="BusID"><br>
 
             <label for="busPlat">Plat Number:</label><br>
-            <input type="text" class="form-control" id="busPlat" placeholder="AKJ101" name="busPlat"><br>
+            <input type="text" class="form-control" id="busPlat" placeholder="AKJ101" name="busPlat" required><br>
 
 
             <label for="personIncharge">Person Incharge:</label><br>
-            <input type="text" class="form-control" id="personIncharge" placeholder="Farhan" name="personIncharge"><br>
+            <input type="text" class="form-control" id="personIncharge" placeholder="Farhan" name="personIncharge" required><br>
 
             <label for="dateCreated" id>Date Created:</label><br>
-            <input type="date" class="form-control" id="dateCreated" placeholder="10/10/2012" name=" dateCreated"><br>
+            <input type="date" class="form-control" id="dateCreated" placeholder="10/10/2012" name=" dateCreated" required><br>
 
             <div class="d-flex justify-content-between">
                 <button class="btn btn-success" type="submit">Add</button>
