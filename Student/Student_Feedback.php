@@ -314,7 +314,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <p>Date</p>
-                  <input type="date" name="date" class="form-control" id="Date">
+                  <input type="date" name="date" class="form-control" id="Date" readonly>
                 </div>
               </div>
               <button onclick="window.location.href='Student_Dashboard.php';" type="submit" class="btn btn-success">Send Feedback</button>
