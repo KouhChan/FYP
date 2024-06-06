@@ -26,6 +26,7 @@
             background-color: transparent;
             height: 100vh;
             overflow-x: hidden;
+
             transition: all .5s ease;
             position: relative;
 
@@ -175,7 +176,7 @@
         .map-container {
             position: fixed;
             top: 100px;
-            margin-left: 48%;
+            margin-left: 45%;
             width: calc(100% - 250px);
             height: calc(100% - 80px);
             padding: 20px;
@@ -189,7 +190,7 @@
         .img {
             position: static;
             margin-top: 0%;
-            margin-left: 10%;
+            margin-left: 5%;
             transition: all .5s ease;
         }
 
@@ -324,7 +325,7 @@
 
         .bus-schedule {
             font-family: Arial, sans-serif;
-            padding-left: 10%;
+            padding-left: 5%;
             margin-top: 0.5%;
             text-decoration: underline;
         }
@@ -332,7 +333,7 @@
         .map-title {
             font-family: Arial, sans-serif;
             padding-left: 0%;
-            margin-top: 0%;
+            margin-top: -1.5%;
             text-decoration: underline;
         }
 
@@ -344,7 +345,7 @@
             display: inline-block;
             border-radius: 5px;
             position: relative;
-            left: 19.4%;
+            left: 17.6%;
             bottom: 15px;
         }
 
@@ -352,7 +353,7 @@
             display: inline-block;
             border-radius: 5px;
             position: relative;
-            left: 25.2%;
+            left: 23.2%;
             top: 200px;
         }
 
@@ -360,7 +361,7 @@
             display: inline-block;
             border-radius: 5px;
             position: relative;
-            left: 31.4%;
+            left: 30.1%;
             bottom: 15px;
         }
 
@@ -368,7 +369,7 @@
             display: inline-block;
             border-radius: 5px;
             position: relative;
-            left: 36.7%;
+            left: 36.3%;
             top: 200px;
         }
 
@@ -376,7 +377,7 @@
             display: inline-block;
             border-radius: 5px;
             position: relative;
-            left: 43.3%;
+            left: 42.8%;
             bottom: 15px;
         }
 
@@ -384,7 +385,7 @@
             display: inline-block;
             border-radius: 5px;
             position: relative;
-            left: 51%;
+            left: 51.3%;
             top: 200px;
         }
 
@@ -392,22 +393,23 @@
             display: inline-block;
             border-radius: 5px;
             position: relative;
-            left: 58.7%;
+            left: 59%;
             bottom: 15px;
         }
 
         .background {
             background-color: #FEF8E0;
-            margin-top: 30.5%;
+            margin-top: 30%;
             padding-bottom: 2.4%;
-            padding-top: 2%;
+            padding-top: 0.97%;
         }
 
         .transparent {
             position: fixed;
-            top: 11%;
-            width: 80%;
-            left: 12%;
+            top: 10%;
+            width: 75%;
+            height: 60%;
+            left: 13%;
             padding-bottom: 3%;
             flex-direction: column;
             background-color: rgba(254, 248, 224, 0.9);

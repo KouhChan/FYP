@@ -258,7 +258,7 @@
         }
 
         .logout {
-            margin-top: 325%;
+            margin-top: 281%;
             margin-left: 0%;
         }
 
@@ -350,7 +350,7 @@
 
         <script>
             var currentTime = new Date();
-            var formattedTime = currentTime.toLocaleString();
+            var formattedTime = currentTime.toLocaleDateString(); // This will include only the date without the time
             document.getElementById('time').value = formattedTime;
         </script>
 

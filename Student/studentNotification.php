@@ -222,6 +222,11 @@
         .unread {
             background-color: pink;
         }
+
+        .filter {
+            margin-left: 82%;
+            padding: 10px;
+        }
     </style>
 </head>
 
@@ -256,6 +261,10 @@
         <div class="container">
             <div class="notificationContainer">
                 <h1> Notification</h1>
+                <div class="filter">
+                    <input type="date" id="selectedDate">
+                    <button class="btn btn-success" onclick="fetchNotifications()">Filter </button>
+                </div>
                 <main id="notifications"></main>
             </div>
 
@@ -281,18 +290,19 @@
 
             // Function to fetch and display notifications
             function fetchNotifications() {
-                database.ref('Notification').on('value', function(snapshot) {
-                    var notifications = snapshot.val();
-                    var notificationsContainer = document.getElementById('notifications');
-                    notificationsContainer.innerHTML = ''; // Clear the container
+                var selectedDate = document.getElementById('selectedDate').value;
+                var selectedDateObj = new Date(selectedDate);
+                var notificationsContainer = document.getElementById('notifications');
+                notificationsContainer.innerHTML = ''; // Clear the container
 
-                    for (var key in notifications) {
-                        if (notifications.hasOwnProperty(key)) {
-                            var notification = notifications[key];
+                database.ref('Notification').orderByChild('Time').once('value', function(snapshot) {
+                    snapshot.forEach(function(childSnapshot) {
+                        var notification = childSnapshot.val();
+                        var notificationDate = new Date(notification.Time);
+                        if (notificationDate.toDateString() === selectedDateObj.toDateString()) {
                             var user = notification.User;
                             var description = notification.Description;
                             var createdTime = moment(notification.Time).fromNow(); // Calculate time ago
-                            //var time = new Date(notification.timestamp).toLocaleString(); // Assuming you have a timestamp
 
                             var notificationCard = document.createElement('div');
                             notificationCard.className = 'notificationCard unread';
@@ -314,16 +324,17 @@
                             descriptionDiv.appendChild(timeP);
 
                             notificationCard.appendChild(descriptionDiv);
-                            notificationsContainer.appendChild(notificationCard);
+
+                            // Insert the new notification at the beginning of the container
+                            notificationsContainer.insertBefore(notificationCard, notificationsContainer.firstChild);
 
                             void notificationCard.offsetWidth;
                             notificationCard.style.opacity = '1';
                         }
-
-                    }
+                    });
                 });
             }
-
+            document.getElementById("selectedDate").valueAsDate = new Date();
             // Fetch notifications on page load
             window.onload = fetchNotifications;
         </script>

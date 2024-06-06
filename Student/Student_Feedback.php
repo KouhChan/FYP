@@ -160,9 +160,9 @@
       background: url('../Admin/Img/bus.jpg') no-repeat center center;
       background-size: cover;
       opacity: 0.5;
-      /* Set the opacity of the background image */
+      overflow-y: auto;
       z-index: -1;
-      /* Ensure the pseudo-element is behind the content */
+
     }
 
     .feedback-form {
@@ -196,12 +196,12 @@
 
     .feedback-form p {
       margin-top: 10px;
-      margin-bottom: 30px;
+      margin-bottom: 10px;
       color: gray;
     }
 
     .main--content {
-      position: relative;
+      position: fixed;
       margin-top: -32px;
       width: 100%;
       padding: 1rem;
@@ -221,14 +221,14 @@
       background: antiquewhite;
       margin-left: 24%;
       width: 51.1vw;
-      height: 93vh;
+      height: 91vh;
       border-radius: 10px;
       padding-bottom: auto;
     }
 
     .background-content {
       left: 23%;
-      position: fixed;
+      position: absolute;
       width: 50%;
       margin: 2rem;
       padding: 1rem 1rem;

@@ -171,7 +171,7 @@
         .map-container {
             position: fixed;
             top: 90px;
-            margin-left: 50%;
+            margin-left: 55%;
             width: calc(100% - 250px);
             height: calc(100% - 80px);
             padding: 20px;
@@ -191,7 +191,7 @@
 
         .bus-schedule {
             font-family: Arial, sans-serif;
-            padding-left: 10%;
+            padding-left: 5%;
             margin-top: 0.5%;
             text-decoration: underline;
         }
@@ -207,7 +207,7 @@
             position: fixed;
             top: 11%;
             width: 80%;
-            left: 12%;
+            left: 14%;
             padding-bottom: 5%;
             flex-direction: column;
             background-color: rgba(254, 248, 224, 0.9);

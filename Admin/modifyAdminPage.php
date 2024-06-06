@@ -266,7 +266,7 @@
         }
 
         .logout {
-            margin-top: 325%;
+            margin-top: 281%;
             margin-left: 0%;
         }
 

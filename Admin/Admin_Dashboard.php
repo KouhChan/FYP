@@ -221,7 +221,7 @@
     }
 
     .logout {
-      margin-top: 325%;
+      margin-top: 281%;
       margin-left: 0%;
 
     }
@@ -248,7 +248,7 @@
       position: fixed;
       top: 11%;
       width: 80%;
-      left: 12%;
+      left: 13%;
       padding-bottom: 3%;
       flex-direction: column;
       background-color: rgba(254, 248, 224, 0.9);

@@ -196,7 +196,7 @@
         }
 
         .feedback-form form {
-            padding: 15%;
+            padding: 14%;
         }
 
         .feedback-form form .row {
@@ -211,7 +211,7 @@
 
         .main--content {
             position: relative;
-            margin-top: 55px;
+            margin-top: 35px;
             width: 100%;
             padding: 1rem;
         }
@@ -221,9 +221,8 @@
         }
 
         .logout {
-            margin-top: 325%;
+            margin-top: 281%;
             margin-left: 0%;
-            /* Push the button to the bottom */
         }
 
         .logout a {
