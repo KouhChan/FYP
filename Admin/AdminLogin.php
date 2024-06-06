@@ -79,20 +79,91 @@
 
 
     <div class="col-md-3 form-container d-flex align-items-center">
-      <form action="login_success.php" method="post">
+      <form id="loginform">
         <div class="mb-3">
           <img src="Img\Uni10.jpg" style="margin: auto">
           <h4>Admin Login</h4>
           <h5>Please Login To Continue</h5>
           <label for="textEmail" class="form-label" style="font-weight: bold;">Email Address</label>
-          <input name="email" type="name" class="form-control" placeholder="Email Address" required> <br>
-          <input name="pass" type="password" class="form-control" placeholder="Password" required><br>
+          <input name="email" type="name" class="form-control" placeholder="Email Address" id="email" required> <br>
+          <input name="pass" type="password" class="form-control" placeholder="Password" id="password" required><br>
           <button type="submit" class="btn btn-primary">Login</button>
         </div>
       </form>
     </div>
   </div>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
 
+  <script>
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAg8iVwGi-X6dJCe15dvavK0ndAoVPutsA",
+      authDomain: "university-bus-system.firebaseapp.com",
+      databaseURL: "https://university-bus-system-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "university-bus-system",
+      storageBucket: "university-bus-system.appspot.com",
+      messagingSenderId: "446380655695",
+      appId: "1:446380655695:web:ee019fad4684435252163a"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Get form elements
+    const loginForm = document.getElementById('loginform');
+
+    // Listen for form submission
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      // Firebase sign in
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          alert('Login successful');
+          window.location.href = "../Admin/Admin_Dashboard.php";
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          alert(`Error: ${errorMessage}`);
+        });
+    });
+
+    // Check auth state
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in
+        console.log('User is signed in:', user);
+        window.location.href = "../Admin/Admin_Dashboard.php";
+      } else {
+        // User is signed out
+        console.log('User is signed out');
+      }
+    });
+
+    // Sign out
+    const signOutBtn = document.getElementById('signOutBtn');
+
+    if (signOutBtn) {
+      signOutBtn.addEventListener('click', () => {
+        firebase.auth().signOut().then(() => {
+          // Sign-out successful
+          alert('Sign out successful');
+        }).catch((error) => {
+          // An error happened
+          alert(`Error: ${error.message}`);
+        });
+      });
+    }
+  </script>
 </body>
+
+
 
 </html>

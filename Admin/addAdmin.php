@@ -1,57 +1,3 @@
-<?php
-// Database connection parameters
-$servername = "localhost";
-$username = "root"; // Replace with your MySQL username
-$password = ""; // Replace with your MySQL password
-$database = "unitenadmin"; // Replace with your MySQL database name
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Retrieve the next available Admin ID from the database
-$sql = "SELECT MAX(CAST(SUBSTRING(Admin_ID, 3) AS UNSIGNED)) AS max_id FROM admindatabase";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $next_id = $row["max_id"] + 1;
-    $admin_id = "AD" . sprintf("%03d", $next_id); // Format the next ID
-} else {
-    $admin_id = "AD001"; // If no records exist, start with AD001
-}
-
-// Check if form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
-    $name = $_POST["name"];
-    $email = $_POST["email"];
-    $password = $_POST["pass"];
-
-    // Hash the password
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-    // Prepare and bind SQL statement
-    $stmt = $conn->prepare("INSERT INTO admindatabase ( Admin_ID, Name, Email, Password) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $admin_id, $name, $email, $hashed_password); // Admin ID from database, not user input
-
-    // Execute statement
-    if ($stmt->execute()) {
-        header("Location: viewAdmin.php");
-    } else {
-        echo "Error: " . $stmt->error;
-    }
-
-    // Close statement and connection
-    $stmt->close();
-    $conn->close();
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,6 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/c065e87b98.js" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <title>View Buses</title>
     <style>
         * {
@@ -374,22 +323,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </li>
             </ul>
             <div class="logout">
-                <a href="../Admin/logout.php"><i class="fas"></i>LOGOUT</a>
+                <a href="#" id="logoutButton"><i class="fas"></i>LOGOUT</a>
             </div>
         </div>
 
     </nav>
     <div class="container">
         <h3>Add Admin Information</h3>
-        <form action="addAdmin.php" method="POST">
+        <form id="adminForm">
             <label for="ID">Admin ID:</label><br>
-            <input type="text" class="form-control" name="ID" value="<?php echo $admin_id; ?>" readonly><br>
+            <input id="AdminID" type="text" class="form-control" name="ID" readonly><br>
             <label for="Name">Name :</label><br>
-            <input type="text" class="form-control" name="name" placeholder="Aliff" required><br>
+            <input id="nama" type="text" class="form-control" name="name" placeholder="Aliff" required><br>
             <label for="Email">Email :</label><br>
-            <input type="email" class="form-control" name="email" placeholder="aliff@gmail.com" required><br>
+            <input id="email" type="email" class="form-control" name="email" placeholder="aliff@gmail.com" required><br>
             <label for="Password">Password :</label><br>
-            <input type="password" class="form-control" name="pass" placeholder="...." required><br>
+            <input id="password" type="password" class="form-control" name="pass" placeholder="...." required><br>
             <div class="d-flex justify-content-between">
                 <button class="btn btn-primary" type="submit">Add</button>
                 <a href="viewAdmin.php" class="btn btn-danger">Cancel</a>
@@ -398,5 +347,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     </div>
 </body>
+<script src="../JS/addAdmin.js"></script>
+<script src="../JS/AdminID.js"></script>
+<script>
+    firebase.auth().onAuthStateChanged((user) => {
+        if (!user) {
+            window.location.href = "../Admin/AdminLogin.php";
+        }
+    });
+
+    // Signout function
+    document.getElementById('logoutButton').addEventListener('click', (e) => {
+        e.preventDefault();
+        firebase.auth().signOut().then(() => {
+            window.location.href = "../Admin/AdminLogin.php";
+        }).catch((error) => {
+            console.error('Sign Out Error', error);
+        });
+    });
+</script>
 
 </html>

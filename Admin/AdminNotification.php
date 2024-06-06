@@ -1,12 +1,3 @@
-<?php
-include 'auth.php';
-
-//set the user to email that is logged in
-$user_email = $_SESSION['email'];
-//take only before @email.com
-$email_parts = explode('@', $user_email);
-$user_name = $email_parts[0];
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +7,9 @@ $user_name = $email_parts[0];
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/c065e87b98.js" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 
     <title>Notification Information</title>
     <style>
@@ -287,10 +281,6 @@ $user_name = $email_parts[0];
         }
     </style>
 
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-
-
 </head>
 
 <body>
@@ -331,7 +321,7 @@ $user_name = $email_parts[0];
             </ul>
 
             <div class="logout">
-                <a href="../Admin/logout.php"><i class="fas"></i>LOGOUT</a>
+                <a href="#" id="logoutButton"><i class="fas"></i>LOGOUT</a>
             </div>
         </div>
     </nav>
@@ -372,5 +362,29 @@ $user_name = $email_parts[0];
 </script>
 <script script src="../JS/addNotification.js"></script>
 <script script src="../JS/NotificationID.js"></script>
+<script>
+    firebase.auth().onAuthStateChanged((user) => {
+        if (!user) {
+            window.location.href = "../Admin/AdminLogin.php";
+        } else {
+            var userEmail = user.email;
+
+            var username = userEmail.split('@')[0];
+
+            // Set the username in the input field
+            document.getElementById('admin').value = username;
+        }
+    });
+
+    // Signout function
+    document.getElementById('logoutButton').addEventListener('click', (e) => {
+        e.preventDefault();
+        firebase.auth().signOut().then(() => {
+            window.location.href = "../Admin/AdminLogin.php";
+        }).catch((error) => {
+            console.error('Sign Out Error', error);
+        });
+    });
+</script>
 
 </html>

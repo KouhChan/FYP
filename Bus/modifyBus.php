@@ -1,6 +1,3 @@
-<?php
-include 'auth.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,6 +17,7 @@ include 'auth.php';
     <script src="https://kit.fontawesome.com/c065e87b98.js" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <title>View Buses</title>
     <style>
         * {
@@ -333,7 +331,7 @@ include 'auth.php';
                 </li>
             </ul>
             <div class="logout">
-                <a href="../Admin/logout.php"><i class="fas"></i>LOGOUT</a>
+                <a href="#" id="logoutButton"><i class="fas"></i>LOGOUT</a>
             </div>
             </ul>
         </div>
@@ -431,6 +429,22 @@ include 'auth.php';
                     console.error("Error updating bus information:", error);
                 });
             }
+        });
+
+        firebase.auth().onAuthStateChanged((user) => {
+            if (!user) {
+                window.location.href = "../Admin/AdminLogin.php";
+            }
+        });
+
+        // Signout function
+        document.getElementById('logoutButton').addEventListener('click', (e) => {
+            e.preventDefault();
+            firebase.auth().signOut().then(() => {
+                window.location.href = "../Admin/AdminLogin.php";
+            }).catch((error) => {
+                console.error('Sign Out Error', error);
+            });
         });
     </script>
 </body>

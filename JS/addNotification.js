@@ -23,17 +23,17 @@ document.getElementById("Notification").addEventListener("submit", function (e) 
     var confirmed = window.confirm("Do you want to add this notification?");
     if (confirmed) {
         // If user confirms, proceed with form submission
-        var NotificationID = "NID001"; // Initial Bus ID
+        var NotificationID = "NID001"; // Initial Notification ID
         var Description = getElementVal('description');
         var admin = getElementVal('admin');
 
-        // Check if the initial Bus ID is already registered
+        // Check if the initial Notification ID is already registered
         contactFormDB.child(NotificationID).once('value', function (snapshot) {
             if (snapshot.exists()) {
-                // If Bus ID already exists, find the next available ID
+                // If Notification ID already exists, find the next available ID
                 getNextAvailableID();
             } else {
-                // If Bus ID is not registered, save the message with the initial ID
+                // If Notification ID is not registered, save the message with the initial ID
                 saveMessage(NotificationID, Description, admin);
             }
         });
@@ -52,7 +52,7 @@ function getNextAvailableID() {
         // Loop through each child node in the database
         snapshot.forEach(function (childSnapshot) {
             var key = childSnapshot.key;
-            // Extract the numeric part of the Bus ID and convert it to a number
+            // Extract the numeric part of the Notification ID and convert it to a number
             var numericID = parseInt(key.substring(3));
 
             // If the numeric part of the ID is greater than or equal to the current next ID, increment it
@@ -68,7 +68,7 @@ function getNextAvailableID() {
     });
 }
 
-// Function to save the bus details to the database
+// Function to save the Notification details to the database
 function saveMessage(NotificationID, Description, admin) {
     // Get the current time
     var currentTime = new Date();
@@ -84,11 +84,9 @@ function saveMessage(NotificationID, Description, admin) {
         Time: formattedTime,
     })
         .then(() => {
-            // Redirect to view_bus.php
-            window.location.href = "../Admin/AdminNotification.php";
-
             // Show success notification
             alert("Notification successfully Added!");
+            window.location.href = "../Admin/AdminNotification.php";
         })
         .catch(error => {
             console.error("Error registering Notification:", error);

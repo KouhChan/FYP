@@ -1,47 +1,3 @@
-<?php
-include 'auth.php';
-?>
-
-<?php
-// Database connection parameters
-$servername = "localhost";
-$username = "root"; // Replace with your MySQL username
-$password = ""; // Replace with your MySQL password
-$database = "unitenadmin"; // Replace with your MySQL database name
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Check if Bus ID is provided in the query parameter
-if (isset($_GET['ID'])) {
-    // Retrieve Bus ID from the query parameter
-    $ID = $_GET['ID'];
-
-    // SQL query to fetch bus information for the given Bus ID
-    $sql = "SELECT * FROM admindatabase WHERE ID = $ID";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        // Fetch bus information
-        $row = $result->fetch_assoc();
-        $email = $row["Email"];
-        $name = $row["Name"];
-        $password = $row['Password'];
-    } else {
-        echo "No Admin found with Admin ID: $ID";
-    }
-} else {
-    echo "Admin ID not provided in the query parameter.";
-}
-
-$conn->close();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,7 +15,9 @@ $conn->close();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/c065e87b98.js" crossorigin="anonymous"></script>
-    <title>View Buses</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <style>
         * {
             padding: 0;
@@ -366,27 +324,24 @@ $conn->close();
                 </li>
             </ul>
             <div class="logout">
-                <a href="../Admin/logout.php"><i class="fas"></i>LOGOUT</a>
+                <a href="#" id="logoutButton"><i class="fas"></i>LOGOUT</a>
             </div>
         </div>
 
     </nav>
     <div class="container">
         <h3>Edit Admin Information</h3>
-        <form action="modifyAdminInfo.php" method="POST">
+        <form id="modifyAdmin">
 
             <label for="ID">Admin ID:</label><br>
-            <input type="text" class="form-control" value="<?php echo $row['Admin_ID']; ?>" name="Admin_ID" id="Admin_ID" readonly><br>
+            <input type="text" class="form-control" name="Admin_ID" id="AdminID" readonly><br>
 
 
             <label for="Name">Name :</label><br>
-            <input type="text" class="form-control" id="name" value="<?php echo $row['Name']; ?>" name="name"><br>
+            <input type="text" class="form-control" id="name" name="name"><br>
 
             <label for="Email">Email :</label><br>
-            <input type="text" class="form-control" id="email" value="<?php echo $row["Email"]; ?>" name="email"><br>
-
-            <label for="Password">Password :</label><br>
-            <input type="text" class="form-control" id="password" value="<?php echo $row['Password']; ?>" name="password"><br>
+            <input type="text" class="form-control" id="email" name="email"><br>
 
             <div class="d-flex justify-content-between">
                 <button class="btn btn-primary" type="submit">Update</button>
@@ -397,5 +352,91 @@ $conn->close();
     </div>
     </div>
 </body>
+<script>
+    // Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyAg8iVwGi-X6dJCe15dvavK0ndAoVPutsA",
+        authDomain: "university-bus-system.firebaseapp.com",
+        databaseURL: "https://university-bus-system-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "university-bus-system",
+        storageBucket: "university-bus-system.appspot.com",
+        messagingSenderId: "446380655695",
+        appId: "1:446380655695:web:ee019fad4684435252163a"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    const database = firebase.database();
+
+
+    function fetchAdminData() {
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const AdminID = urlParams.get('AdminID');
+
+
+        const AdminRef = database.ref('Admin/' + AdminID);
+
+
+        AdminRef.once('value', function(snapshot) {
+            const AdminData = snapshot.val();
+            if (AdminData) {
+
+                document.getElementById('AdminID').value = AdminID;
+                document.getElementById('name').value = AdminData.Name || '';
+                document.getElementById('email').value = AdminData.Email || '';
+            } else {
+                console.log("No Admin found with Admin ID: " + AdminID);
+            }
+        });
+    }
+
+
+    fetchAdminData();
+
+
+    document.getElementById('modifyAdmin').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        if (confirm("Are you sure you want to update the Admin information?")) {
+            // Retrieve form data
+            const AdminID = document.getElementById('AdminID').value;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const AdminRef = database.ref('Admin/' + AdminID);
+
+
+
+            AdminRef.update({
+                Name: name,
+                Email: email,
+            }).then(function() {
+                console.log("Admin information updated successfully.");
+                window.location.href = "viewAdmin.php";
+            }).catch(function(error) {
+                console.error("Error updating admin information:", error);
+            });
+        }
+    });
+
+
+
+    firebase.auth().onAuthStateChanged((user) => {
+        if (!user) {
+            window.location.href = "AdminLogin.php";
+        }
+    });
+
+    // Signout function
+    document.getElementById('logoutButton').addEventListener('click', (e) => {
+        e.preventDefault();
+        firebase.auth().signOut().then(() => {
+            window.location.href = "AdminLogin.php";
+        }).catch((error) => {
+            console.error('Sign Out Error', error);
+        });
+    });
+</script>
 
 </html>

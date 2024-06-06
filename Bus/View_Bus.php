@@ -1,6 +1,3 @@
-<?php
-include 'auth.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +9,7 @@ include 'auth.php';
     <!-- Add Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <title>View Buses</title>
     <style>
         * {
@@ -320,7 +318,7 @@ include 'auth.php';
                 </li>
             </ul>
             <div class="logout">
-                <a href="../Admin/logout.php"><i class="fas"></i>LOGOUT</a>
+                <a href="#" id="logoutButton"><i class="fas"></i>LOGOUT</a>
             </div>
         </div>
     </nav>
@@ -345,9 +343,26 @@ include 'auth.php';
         </table>
     </div>
 
-
     <script src="../JS/view&delBus.js"></script>
     <script src="../JS/deleteBus.js"></script>
+
+    <script>
+        firebase.auth().onAuthStateChanged((user) => {
+            if (!user) {
+                window.location.href = "../Admin/AdminLogin.php";
+            }
+        });
+
+        // Signout function
+        document.getElementById('logoutButton').addEventListener('click', (e) => {
+            e.preventDefault();
+            firebase.auth().signOut().then(() => {
+                window.location.href = "../Admin/AdminLogin.php";
+            }).catch((error) => {
+                console.error('Sign Out Error', error);
+            });
+        });
+    </script>
 
 </body>
 

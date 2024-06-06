@@ -1,7 +1,3 @@
-<?php
-include 'auth.php';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +9,7 @@ include 'auth.php';
   <script src="https://kit.fontawesome.com/c065e87b98.js" crossorigin="anonymous"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-  <link rel="stylesheet" href="../CSS/mediaFile.css">
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 
   <title>Admin Dashboard</title>
   <style>
@@ -316,7 +312,7 @@ include 'auth.php';
         </li>
       </ul>
       <div class="logout">
-        <a href="../Admin/logout.php"><i class="fas"></i>LOGOUT</a>
+        <a href="#" id="logoutButton"><i class="fas"></i>LOGOUT</a>
       </div>
 
 
@@ -357,14 +353,6 @@ include 'auth.php';
       </div>
 
       <script>
-        var map;
-        var mark;
-        var lineCoords = [];
-
-        window.lat = 2.97690;
-        window.lng = 101.72812857567598;
-
-
         const firebaseConfig = {
           apiKey: "AIzaSyAg8iVwGi-X6dJCe15dvavK0ndAoVPutsA",
           authDomain: "university-bus-system.firebaseapp.com",
@@ -376,10 +364,41 @@ include 'auth.php';
         }
 
         firebase.initializeApp(firebaseConfig);
+        // Check auth state
+        firebase.auth().onAuthStateChanged((user) => {
+          if (!user) {
+            // User is not signed in, redirect to login page
+            window.location.href = "AdminLogin.php";
+          } else {
+            // User is signed in
+            console.log('User is signed in:', user);
 
-        var ref = firebase.database().ref('gps');
+            // Initialize map and other features only if the user is authenticated
+            initMap();
+            fetchReportData();
+          }
+        });
+
+        // Signout function
+        document.getElementById('logoutButton').addEventListener('click', (e) => {
+          e.preventDefault();
+          firebase.auth().signOut().then(() => {
+            window.location.href = "AdminLogin.php";
+          }).catch((error) => {
+            console.error('Sign Out Error', error);
+          });
+        });
 
         function initMap() {
+          var map;
+          var mark;
+          var lineCoords = [];
+
+          window.lat = 2.97690;
+          window.lng = 101.72812857567598;
+
+          var ref = firebase.database().ref('gps');
+
           map = new google.maps.Map(document.getElementById('map'), {
             center: {
               lat: lat,
@@ -404,70 +423,66 @@ include 'auth.php';
             title: 'UNITEN',
             icon: busIcon
           });
+
+          ref.on("value", function(snapshot) {
+            var gps = snapshot.val();
+            console.log(gps.latitude);
+            console.log(gps.longitude);
+
+            if (map && mark) {
+              map.setCenter({
+                lat: gps.latitude,
+                lng: gps.longitude
+              });
+
+              mark.setPosition({
+                lat: gps.latitude,
+                lng: gps.longitude
+              });
+
+              lineCoords.push(new google.maps.LatLng(gps.latitude, gps.longitude));
+
+              var lineCoordinatesPath = new google.maps.Polyline({
+                path: lineCoords,
+                geodesic: true,
+                strokeColor: '#2E10FF'
+              });
+
+              lineCoordinatesPath.setMap(map);
+            }
+          });
         }
 
-        ref.on("value", function(snapshot) {
-          var gps = snapshot.val();
-          console.log(gps.latitude);
-          console.log(gps.longitude);
+        // Reference to your Firebase Realtime Database
+        const database = firebase.database();
 
-          if (map && mark) {
-            map.setCenter({
-              lat: gps.latitude,
-              lng: gps.longitude
-            });
+        // Reference to the 'Report' node in the database
+        const reportRef = database.ref('Report');
 
-            mark.setPosition({
-              lat: gps.latitude,
-              lng: gps.longitude
-            });
+        // Function to fetch report data from Firebase and populate the table
+        function fetchReportData() {
+          reportRef.limitToLast(5).on('value', function(snapshot) {
+            // Refresh the table
+            document.getElementById('busTableBody').innerHTML = '';
 
+            snapshot.forEach(function(childSnapshot) {
+              const childData = childSnapshot.val();
+              const Date = childData.Date;
+              const ID = childData.ID;
+              const Location = childData.Location;
+              const Report = childData.Report;
 
-            lineCoords.push(new google.maps.LatLng(gps.latitude, gps.longitude));
-
-            var lineCoordinatesPath = new google.maps.Polyline({
-              path: lineCoords,
-              geodesic: true,
-              strokeColor: '#2E10FF'
-            });
-
-            lineCoordinatesPath.setMap(map);
-          }
-
-          // Reference to your Firebase Realtime Database
-          const database = firebase.database();
-
-          // Reference to the 'Bus' node in database
-          const reportRef = database.ref('Report');
-
-          // Function to fetch bus data from Firebase and populate the table
-          function fetchReportData() {
-            reportRef.limitToLast(5).on('value', function(snapshot) {
-
-              //refresh the table
-              document.getElementById('busTableBody').innerHTML = '';
-
-              snapshot.forEach(function(childSnapshot) {
-                const childData = childSnapshot.val();
-                const Date = childData.Date;
-                const ID = childData.ID;
-                const Location = childData.Location;
-                const Nama = childData.nama;
-                const Report = childData.Report;
-
-                // Append fetched data to the table
-                const tableRow = `<tr>
-                                <td>${ID}</td>
-                                <td>${Date}</td>
-                                <td>${Location}</td>
-                                <td>${Report}</td>
+              // Append fetched data to the table
+              const tableRow = `<tr>
+                              <td>${ID}</td>
+                              <td>${Date}</td>
+                              <td>${Location}</td>
+                              <td>${Report}</td>
                             </tr>`;
-                document.getElementById('busTableBody').innerHTML += tableRow;
-              });
+              document.getElementById('busTableBody').innerHTML += tableRow;
             });
-          }
-          fetchReportData();
-        });
+          });
+        }
       </script>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm_aJ9lxcthdOugBg_c8q-P-vvT12ULMA&callback=initMap"></script>
       <script src="../JS/viewReportDashboard.js"></script>
