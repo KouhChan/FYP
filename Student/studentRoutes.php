@@ -226,7 +226,7 @@
             font-weight: 500;
             height: 150px;
             width: 150px;
-            background: url('../Admin/Img/admin.jpg') center no-repeat;
+            background: url('../Admin/Img/Admin.jpg') center no-repeat;
             background-size: cover;
             border-radius: 50%;
             border: 4px solid #e0e0e0;
@@ -241,7 +241,7 @@
             font-weight: 500;
             height: 150px;
             width: 150px;
-            background: url('../Admin/Img/murni.jpg') center no-repeat;
+            background: url('../Admin/Img/Murni.jpg') center no-repeat;
             background-size: cover;
             border-radius: 50%;
             border: 4px solid #e0e0e0;
@@ -256,7 +256,7 @@
             font-weight: 500;
             height: 150px;
             width: 150px;
-            background: url('../Admin/Img/amanah.jpg') center no-repeat;
+            background: url('../Admin/Img/Amanah.jpg') center no-repeat;
             background-size: cover;
             border-radius: 50%;
             border: 4px solid #e0e0e0;
@@ -286,7 +286,7 @@
             font-weight: 500;
             height: 150px;
             width: 150px;
-            background: url('../Admin/Img/ilmu.jpg') center no-repeat;
+            background: url('../Admin/Img/Ilmu.jpg') center no-repeat;
             background-size: cover;
             border-radius: 50%;
             border: 4px solid #e0e0e0;
