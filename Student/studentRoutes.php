@@ -11,7 +11,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
 
-    <title>Student Dashboard</title>
+    <title>Routes</title>
     <style>
         * {
             padding: 0;
