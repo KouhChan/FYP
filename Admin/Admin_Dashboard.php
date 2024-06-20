@@ -277,9 +277,9 @@
     <div>
 
       <ul>
-        <li><a href="#" class="active" style="text-decoration: none;">STUDENT HUB</a></li>
-        <li><a href="#" class="active" style="text-decoration: none;">BRIGHTEN</a></li>
-        <li><a href="#" class="active" style="text-decoration: none;">INFO365</a></li>
+          <li><a href="https://www.uniten.edu.my/student-hub/" class="active" style="text-decoration: none;">STUDENT HUB</a></li>
+          <li><a href="https://brighten.uniten.edu.my/login/index.php" class="active" style="text-decoration: none;">BRIGHTEN</a></li>
+          <li><a href="https://info365.uniten.edu.my/info365/" class="active" style="text-decoration: none;">INFO365</a></li>
       </ul>
     </div>
 

@@ -244,12 +244,12 @@
 
   <nav>
     <div class="nav-new">
-      <h2 class="tepi"><a href="Student_Dashboard.php" style="color: white; text-decoration: none;;">UNITENShuttleTrack</a>
+      <h2 class="tepi"><a href="index.php" style="color: white; text-decoration: none;;">UNITENShuttleTrack</a>
       </h2>
       <ul>
-        <li><a href="#" class="active" style="text-decoration: none;">STUDENT HUB</a></li>
-        <li><a href="#" class="active" style="text-decoration: none;">BRIGHTEN</a></li>
-        <li><a href="#" class="active" style="text-decoration: none;">INFO365</a></li>
+          <li><a href="https://www.uniten.edu.my/student-hub/" class="active" style="text-decoration: none;">STUDENT HUB</a></li>
+          <li><a href="https://brighten.uniten.edu.my/login/index.php" class="active" style="text-decoration: none;">BRIGHTEN</a></li>
+          <li><a href="https://info365.uniten.edu.my/info365/" class="active" style="text-decoration: none;">INFO365</a></li>
       </ul>
     </div>
 
@@ -265,7 +265,7 @@
     <div class="sidebar">
       <header>Report</header>
       <ul>
-        <li><a href="Student_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
+        <li><a href="index.php"><i class="fas"></i>Dashboard</a></li>
         <li><a href="studentNotification.php">
             <i class="fas"></i>Notification</a></li>
         <li>
@@ -317,7 +317,7 @@
                   <input type="date" name="date" class="form-control" id="Date" readonly>
                 </div>
               </div>
-              <button onclick="window.location.href='Student_Dashboard.php';" type="submit" class="btn btn-success">Send Feedback</button>
+              <button onclick="window.location.href='index.php';" type="submit" class="btn btn-success">Send Feedback</button>
               <script>
                 // Auto-detect current date and set it as the value for the input field
                 document.getElementById("Date").valueAsDate = new Date();

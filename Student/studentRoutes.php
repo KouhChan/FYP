@@ -423,9 +423,9 @@
     <nav>
         <div class="nav-new">
             <ul>
-                <li><a href="#" class="active" style="text-decoration: none;">STUDENT HUB</a></li>
-                <li><a href="#" class="active" style="text-decoration: none;">BRIGHTEN</a></li>
-                <li><a href="#" class="active" style="text-decoration: none;">INFO365</a></li>
+                <li><a href="https://www.uniten.edu.my/student-hub/" class="active" style="text-decoration: none;">STUDENT HUB</a></li>
+                <li><a href="https://brighten.uniten.edu.my/login/index.php" class="active" style="text-decoration: none;">BRIGHTEN</a></li>
+                <li><a href="https://info365.uniten.edu.my/info365/" class="active" style="text-decoration: none;">INFO365</a></li>
             </ul>
         </div>
 
@@ -436,12 +436,12 @@
         </label>
 
 
-        <h2 class="tepi"><a href="Student_Dashboard.php" style="color: white;text-decoration: none;">UNITENShuttleTrack</a></h2>
+        <h2 class="tepi"><a href="index.php" style="color: white;text-decoration: none;">UNITENShuttleTrack</a></h2>
 
         <div class="sidebar">
             <header>Student Dashboard</header>
             <ul>
-                <li><a href="Student_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
+                <li><a href="index.php"><i class="fas"></i>Dashboard</a></li>
                 <li><a href="studentNotification.php"><i class="fas"></i>Notification</a></li>
                 <li><a href="studentRoutes.php"><i class="fas"></i>Routes</a></li>
                 <li><a href="Student_Feedback.php"><i class="fas"></i>Report</a></li>

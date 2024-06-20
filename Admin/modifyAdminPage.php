@@ -294,9 +294,9 @@
     <nav>
         <div class="nav-new">
             <ul>
-                <li><a href="#" class="active" style="text-decoration: none;">STUDENT HUB</a></li>
-                <li><a href="#" class="active" style="text-decoration: none;">BRIGHTEN</a></li>
-                <li><a href="#" class="active" style="text-decoration: none;">INFO365</a></li>
+                <li><a href="https://www.uniten.edu.my/student-hub/" class="active" style="text-decoration: none;">STUDENT HUB</a></li>
+                <li><a href="https://brighten.uniten.edu.my/login/index.php" class="active" style="text-decoration: none;">BRIGHTEN</a></li>
+                <li><a href="https://info365.uniten.edu.my/info365/" class="active" style="text-decoration: none;">INFO365</a></li>
             </ul>
         </div>
 
@@ -341,7 +341,7 @@
             <input type="text" class="form-control" id="name" name="name"><br>
 
             <label for="Email">Email :</label><br>
-            <input type="text" class="form-control" id="email" name="email"><br>
+            <input type="text" class="form-control" id="email" name="email" readonly><br>
 
             <div class="d-flex justify-content-between">
                 <button class="btn btn-primary" type="submit">Update</button>
