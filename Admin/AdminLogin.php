@@ -60,13 +60,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" href="#" style="margin-left: 200px;">STUDENT HUB</a>
+              <a class="nav-link active" href="https://www.uniten.edu.my/student-hub/" style="margin-left: 200px;">STUDENT HUB</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#" style="margin-left: 200px;">BRIGHTEN</a>
+              <a class="nav-link active" href="https://brighten.uniten.edu.my/login/index.php" style="margin-left: 200px;">BRIGHTEN</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#" style="margin-left: 200px;">INFO365</a>
+              <a class="nav-link active" href="https://info365.uniten.edu.my/info365/" style="margin-left: 200px;">INFO365</a>
             </li>
           </ul>
         </div>
