@@ -12,7 +12,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
-    <title>Student Dashboard</title>
+    <title>Notification</title>
     <style>
         * {
             padding: 0;
