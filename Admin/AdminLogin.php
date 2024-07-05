@@ -53,7 +53,7 @@
   <div class="row">
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(1, 116, 136);">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#" style="margin-right: 40%;">UNITENShuttleTrack</a>
+        <a class="navbar-brand" href="AdminLogin.php" style="margin-right: 40%;">UNITENShuttleTrack</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>

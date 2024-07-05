@@ -315,19 +315,19 @@
         <div class="sidebar">
             <header>Update Bus</header>
             <ul>
-                <li><a href="Admin_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
+                <li><a href="../Admin/Admin_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
                 <li><a href="../Bus/View_Bus.php">
                         <i class="fas"></i>Bus</a></li>
                 <li>
-                    <a href="viewAdmin.php">
+                    <a href="../Admin/viewAdmin.php">
                         <i class="fas"></i>User</a>
                 </li>
                 <li>
-                    <a href="AdminNotification.php">
+                    <a href="../Admin/AdminNotification.php">
                         <i class="fas"></i>Notification</a>
                 </li>
                 <li>
-                    <a href="AdminReport.php"><i class="fas"></i>Report</a>
+                    <a href="../Admin/AdminReport.php"><i class="fas"></i>Report</a>
                 </li>
             </ul>
             <div class="logout">

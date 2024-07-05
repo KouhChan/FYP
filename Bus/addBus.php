@@ -317,7 +317,7 @@
                         <i class="fas"></i>User</a>
                 </li>
                 <li>
-                    <a href="../Admin/Admin_Feedback.php"><i class="fas"></i>Report</a>
+                    <a href="../Admin/AdminReport.php"><i class="fas"></i>Report</a>
             </ul>
             <div class="logout">
                 <a href="#" id="logoutButton"><i class="fas"></i>LOGOUT</a>
