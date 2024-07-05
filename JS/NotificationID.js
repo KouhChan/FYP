@@ -6,7 +6,7 @@ const notificationRef = database.ref("Notification");
 const description = document.getElementById("description").value;
 const admin = document.getElementById("admin").value;
 
-// Generate next Bus ID
+// Generate next Notification ID
 let nextId = "NID001";
 notificationRef.once('value', function (snapshot) {
     snapshot.forEach(function (childSnapshot) {
@@ -17,7 +17,7 @@ notificationRef.once('value', function (snapshot) {
         }
     });
 
-    // Set the generated next Bus ID to the input field
+    // Set the generated next Notificaiton ID to the input field
     const NotificationIdInput = document.getElementById("NotificationID");
     NotificationIdInput.value = nextId;
     NotificationIdInput.readOnly = true; // Make the input field readonly

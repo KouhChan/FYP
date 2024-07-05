@@ -25,7 +25,7 @@ function deleteBus(busID) {
     // Remove bus from the database
     busRef.remove().then(function () {
         console.log("Bus information deleted successfully.");
-        // Redirect to View_Bus.php or any other page
+        // Redirect to View_Bus.php
         window.location.href = "View_Bus.php";
     }).catch(function (error) {
         console.error("Error deleting bus information:", error);
@@ -33,5 +33,5 @@ function deleteBus(busID) {
 }
 
 // Call the deleteBus function with the desired BusID
-const busIDToDelete = busID; // Replace with the actual BusID
+const busIDToDelete = busID; 
 deleteBus(busIDToDelete);

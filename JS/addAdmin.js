@@ -17,6 +17,7 @@ var auth = firebase.auth();
 document.getElementById("adminForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
+    // Display a confirmation dialog with options to Add or Cancel
     var confirmed = window.confirm("Do you want to add this Admin?");
     if (confirmed) {
         var AdminID = "AD001"; // Initial Admin ID
@@ -36,6 +37,7 @@ document.getElementById("adminForm").addEventListener("submit", function (e) {
     }
 });
 
+//to get next available ID
 function getNextAvailableID() {
     contactFormDB.once('value', function (snapshot) {
         var nextID = "AD001";
@@ -56,6 +58,7 @@ function getNextAvailableID() {
     });
 }
 
+//save admin details in firebase database with login details for firebase authentication
 function saveAdminToFirebase(AdminID, name, email, password) {
     auth.createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
@@ -70,6 +73,7 @@ function saveAdminToFirebase(AdminID, name, email, password) {
         });
 }
 
+//add the admin details into the firebase database
 function saveMessage(AdminID, name, email, password) {
     var newAdmin = contactFormDB.child(AdminID);
 
@@ -79,6 +83,7 @@ function saveMessage(AdminID, name, email, password) {
         Email: email,
         Password: password,
     })
+    //forward the user to viewAdmin page
         .then(() => {
             window.location.href = "../Admin/viewAdmin.php";
             alert("Admin successfully registered!");

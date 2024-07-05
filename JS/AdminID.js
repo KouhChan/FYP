@@ -7,7 +7,7 @@ var name = document.getElementById('nama').value;
 var email = document.getElementById('email').value;
 var password = document.getElementById('password').value;
 
-// Generate next Bus ID
+// Generate next Admin ID
 let nextId = "AD001";
 AdminRef.once('value', function (snapshot) {
     snapshot.forEach(function (childSnapshot) {
@@ -18,7 +18,7 @@ AdminRef.once('value', function (snapshot) {
         }
     });
 
-    // Set the generated next Bus ID to the input field
+    // Set the generated next Admin ID to the input field
     const AdminIdInput = document.getElementById("AdminID");
     AdminIdInput.value = nextId;
     AdminIdInput.readOnly = true; // Make the input field readonly

@@ -22,7 +22,6 @@ document.getElementById("Notification").addEventListener("submit", function (e) 
     // Display a confirmation dialog with options to Add or Cancel
     var confirmed = window.confirm("Do you want to add this notification?");
     if (confirmed) {
-        // If user confirms, proceed with form submission
         var NotificationID = "NID001"; // Initial Notification ID
         var Description = getElementVal('description');
         var admin = getElementVal('admin');
@@ -30,15 +29,13 @@ document.getElementById("Notification").addEventListener("submit", function (e) 
         // Check if the initial Notification ID is already registered
         contactFormDB.child(NotificationID).once('value', function (snapshot) {
             if (snapshot.exists()) {
-                // If Notification ID already exists, find the next available ID
                 getNextAvailableID();
             } else {
-                // If Notification ID is not registered, save the message with the initial ID
                 saveMessage(NotificationID, Description, admin);
             }
         });
     } else {
-        // If user cancels, show a message or perform any other desired action
+        // show a message if user cancel add notification
         alert("Notification addition cancelled.");
     }
 });
@@ -52,16 +49,15 @@ function getNextAvailableID() {
         // Loop through each child node in the database
         snapshot.forEach(function (childSnapshot) {
             var key = childSnapshot.key;
-            // Extract the numeric part of the Notification ID and convert it to a number
+            // Extract the Notification ID and convert it to a number
             var numericID = parseInt(key.substring(3));
 
             // If the numeric part of the ID is greater than or equal to the current next ID, increment it
             if (numericID >= parseInt(nextID.substring(3))) {
-                nextID = "NID" + ("000" + (numericID + 1)).slice(-3); // Format the ID as BXXX
+                nextID = "NID" + ("000" + (numericID + 1)).slice(-3);
             }
         });
-
-        // After finding the next available ID, save the message with that ID
+        //save the details to the notification database
         var Description = getElementVal('description');
         var admin = getElementVal('admin');
         saveMessage(nextID, Description, admin);
@@ -72,7 +68,7 @@ function getNextAvailableID() {
 function saveMessage(NotificationID, Description, admin) {
     // Get the current time
     var currentTime = new Date();
-    var formattedTime = currentTime.toLocaleDateString(); // This will include only the date without the time
+    var formattedTime = currentTime.toLocaleDateString(); // include only the date without the time
     document.getElementById('time').value = formattedTime;
 
 

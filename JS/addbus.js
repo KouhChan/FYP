@@ -22,7 +22,6 @@ document.getElementById("Bus").addEventListener("submit", function (e) {
     // Display a confirmation to Add or Cancel
     var confirmed = window.confirm("Do you want to add this bus?");
     if (confirmed) {
-        // If user confirms, proceed with form submission
         var BusID = "B001"; // Initial Bus ID
         var PlatNo = getElementVal('busPlat');
         var PersonIncharge = getElementVal('personIncharge');
@@ -31,7 +30,7 @@ document.getElementById("Bus").addEventListener("submit", function (e) {
         // Check if Bus ID is already registered
         contactFormDB.child(BusID).once('value', function (snapshot) {
             if (snapshot.exists()) {
-                // If Bus ID already exists, 
+                // If Bus ID already exists 
                 getNextAvailableID();
             } else {
 
