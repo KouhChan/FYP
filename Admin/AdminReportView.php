@@ -161,7 +161,7 @@
         body::before {
             content: "";
             position: absolute;
-            background: url('../Admin/Img/bus.jpg')center no-repeat;
+            background: url('../Img/bus.jpg')center no-repeat;
             top: 0;
             left: 0;
             width: 100%;
@@ -169,9 +169,7 @@
             background-color: lightgrey;
             background-size: cover;
             opacity: 0.5;
-            /* Set the opacity of the background image */
             z-index: -1;
-            /* Ensure the pseudo-element is behind the content */
         }
 
         .feedback-form {
@@ -298,7 +296,7 @@
         </div>
         <div class="main--content container feedback-form">
             <div class="feedback-image">
-                <img src="../Admin/Img/Uni10.jpg" alt="">
+                <img src="../Img/Uni10.jpg" alt="">
             </div>
             <form action="#" method="POST" id="report">
                 <div class="row">

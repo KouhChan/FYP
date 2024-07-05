@@ -37,7 +37,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('../Admin/Img/bus.jpg') no-repeat center center;
+            background: url('../Img/bus.jpg') no-repeat center center;
             background-size: cover;
             opacity: 0.5;
             /* Set the opacity of the background image */
@@ -253,7 +253,7 @@
             <div class="bus-schedule">
                 <h2>Bus Schedule</h2>
             </div>
-            <img src="../Admin/Img/Time Schedule.png" width="600" alt="" class="img">
+            <img src="../Img/Time Schedule.png" width="600" alt="" class="img">
         </div>
 
         <div class="map-container">

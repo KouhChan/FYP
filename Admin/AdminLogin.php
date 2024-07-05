@@ -9,7 +9,7 @@
   <title>Login</title>
   <style>
     body {
-      background-image: url('Img/Admin_Login_Background.png');
+      background-image: url('../Img/Admin_Login_Background.png');
       background-size: cover;
       background-repeat: no-repeat;
       display: block;
@@ -81,7 +81,7 @@
     <div class="col-md-3 form-container d-flex align-items-center">
       <form id="loginform">
         <div class="mb-3">
-          <img src="Img\Uni10.jpg" style="margin: auto">
+          <img src="../Img/Uni10.jpg" style="margin: auto">
           <h4>Admin Login</h4>
           <h5>Please Login To Continue</h5>
           <label for="textEmail" class="form-label" style="font-weight: bold;">Email Address</label>

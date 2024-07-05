@@ -36,7 +36,7 @@
             width: 100%;
             min-height: 100%;
             height: auto;
-            background: url('../Admin/Img/bus.jpg') no-repeat center center;
+            background: url('../Img/bus.jpg') no-repeat center center;
             background-size: cover;
             opacity: 0.5;
             z-index: -1;

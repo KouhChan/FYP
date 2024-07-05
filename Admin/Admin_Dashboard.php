@@ -207,7 +207,7 @@
     body::before {
       content: "";
       position: absolute;
-      background: url('../Admin/Img/bus.jpg')center no-repeat;
+      background: url('../Img/bus.jpg')center no-repeat;
       top: 0;
       left: 0;
       width: 100%;
@@ -323,7 +323,7 @@
         <div class="bus-schedule">
           <h2>Bus Schedule</h2>
         </div>
-        <img src="Img/Time Schedule.png" width="430" alt="" class="img">
+        <img src="../Img/Time Schedule.png" width="430" alt="" class="img">
       </div>
       <div class="container text-center">
         <section class="table_body">

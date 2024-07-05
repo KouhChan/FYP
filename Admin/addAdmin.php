@@ -34,7 +34,7 @@
         body::before {
             content: "";
             position: absolute;
-            background: url('../Admin/Img/bus.jpg')center no-repeat;
+            background: url('../Img/bus.jpg')center no-repeat;
             top: 0;
             left: 0;
             width: 100%;

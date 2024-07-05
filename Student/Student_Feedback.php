@@ -157,7 +157,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('../Admin/Img/bus.jpg') no-repeat center center;
+      background: url('../Img/bus.jpg') no-repeat center center;
       background-size: cover;
       opacity: 0.5;
       overflow-y: auto;
@@ -283,7 +283,7 @@
         <div class="container feedback-form">
           <h1>Feedback Form</h1>
           <div class="feedback-image">
-            <img src="../Admin/Img/Uni10.jpg" alt="">
+            <img src="../Img/Uni10.jpg" alt="">
           </div>
           <form action="#" method="POST" id="report">
             <div class="row">
