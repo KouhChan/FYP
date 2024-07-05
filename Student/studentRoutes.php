@@ -226,7 +226,7 @@
             font-weight: 500;
             height: 150px;
             width: 150px;
-            background: url('../Img/Admin.jpg') center no-repeat;
+            background: url('../Img/BAdmin.jpg') center no-repeat;
             background-size: cover;
             border-radius: 50%;
             border: 4px solid #e0e0e0;
