@@ -290,15 +290,15 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <p>Name</p>
-                  <input type="text" class="form-control" placeholder="Name" id="name"><br>
+                  <input type="text" class="form-control" pattern="[A-Za-z]+" placeholder="Name" id="name" required><br>
                 </div>
                 <div class="form-group">
                   <p>Student ID / Staff ID</p>
-                  <input type="text" class="form-control" placeholder="Student ID/Staff ID" id="SId"><br>
+                  <input type="text" class="form-control" pattern="[A-Za-z0-9]+"placeholder="Student ID/Staff ID" id="SId"  required><br>
                 </div>
                 <div class="form-group">
                   <p>Location</p>
-                  <select name="Location" class="form-select form-select-sm" id="location">
+                  <select name="Location" class="form-select form-select-sm" id="location" required>
                     <option value="LIBRARY">LIBRARY</option>
                     <option value="ADMIN">ADMIN</option>
                     <option value="MURNI">MURNI</option>
@@ -309,7 +309,7 @@
                   </select><br>
                 </div>
                 <p>Description</p>
-                <textarea name="description" class="form-control" cols="30" rows="10" style="width: 600px; height: 150px; margin-bottom: 8px;" placeholder="Description" id="desc"></textarea>
+                <textarea name="description" class="form-control" cols="30" rows="10" style="width: 600px; height: 150px; margin-bottom: 8px;" placeholder="Description" id="desc" required></textarea>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
@@ -317,7 +317,7 @@
                   <input type="date" name="date" class="form-control" id="Date" readonly>
                 </div>
               </div>
-              <button onclick="window.location.href='index.php';" type="submit" class="btn btn-success">Send Feedback</button>
+              <button  onclick="window.location.href='index.php';" type="submit" class="btn btn-success">Send Feedback</button>
               <script>
                 // Auto-detect current date and set it as the value for the input field
                 document.getElementById("Date").valueAsDate = new Date();

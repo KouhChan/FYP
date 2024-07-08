@@ -33,8 +33,7 @@ document.getElementById("Bus").addEventListener("submit", function (e) {
                 // If Bus ID already exists 
                 getNextAvailableID();
             } else {
-
-                saveMessage(BusID, PersonIncharge, Date, PlatNo);
+                checkPlatNo(BusID, PersonIncharge, Date, PlatNo);
             }
         });
     } else {
@@ -65,33 +64,57 @@ function getNextAvailableID() {
         var PlatNo = getElementVal('busPlat');
         var PersonIncharge = getElementVal('personIncharge');
         var Date = getElementVal('dateCreated');
-        saveMessage(nextID, PersonIncharge, Date, PlatNo);
+
+
+        checkPlatNo(nextID, PersonIncharge, Date, PlatNo);
     });
+}
+
+//validation for platID
+function checkPlatNo(BusID, PersonIncharge, Date, PlatNo) {
+    contactFormDB.once('value', function(snapshot){
+        var platExist = false;
+
+        snapshot.forEach(function(childSnapshot){
+            if(childSnapshot.val().PlatNo == PlatNo){
+                platExist = true;
+            }
+    });
+
+    if(platExist){
+        alert("Plate number already exists. Please choose a different plate number.");
+        return;
+    }else{
+        saveMessage(BusID, PersonIncharge, Date, PlatNo);
+    }
+});
 }
 
 // Function to save the bus details to the database
 function saveMessage(BusID, PersonIncharge, Date, PlatNo) {
     var newBus = contactFormDB.child(BusID);
-
-    newBus.set({
-        BusID: BusID,
-        Date: Date,
-        PersonIncharge: PersonIncharge,
-        PlatNo: PlatNo,
-    })
-        .then(() => {
-            // Redirect to view_bus.php
-            window.location.href = "../Bus/View_Bus.php";
-
-            // Show success notification
-            alert("Bus successfully registered!");
+    
+        newBus.set({
+            BusID: BusID,
+            Date: Date,
+            PersonIncharge: PersonIncharge,
+            PlatNo: PlatNo,
         })
-        .catch(error => {
-            console.error("Error registering bus:", error);
-            // Show error notification
-            alert("Error registering bus. Please try again.");
-        });
-}
+            .then(() => {
+                // Redirect to view_bus.php
+                window.location.href = "../Bus/View_Bus.php";
+    
+                // Show success notification
+                alert("Bus successfully registered!");
+            })
+            .catch(error => {
+                console.error("Error registering bus:", error);
+                // Show error notification
+                alert("Error registering bus. Please try again.");
+            });
+    }
+   
+
 
 // Function to get the value of an HTML element by ID
 function getElementVal(id) {
