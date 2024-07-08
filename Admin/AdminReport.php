@@ -338,7 +338,7 @@
                 </thead>
         </section>
         <tbody class="table-light" id="busTableBody">
-            <!-- Data will be dynamically populated here -->
+            <!-- Data will be automatically fetch from javascript -->
         </tbody>
         </table>
     </div>

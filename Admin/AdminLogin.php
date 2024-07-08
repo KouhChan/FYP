@@ -108,7 +108,6 @@
       appId: "1:446380655695:web:ee019fad4684435252163a"
     };
 
-    // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
 
     // Get form elements
@@ -146,21 +145,6 @@
         console.log('User is signed out');
       }
     });
-
-    // Sign out
-    const signOutBtn = document.getElementById('signOutBtn');
-
-    if (signOutBtn) {
-      signOutBtn.addEventListener('click', () => {
-        firebase.auth().signOut().then(() => {
-          // Sign-out successful
-          alert('Sign out successful');
-        }).catch((error) => {
-          // An error happened
-          alert(`Error: ${error.message}`);
-        });
-      });
-    }
   </script>
 </body>
 

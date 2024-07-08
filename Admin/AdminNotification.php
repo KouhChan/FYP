@@ -332,7 +332,7 @@
             <input type="text" class="form-control" placeholder="100" name="NotificationID" id="NotificationID"><br>
 
             <label for="description">Description</label><br>
-            <input type="text" class="form-control" id="description" placeholder="description" name="description"><br>
+            <input type="text" class="form-control" id="description" pattern="[A-Za-z0-9]+" placeholder="description" name="description"><br>
 
 
             <label for="admin">User:</label><br>

@@ -421,7 +421,7 @@
     });
 
 
-
+    //check the admin is logged in or not
     firebase.auth().onAuthStateChanged((user) => {
         if (!user) {
             window.location.href = "AdminLogin.php";

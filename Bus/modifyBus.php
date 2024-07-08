@@ -343,11 +343,11 @@
             <label for="busID">Bus ID:</label><br>
             <input type="text" class="form-control" id="BusID" readonly><br>
             <label for="busPlat">Plat Number:</label><br>
-            <input type="text" class="form-control" id="busPlat" value="<?php echo $row['Plat_No']; ?>" name="busPlat" required><br>
+            <input type="text" class="form-control" id="busPlat" pattern="[A-Za-z0-9]+" value="<?php echo $row['Plat_No']; ?>" name="busPlat" required><br>
 
 
             <label for="personIncharge">Person Incharge:</label><br>
-            <input type="text" class="form-control" id="personIncharge" value="<?php echo $row['Person_Incharge']; ?>" name="personIncharge" required><br>
+            <input type="text" class="form-control" id="personIncharge" pattern="[A-Za-z]+" value="<?php echo $row['Person_Incharge']; ?>" name="personIncharge" required><br>
 
             <label for="dateCreated">Date Created:</label><br>
 

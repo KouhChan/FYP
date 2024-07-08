@@ -364,7 +364,7 @@
         }
 
         firebase.initializeApp(firebaseConfig);
-        // Check auth state
+  
         firebase.auth().onAuthStateChanged((user) => {
           if (!user) {
             // User is not signed in, redirect to login page

@@ -1,3 +1,4 @@
+
 // Reference to the database
 const database = firebase.database();
 const busRef = database.ref("Bus");

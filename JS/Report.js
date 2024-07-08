@@ -29,7 +29,10 @@ function submitForm(e) {
     var description = getElementVal('desc');
 
     saveMessage(nama, id, location, Date, description);
-};
+    alert("Your report has been submitted");
+
+    document.getElementById("report").reset();
+}
 
 const saveMessage = (nama, id, location, Date, description) => {
     var newReport = contactFormDB.child(id);

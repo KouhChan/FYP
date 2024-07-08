@@ -1,4 +1,4 @@
-var map;
+/*var map;
 var mark;
 var lineCoords = [];
 
@@ -77,3 +77,4 @@ ref.on("value", function (snapshot) {
 });
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm_aJ9lxcthdOugBg_c8q-P-vvT12ULMA&callback=initMap"></script>
+*/

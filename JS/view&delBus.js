@@ -68,25 +68,6 @@ function deleteBus(busID) {
     }
 }
 
-function addBus(busID) {
-    // Ask for confirmation before deleting the bus
-    if (confirm("Are you sure you want to add this bus?")) {
-        // Reference to the specific bus node in the database
-        const busToDeleteRef = busRef.child(busID);
-
-        // Remove the bus node from the database
-        busToDeleteRef.add()
-            .then(function () {
-                console.log("Bus information added successfully.");
-            })
-            .catch(function (error) {
-                console.error("Error added bus information:", error);
-            });
-    } else {
-        console.log("add cancelled.");
-    }
-}
-
 
 // Call the function to fetch and populate bus data
 fetchBusData();

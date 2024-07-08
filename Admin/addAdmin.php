@@ -327,7 +327,7 @@
             <label for="ID">Admin ID:</label><br>
             <input id="AdminID" type="text" class="form-control" name="ID" readonly><br>
             <label for="Name">Name :</label><br>
-            <input id="nama" type="text" class="form-control" name="name" placeholder="Aliff" required><br>
+            <input id="nama" type="text" class="form-control" pattern="[A-Za-z]+" name="name" placeholder="Aliff" required><br>
             <label for="Email">Email :</label><br>
             <input id="email" type="email" class="form-control" name="email" placeholder="aliff@gmail.com" required><br>
             <label for="Password">Password :</label><br>
@@ -343,6 +343,7 @@
 <script src="../JS/addAdmin.js"></script>
 <script src="../JS/AdminID.js"></script>
 <script>
+    //check if the user is already logged in or not
     firebase.auth().onAuthStateChanged((user) => {
         if (!user) {
             window.location.href = "../Admin/AdminLogin.php";

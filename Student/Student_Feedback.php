@@ -285,7 +285,7 @@
           <div class="feedback-image">
             <img src="../Img/Uni10.jpg" alt="">
           </div>
-          <form action="#" method="POST" id="report">
+          <form action="" method="POST" id="report">
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
@@ -317,7 +317,7 @@
                   <input type="date" name="date" class="form-control" id="Date" readonly>
                 </div>
               </div>
-              <button  onclick="window.location.href='index.php';" type="submit" class="btn btn-success">Send Feedback</button>
+              <button type="submit" class="btn btn-success">Send Feedback</button>
               <script>
                 // Auto-detect current date and set it as the value for the input field
                 document.getElementById("Date").valueAsDate = new Date();

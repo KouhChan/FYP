@@ -307,7 +307,7 @@
         </h2>
 
         <div class="sidebar">
-            <header>My App</header>
+            <header>Add Bus</header>
             <ul>
                 <li><a href="../Admin/Admin_Dashboard.php"><i class="fas"></i>Dashboard</a></li>
                 <li><a href="../Bus/View_Bus.php">
@@ -315,6 +315,10 @@
                 <li>
                     <a href="../Admin/viewAdmin.php">
                         <i class="fas"></i>User</a>
+                </li>
+                <li>
+                    <a href="../Admin/AdminNotification.php">
+                        <i class="fas"></i>Notification</a>
                 </li>
                 <li>
                     <a href="../Admin/AdminReport.php"><i class="fas"></i>Report</a>
@@ -331,11 +335,11 @@
             <input type="text" class="form-control" placeholder="100" name="busID" id="BusID"><br>
 
             <label for="busPlat">Plat Number:</label><br>
-            <input type="text" class="form-control" id="busPlat" placeholder="AKJ101" name="busPlat" required><br>
+            <input type="text" class="form-control" id="busPlat" pattern="[A-Za-z0-9]+" placeholder="AKJ101" name="busPlat" required><br>
 
 
             <label for="personIncharge">Person Incharge:</label><br>
-            <input type="text" class="form-control" id="personIncharge" placeholder="Farhan" name="personIncharge" required><br>
+            <input type="text" class="form-control" id="personIncharge" pattern="[A-Za-z]+"placeholder="Farhan" name="personIncharge" required><br>
 
             <label for="dateCreated" id>Date Created:</label><br>
             <input type="date" class="form-control" id="dateCreated" placeholder="10/10/2012" name=" dateCreated" required><br>
@@ -355,6 +359,7 @@
 </script>
 <script script src="../JS/addbus.js"></script>
 <script script src="../JS/BusID.js"></script>
+
 <script>
     firebase.auth().onAuthStateChanged((user) => {
         if (!user) {

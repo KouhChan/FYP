@@ -42,6 +42,7 @@ document.getElementById("Bus").addEventListener("submit", function (e) {
     }
 });
 
+
 // Function to get the next available ID
 function getNextAvailableID() {
     contactFormDB.once('value', function (snapshot) {

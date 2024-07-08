@@ -359,9 +359,9 @@
 
             const database = firebase.database();
 
-            // Function to get bus data from Firebase 
-            function fetchBusData() {
-                // Retrieve Bus ID from the URL 
+            // Function to get Report data from Firebase 
+            function fetchReportData() {
+                // Retrieve Report ID from the URL 
                 const queryString = window.location.search;
                 const urlParams = new URLSearchParams(queryString);
                 const ReportID = urlParams.get('report_id');
@@ -369,7 +369,7 @@
                 // Reference to the 'Report' node in database
                 const reportRef = database.ref('Report/' + ReportID);
 
-                // Fetch bus information
+                // Fetch report information
                 reportRef.once('value', function(snapshot) {
                     const reportData = snapshot.val();
                     if (reportData) {
@@ -386,7 +386,7 @@
             }
 
 
-            fetchBusData();
+            fetchReportData();
 
             firebase.auth().onAuthStateChanged((user) => {
                 if (!user) {
