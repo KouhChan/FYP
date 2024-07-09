@@ -302,8 +302,16 @@
                         if (notificationDate.toDateString() === selectedDateObj.toDateString()) {
                             var user = notification.User;
                             var description = notification.Description;
-                            var createdTime = moment(notification.Time).fromNow(); // Calculate time ago
+                            var now = moment();// Calculate time ago
+                            var notificationTime = moment(notification.Time);
+                            var timeDiff = now.diff(notificationTime, 'days');
 
+                            var createdTime;
+                            if(timeDiff === 0){
+                                createdTime = "today";
+                            }else{
+                                createdTime = moment(notification.Time).fromNow();
+                            }
                             var notificationCard = document.createElement('div');
                             notificationCard.className = 'notificationCard unread';
 
