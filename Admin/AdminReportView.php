@@ -335,10 +335,7 @@
                         <a href="AdminReport.php" class="btn btn-danger">Back</a>
                     </div>
                 </div>
-                <script>
-                    // Auto-detect current date and set it as the value for the input field
-                    document.getElementById("Date").valueAsDate = new Date();
-                </script>
+                
             </form>
         </div>
         </div>

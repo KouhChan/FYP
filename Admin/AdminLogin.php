@@ -134,7 +134,7 @@
         });
     });
 
-    // Check auth state
+    // Check if the use is sign in or not
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         // User is signed in

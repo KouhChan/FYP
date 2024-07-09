@@ -338,7 +338,7 @@
 
 
             <label for="Name">Name :</label><br>
-            <input type="text" class="form-control" id="name" name="name"><br>
+            <input type="text" class="form-control" id="name" name="name" pattern="[A-Za-z]+" required><br>
 
             <label for="Email">Email :</label><br>
             <input type="text" class="form-control" id="email" name="email" readonly><br>

@@ -285,7 +285,7 @@
           <div class="feedback-image">
             <img src="../Img/Uni10.jpg" alt="">
           </div>
-          <form action="" method="POST" id="report">
+          <form id="report">
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
@@ -322,14 +322,16 @@
                 // Auto-detect current date and set it as the value for the input field
                 document.getElementById("Date").valueAsDate = new Date();
               </script>
+              <script src="../JS/Report.js"></script>
           </form>
         </div>
       </div>
     </div>
-    </div>
-    <script script src="../JS/Report.js"></script>
+  </div>
+  
 
   </nav>
 </body>
+
 
 </html>

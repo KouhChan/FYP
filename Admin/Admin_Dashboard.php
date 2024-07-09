@@ -389,6 +389,8 @@
           });
         });
 
+        //Map function
+
         function initMap() {
           var map;
           var mark;
@@ -461,7 +463,7 @@
 
         // Function to fetch report data from Firebase and populate the table
         function fetchReportData() {
-          reportRef.limitToLast(5).on('value', function(snapshot) {
+          reportRef.limitToLast(3).on('value', function(snapshot) {
             // Refresh the table
             document.getElementById('busTableBody').innerHTML = '';
 
@@ -485,7 +487,6 @@
         }
       </script>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm_aJ9lxcthdOugBg_c8q-P-vvT12ULMA&callback=initMap"></script>
-      <script src="../JS/viewReportDashboard.js"></script>
     </div>
   </nav>
 

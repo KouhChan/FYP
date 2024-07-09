@@ -343,7 +343,6 @@
     </div>
 
     <script src="../JS/view&delBus.js"></script>
-    <script src="../JS/deleteBus.js"></script>
 
     <script>
         firebase.auth().onAuthStateChanged((user) => {

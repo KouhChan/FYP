@@ -347,6 +347,7 @@
     <script src="../JS/view&delReport.js"></script>
     <script src="../JS/deleteBus.js"></script>
     <script>
+        //check the logged in sessiosn
         firebase.auth().onAuthStateChanged((user) => {
             if (!user) {
                 window.location.href = "../Admin/AdminLogin.php";

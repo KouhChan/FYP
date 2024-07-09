@@ -49,15 +49,14 @@ function fetchReportData() {
 }
 
 
-// deleteBus.js
 
 function deleteReport(ID) {
-    // Ask for confirmation before deleting the bus
+    // Ask for confirmation before deleting the report
     if (confirm("Are you sure you want to delete this report?")) {
-        // Reference to the specific bus node in the database
+        // Reference to the specific report node in the database
         const reportToDeleteRef = reportRef.child(ID);
 
-        // Remove the bus node from the database
+        // Remove the report node from the database
         reportToDeleteRef.remove()
             .then(function () {
                 console.log("Report information deleted successfully.");
@@ -71,5 +70,5 @@ function deleteReport(ID) {
 }
 
 
-// Call the function to fetch and populate bus data
+// Call the function to fetch and populate report data
 fetchReportData();

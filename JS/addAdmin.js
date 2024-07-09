@@ -94,6 +94,4 @@ function saveMessage(AdminID, name, email, password) {
         });
 }
 
-function getElementVal(id) {
-    return document.getElementById(id).value;
-}
+
