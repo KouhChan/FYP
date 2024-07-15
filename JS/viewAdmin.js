@@ -10,7 +10,7 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-// Reference to your Firebase Realtime Database
+// Reference to Firebase Realtime Database
 const database = firebase.database();
 
 // Reference to the 'Admin' node in database
